@@ -30,6 +30,11 @@
       <owl:Class rdf:ID="material_organismal_continuant"/>
     </rdfs:subClassOf>
   </owl:Class>
+  <owl:Class rdf:ID="portion_of_canonical_body_substance">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="portion_of_body_substance"/>
+    </rdfs:subClassOf>
+  </owl:Class>
   <owl:Class rdf:ID="organism">
     <rdfs:subClassOf>
       <owl:Class rdf:about="#material_organismal_continuant"/>
@@ -39,14 +44,14 @@
       ?
     &lt;/p></rdfs:comment>
   </owl:Class>
-  <owl:Class rdf:ID="portion_of_canonical_body_substance">
-    <rdfs:subClassOf>
-      <owl:Class rdf:ID="portion_of_body_substance"/>
-    </rdfs:subClassOf>
-  </owl:Class>
   <owl:Class rdf:ID="questionnaire_for_parents">
     <rdfs:subClassOf>
       <owl:Class rdf:ID="document"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="primary_treatment">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="treatment"/>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="diagnosis">
@@ -63,6 +68,7 @@
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="laterality">
+    <rdfs:subClassOf rdf:resource="http://www.ifomis.uni-saarland.de/bfo/snap#Site"/>
     <owl:equivalentClass>
       <owl:Class>
         <owl:unionOf rdf:parseType="Collection">
@@ -72,7 +78,6 @@
         </owl:unionOf>
       </owl:Class>
     </owl:equivalentClass>
-    <rdfs:subClassOf rdf:resource="http://www.ifomis.uni-saarland.de/bfo/snap#Site"/>
   </owl:Class>
   <owl:Class rdf:ID="IMBEI_identifier">
     <rdfs:subClassOf rdf:resource="#patient_identifier"/>
@@ -88,13 +93,13 @@
     </owl:disjointWith>
     <rdfs:subClassOf rdf:resource="#laterality"/>
   </owl:Class>
-  <owl:Class rdf:ID="non-biological_continuant">
-    <rdfs:subClassOf rdf:resource="http://www.ifomis.uni-saarland.de/bfo/snap#SubstantialEntity"/>
-  </owl:Class>
   <owl:Class rdf:ID="given_sex">
     <rdfs:subClassOf>
       <owl:Class rdf:about="#administrative_data"/>
     </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="non-biological_continuant">
+    <rdfs:subClassOf rdf:resource="http://www.ifomis.uni-saarland.de/bfo/snap#SubstantialEntity"/>
   </owl:Class>
   <owl:Class rdf:about="#administrative_data">
     <rdfs:subClassOf>
@@ -107,6 +112,9 @@
   <owl:Class rdf:ID="paramedical_practitioner">
     <rdfs:subClassOf rdf:resource="http://www.ifomis.uni-saarland.de/bfo/snap#Role"/>
   </owl:Class>
+  <owl:Class rdf:ID="legal_guardian_identifier">
+    <rdfs:subClassOf rdf:resource="#identifier"/>
+  </owl:Class>
   <owl:Class rdf:ID="further_therapy_recommended">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >&lt;p style="margin-top: 0">
@@ -116,16 +124,13 @@
       <owl:Class rdf:ID="biomedical_data"/>
     </rdfs:subClassOf>
   </owl:Class>
-  <owl:Class rdf:ID="legal_guardian_identifier">
-    <rdfs:subClassOf rdf:resource="#identifier"/>
+  <owl:Class rdf:ID="date_of_diagnosis">
+    <rdfs:subClassOf rdf:resource="http://www.ifomis.uni-saarland.de/bfo/span#TemporalBoundaryOfProcess"/>
   </owl:Class>
   <owl:Class rdf:about="#qualitative_data">
     <rdfs:subClassOf>
       <owl:Class rdf:about="#data"/>
     </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="date_of_diagnosis">
-    <rdfs:subClassOf rdf:resource="http://www.ifomis.uni-saarland.de/bfo/span#TemporalBoundaryOfProcess"/>
   </owl:Class>
   <owl:Class rdf:ID="given_diagnosis">
     <rdfs:subClassOf>
@@ -138,6 +143,11 @@
   <owl:Class rdf:ID="hospital_name">
     <rdfs:subClassOf>
       <owl:Class rdf:ID="hospital_identifier"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="followup_for_treatment_abroad">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="follow_up"/>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="reported_previous_treatment">
@@ -157,12 +167,25 @@
       <owl:Class rdf:ID="anatomical_structure"/>
     </rdfs:subClassOf>
   </owl:Class>
+  <owl:Class rdf:ID="manifestation">
+    <rdfs:subClassOf rdf:resource="http://www.ifomis.uni-saarland.de/bfo/snap#DependentContinuant"/>
+  </owl:Class>
   <owl:Class rdf:ID="address">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >&lt;p style="margin-top: 0">
       ?
     &lt;/p></rdfs:comment>
     <rdfs:subClassOf rdf:resource="http://www.ifomis.uni-saarland.de/bfo/snap#Place"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Drash">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="syndrome"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Perlman">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#syndrome"/>
+    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="canonical_anatomical_structure">
     <rdfs:subClassOf>
@@ -182,25 +205,37 @@
     &lt;/p></rdfs:comment>
     <rdfs:subClassOf rdf:resource="#identifier"/>
   </owl:Class>
+  <owl:Class rdf:ID="Wiedemann-Beckwith_EMG">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#syndrome"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#syndrome">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >&lt;p style="margin-top: 0">
+      or is it under qualities or processes?
+    &lt;/p></rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#manifestation"/>
+  </owl:Class>
   <owl:Class rdf:ID="date_form_completed">
     <rdfs:subClassOf rdf:resource="http://www.ifomis.uni-saarland.de/bfo/span#TemporalBoundaryOfProcess"/>
   </owl:Class>
   <owl:Class rdf:ID="therapeutic_procedure">
     <rdfs:subClassOf rdf:resource="http://www.ifomis.uni-saarland.de/bfo/span#AggregateOfProcesses"/>
   </owl:Class>
-  <owl:Class rdf:ID="patient_address">
-    <rdfs:subClassOf rdf:resource="#address"/>
-  </owl:Class>
   <owl:Class rdf:about="#document">
     <rdfs:subClassOf rdf:resource="#non-biological_continuant"/>
   </owl:Class>
-  <owl:Class rdf:ID="registration_activity">
-    <rdfs:subClassOf rdf:resource="http://www.ifomis.uni-saarland.de/bfo/span#AggregateOfProcesses"/>
+  <owl:Class rdf:ID="patient_address">
+    <rdfs:subClassOf rdf:resource="#address"/>
   </owl:Class>
   <owl:Class rdf:about="#portion_of_body_substance">
     <rdfs:subClassOf>
       <owl:Class rdf:about="#material_organismal_continuant"/>
     </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="registration_activity">
+    <rdfs:subClassOf rdf:resource="http://www.ifomis.uni-saarland.de/bfo/span#AggregateOfProcesses"/>
   </owl:Class>
   <owl:Class rdf:ID="patient_name">
     <rdfs:subClassOf rdf:resource="#patient_identifier"/>
@@ -210,11 +245,14 @@
       <owl:Class rdf:about="#hospital_identifier"/>
     </rdfs:subClassOf>
   </owl:Class>
+  <owl:Class rdf:about="#treatment">
+    <rdfs:subClassOf rdf:resource="#therapeutic_procedure"/>
+  </owl:Class>
   <owl:Class rdf:ID="healthcare_institution_address">
     <rdfs:subClassOf rdf:resource="#address"/>
   </owl:Class>
-  <owl:Class rdf:ID="treatment">
-    <rdfs:subClassOf rdf:resource="#therapeutic_procedure"/>
+  <owl:Class rdf:ID="WAGR">
+    <rdfs:subClassOf rdf:resource="#syndrome"/>
   </owl:Class>
   <owl:Class rdf:ID="patient_number_in_study">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -236,22 +274,19 @@
   <owl:Class rdf:about="#biomedical_data">
     <rdfs:subClassOf rdf:resource="#qualitative_data"/>
   </owl:Class>
+  <owl:Class rdf:ID="registration_number">
+    <rdfs:subClassOf rdf:resource="#patient_identifier"/>
+  </owl:Class>
   <owl:Class rdf:about="#data">
     <rdfs:subClassOf rdf:resource="http://www.ifomis.uni-saarland.de/bfo/snap#DependentContinuant"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >doctor´s name</rdfs:comment>
   </owl:Class>
-  <owl:Class rdf:ID="registration_number">
-    <rdfs:subClassOf rdf:resource="#patient_identifier"/>
-  </owl:Class>
-  <owl:Class rdf:about="#material_organismal_continuant">
-    <rdfs:subClassOf rdf:resource="#organismal_continuant"/>
-  </owl:Class>
   <owl:Class rdf:ID="immaterial_organismal_continuant">
     <rdfs:subClassOf rdf:resource="#organismal_continuant"/>
   </owl:Class>
-  <owl:Class rdf:ID="clinical_trial">
-    <rdfs:subClassOf rdf:resource="http://www.ifomis.uni-saarland.de/bfo/span#AggregateOfProcesses"/>
+  <owl:Class rdf:about="#material_organismal_continuant">
+    <rdfs:subClassOf rdf:resource="#organismal_continuant"/>
   </owl:Class>
   <owl:Class rdf:ID="reported_previous_tumors">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -259,6 +294,9 @@
       boolean valued
     &lt;/p></rdfs:comment>
     <rdfs:subClassOf rdf:resource="#biomedical_data"/>
+  </owl:Class>
+  <owl:Class rdf:ID="clinical_trial">
+    <rdfs:subClassOf rdf:resource="http://www.ifomis.uni-saarland.de/bfo/span#AggregateOfProcesses"/>
   </owl:Class>
   <owl:Class rdf:ID="consent_form">
     <rdfs:subClassOf rdf:resource="#document"/>
@@ -274,20 +312,20 @@
   <owl:Class rdf:about="#hospital_identifier">
     <rdfs:subClassOf rdf:resource="#identifier"/>
   </owl:Class>
-  <owl:Class rdf:ID="patient">
-    <rdfs:subClassOf rdf:resource="http://www.ifomis.uni-saarland.de/bfo/snap#Role"/>
-  </owl:Class>
   <owl:Class rdf:ID="given_place_of_birth">
     <rdfs:subClassOf rdf:resource="#administrative_data"/>
+  </owl:Class>
+  <owl:Class rdf:ID="patient">
+    <rdfs:subClassOf rdf:resource="http://www.ifomis.uni-saarland.de/bfo/snap#Role"/>
   </owl:Class>
   <owl:Class rdf:about="#laterality_center">
     <rdfs:subClassOf rdf:resource="#laterality"/>
   </owl:Class>
-  <owl:Class rdf:ID="portion_of_pathological_body_substance">
-    <rdfs:subClassOf rdf:resource="#portion_of_body_substance"/>
-  </owl:Class>
   <owl:Class rdf:ID="medical_practitioner">
     <rdfs:subClassOf rdf:resource="http://www.ifomis.uni-saarland.de/bfo/snap#Role"/>
+  </owl:Class>
+  <owl:Class rdf:ID="portion_of_pathological_body_substance">
+    <rdfs:subClassOf rdf:resource="#portion_of_body_substance"/>
   </owl:Class>
   <owl:Class rdf:about="#laterality_left">
     <owl:disjointWith rdf:resource="#laterality_right"/>
@@ -300,8 +338,14 @@
       ?
     &lt;/p></rdfs:comment>
   </owl:Class>
+  <owl:Class rdf:about="#follow_up">
+    <rdfs:subClassOf rdf:resource="#treatment"/>
+  </owl:Class>
   <owl:Class rdf:about="#anatomical_structure">
     <rdfs:subClassOf rdf:resource="#material_organismal_continuant"/>
+  </owl:Class>
+  <owl:Class rdf:ID="disease">
+    <rdfs:subClassOf rdf:resource="http://www.ifomis.uni-saarland.de/bfo/snap#DependentContinuant"/>
   </owl:Class>
   <owl:Class rdf:ID="DOB">
     <rdfs:subClassOf rdf:resource="http://www.ifomis.uni-saarland.de/bfo/span#TemporalBoundaryOfProcess"/>
@@ -315,8 +359,14 @@
   <owl:Class rdf:ID="variant_anatomical_structure">
     <rdfs:subClassOf rdf:resource="#anatomical_structure"/>
   </owl:Class>
+  <owl:Class rdf:ID="prenatal">
+    <rdfs:subClassOf rdf:resource="#diagnosis"/>
+  </owl:Class>
   <owl:Class rdf:ID="malignancy">
     <rdfs:subClassOf rdf:resource="http://www.ifomis.uni-saarland.de/bfo/snap#Quality"/>
+  </owl:Class>
+  <owl:Class rdf:ID="followup_for_treatment_inland">
+    <rdfs:subClassOf rdf:resource="#follow_up"/>
   </owl:Class>
   <owl:Class rdf:ID="parent_identifier">
     <rdfs:subClassOf rdf:resource="#legal_guardian_identifier"/>
