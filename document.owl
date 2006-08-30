@@ -30,6 +30,9 @@
       <owl:Class rdf:ID="material_organismal_continuant"/>
     </rdfs:subClassOf>
   </owl:Class>
+  <owl:Class rdf:ID="date_of_imaging-based_diagnosis">
+    <rdfs:subClassOf rdf:resource="http://www.ifomis.uni-saarland.de/bfo/span#TemporalBoundaryOfProcess"/>
+  </owl:Class>
   <owl:Class rdf:ID="portion_of_canonical_body_substance">
     <rdfs:subClassOf>
       <owl:Class rdf:ID="portion_of_body_substance"/>
@@ -68,7 +71,6 @@
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="laterality">
-    <rdfs:subClassOf rdf:resource="http://www.ifomis.uni-saarland.de/bfo/snap#Site"/>
     <owl:equivalentClass>
       <owl:Class>
         <owl:unionOf rdf:parseType="Collection">
@@ -78,6 +80,7 @@
         </owl:unionOf>
       </owl:Class>
     </owl:equivalentClass>
+    <rdfs:subClassOf rdf:resource="http://www.ifomis.uni-saarland.de/bfo/snap#Site"/>
   </owl:Class>
   <owl:Class rdf:ID="IMBEI_identifier">
     <rdfs:subClassOf rdf:resource="#patient_identifier"/>
@@ -93,13 +96,13 @@
     </owl:disjointWith>
     <rdfs:subClassOf rdf:resource="#laterality"/>
   </owl:Class>
+  <owl:Class rdf:ID="non-biological_continuant">
+    <rdfs:subClassOf rdf:resource="http://www.ifomis.uni-saarland.de/bfo/snap#SubstantialEntity"/>
+  </owl:Class>
   <owl:Class rdf:ID="given_sex">
     <rdfs:subClassOf>
       <owl:Class rdf:about="#administrative_data"/>
     </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="non-biological_continuant">
-    <rdfs:subClassOf rdf:resource="http://www.ifomis.uni-saarland.de/bfo/snap#SubstantialEntity"/>
   </owl:Class>
   <owl:Class rdf:about="#administrative_data">
     <rdfs:subClassOf>
@@ -109,12 +112,6 @@
   <owl:Class rdf:ID="organismal_continuant">
     <rdfs:subClassOf rdf:resource="#biological_continuant"/>
   </owl:Class>
-  <owl:Class rdf:ID="paramedical_practitioner">
-    <rdfs:subClassOf rdf:resource="http://www.ifomis.uni-saarland.de/bfo/snap#Role"/>
-  </owl:Class>
-  <owl:Class rdf:ID="legal_guardian_identifier">
-    <rdfs:subClassOf rdf:resource="#identifier"/>
-  </owl:Class>
   <owl:Class rdf:ID="further_therapy_recommended">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >&lt;p style="margin-top: 0">
@@ -123,6 +120,12 @@
     <rdfs:subClassOf>
       <owl:Class rdf:ID="biomedical_data"/>
     </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="legal_guardian_identifier">
+    <rdfs:subClassOf rdf:resource="#identifier"/>
+  </owl:Class>
+  <owl:Class rdf:ID="paramedical_practitioner">
+    <rdfs:subClassOf rdf:resource="http://www.ifomis.uni-saarland.de/bfo/snap#Role"/>
   </owl:Class>
   <owl:Class rdf:ID="date_of_diagnosis">
     <rdfs:subClassOf rdf:resource="http://www.ifomis.uni-saarland.de/bfo/span#TemporalBoundaryOfProcess"/>
@@ -150,6 +153,9 @@
       <owl:Class rdf:ID="follow_up"/>
     </rdfs:subClassOf>
   </owl:Class>
+  <owl:Class rdf:ID="GPOH-PID">
+    <rdfs:subClassOf rdf:resource="#patient_identifier"/>
+  </owl:Class>
   <owl:Class rdf:ID="reported_previous_treatment">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >&lt;p style="margin-top: 0">
@@ -158,9 +164,6 @@
     <rdfs:subClassOf>
       <owl:Class rdf:about="#biomedical_data"/>
     </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="GPOH-PID">
-    <rdfs:subClassOf rdf:resource="#patient_identifier"/>
   </owl:Class>
   <owl:Class rdf:ID="pathological_anatomical_structure">
     <rdfs:subClassOf>
@@ -271,16 +274,19 @@
     >doctor´s name</rdfs:comment>
     <rdfs:subClassOf rdf:resource="#identifier"/>
   </owl:Class>
+  <owl:Class rdf:ID="start_of_Protokolltherapie">
+    <rdfs:subClassOf rdf:resource="http://www.ifomis.uni-saarland.de/bfo/span#TemporalBoundaryOfProcess"/>
+  </owl:Class>
   <owl:Class rdf:about="#biomedical_data">
     <rdfs:subClassOf rdf:resource="#qualitative_data"/>
-  </owl:Class>
-  <owl:Class rdf:ID="registration_number">
-    <rdfs:subClassOf rdf:resource="#patient_identifier"/>
   </owl:Class>
   <owl:Class rdf:about="#data">
     <rdfs:subClassOf rdf:resource="http://www.ifomis.uni-saarland.de/bfo/snap#DependentContinuant"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >doctor´s name</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="registration_number">
+    <rdfs:subClassOf rdf:resource="#patient_identifier"/>
   </owl:Class>
   <owl:Class rdf:ID="immaterial_organismal_continuant">
     <rdfs:subClassOf rdf:resource="#organismal_continuant"/>
