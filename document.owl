@@ -13,16 +13,13 @@
     <dc:creator rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Holger Stenzhorn</dc:creator>
     <owl:imports rdf:resource="http://www.ifomis.org/bfo/1.0"/>
-    <owl:imports>
-      <rdf:Description rdf:about="http://purl.org/dc/elements/1.1/">
-        <dc:creator rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-        >Cristian Cocos</dc:creator>
-        <dc:creator rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-        >Holger Stenzhorn</dc:creator>
-        <dc:creator rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-        >Mathias Brochhausen</dc:creator>
-      </rdf:Description>
-    </owl:imports>
+    <owl:imports rdf:resource="http://protege.stanford.edu/plugins/owl/dc/protege-dc.owl"/>
+    <dc:creator rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Cristian Cocos</dc:creator>
+    <dc:creator rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Holger Stenzhorn</dc:creator>
+    <dc:creator rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Mathias Brochhausen</dc:creator>
     <dc:publisher rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Insitute for Formal Ontology and Medical Information Science (IFOMIS)</dc:publisher>
     <dc:creator rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
