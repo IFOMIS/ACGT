@@ -305,9 +305,6 @@
     <owl:disjointWith>
       <owl:Class rdf:ID="SurgicalProcedure"/>
     </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:ID="Treatment"/>
-    </owl:disjointWith>
     <rdfs:subClassOf>
       <owl:Class rdf:ID="TherapeuticProcedure"/>
     </rdfs:subClassOf>
@@ -967,9 +964,6 @@
       <owl:Class rdf:ID="MedicalProcess"/>
     </rdfs:subClassOf>
     <owl:disjointWith>
-      <owl:Class rdf:about="#ClinicalTrialAndStudy"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
       <owl:Class rdf:ID="DiagnosticProcedure"/>
     </owl:disjointWith>
   </owl:Class>
@@ -1529,6 +1523,9 @@
         </owl:unionOf>
       </owl:Class>
     </owl:equivalentClass>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#ClinicalTrialAndStudy"/>
+    </owl:disjointWith>
     <rdfs:subClassOf>
       <owl:Class rdf:ID="AdministrativeProcess"/>
     </rdfs:subClassOf>
@@ -1727,9 +1724,6 @@
       </owl:Restriction>
     </rdfs:subClassOf>
     <owl:disjointWith rdf:resource="#TherapeuticProcedure"/>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#ClinicalTrialAndStudy"/>
-    </owl:disjointWith>
   </owl:Class>
   <owl:Class rdf:about="#Second">
     <owl:disjointWith rdf:resource="#Minute"/>
@@ -1861,16 +1855,6 @@
       <owl:Class rdf:about="#NephroblastomaMetastasis"/>
     </owl:disjointWith>
   </owl:Class>
-  <owl:Class rdf:about="#Treatment">
-    <owl:disjointWith rdf:resource="#Radiotherapy"/>
-    <rdfs:subClassOf rdf:resource="#TherapeuticProcedure"/>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#SurgicalProcedure"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Pharmacotherapy"/>
-    </owl:disjointWith>
-  </owl:Class>
   <owl:Class rdf:ID="StructuralVascularSymptom">
     <rdfs:subClassOf>
       <owl:Class rdf:ID="VascularSymptom"/>
@@ -1966,14 +1950,6 @@
         <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
         >1</owl:cardinality>
       </owl:Restriction>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="FollowUpTreatmentForTreatmentInland">
-    <owl:disjointWith>
-      <owl:Class rdf:ID="FollowUpTreatmentForTreatmentAbroad"/>
-    </owl:disjointWith>
-    <rdfs:subClassOf>
-      <owl:Class rdf:ID="FollowUpTreatment"/>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="#Radiotherapist">
@@ -2376,17 +2352,6 @@
     </owl:disjointWith>
     <rdfs:subClassOf rdf:resource="#RespiratorySystemSymptom"/>
   </owl:Class>
-  <owl:Class rdf:ID="PreviousTreatment">
-    <owl:disjointWith>
-      <owl:Class rdf:ID="PrimaryTreatment"/>
-    </owl:disjointWith>
-    <rdfs:subClassOf rdf:resource="#Treatment"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >pre-therapy in another clinic; boolean valued</rdfs:comment>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#FollowUpTreatment"/>
-    </owl:disjointWith>
-  </owl:Class>
   <owl:Class rdf:ID="FunctionalEndocrineSystemSymptom">
     <owl:disjointWith>
       <owl:Class rdf:ID="StructuralEndocrineSystemSymptom"/>
@@ -2508,6 +2473,9 @@
   </owl:Class>
   <owl:Class rdf:about="#ClinicalDocumentation">
     <owl:disjointWith rdf:resource="#Consent"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#ClinicalTrialAndStudy"/>
+    </owl:disjointWith>
     <rdfs:subClassOf>
       <owl:Class rdf:about="#AdministrativeProcess"/>
     </rdfs:subClassOf>
@@ -3000,13 +2968,6 @@
     >?</rdfs:comment>
     <rdfs:subClassOf rdf:resource="#ExtraOrganismalIndependenContinuant"/>
   </owl:Class>
-  <owl:Class rdf:about="#PrimaryTreatment">
-    <owl:disjointWith>
-      <owl:Class rdf:about="#FollowUpTreatment"/>
-    </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#PreviousTreatment"/>
-    <rdfs:subClassOf rdf:resource="#Treatment"/>
-  </owl:Class>
   <owl:Class rdf:about="#WiedemannBeckWithEMG">
     <owl:disjointWith rdf:resource="#AniridiaSyndrom"/>
     <rdfs:subClassOf rdf:resource="#Syndrome"/>
@@ -3086,6 +3047,14 @@
   </owl:Class>
   <owl:Class rdf:about="#MedicalProcess">
     <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.0/span#Process"/>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#DiagnosticProcedure"/>
+          <owl:Class rdf:about="#TherapeuticProcedure"/>
+        </owl:unionOf>
+      </owl:Class>
+    </owl:equivalentClass>
     <owl:disjointWith>
       <owl:Class rdf:about="#AdministrativeProcess"/>
     </owl:disjointWith>
@@ -3115,6 +3084,12 @@
     <owl:disjointWith rdf:resource="#Height"/>
     <owl:disjointWith rdf:resource="#Depth"/>
   </owl:Class>
+  <owl:Class rdf:ID="TrucutBiopsy">
+    <owl:disjointWith>
+      <owl:Class rdf:ID="FineNeedleBiopsy"/>
+    </owl:disjointWith>
+    <rdfs:subClassOf rdf:resource="#BiopsyWithoutIncision"/>
+  </owl:Class>
   <owl:Class rdf:about="#CubicKilometer">
     <owl:disjointWith>
       <owl:Class rdf:about="#CubicMillimeter"/>
@@ -3127,12 +3102,6 @@
       <owl:Class rdf:about="#CubicCentimeter"/>
     </owl:disjointWith>
     <rdfs:subClassOf rdf:resource="#VolumeUnit"/>
-  </owl:Class>
-  <owl:Class rdf:ID="TrucutBiopsy">
-    <owl:disjointWith>
-      <owl:Class rdf:ID="FineNeedleBiopsy"/>
-    </owl:disjointWith>
-    <rdfs:subClassOf rdf:resource="#BiopsyWithoutIncision"/>
   </owl:Class>
   <owl:Class rdf:about="#IdenticalTwinSister">
     <owl:disjointWith>
@@ -3155,19 +3124,6 @@
     </owl:disjointWith>
     <owl:disjointWith rdf:resource="#ConsentForm"/>
     <rdfs:subClassOf rdf:resource="#Document"/>
-  </owl:Class>
-  <owl:Class rdf:about="#FollowUpTreatment">
-    <owl:disjointWith rdf:resource="#PreviousTreatment"/>
-    <owl:equivalentClass>
-      <owl:Class>
-        <owl:unionOf rdf:parseType="Collection">
-          <owl:Class rdf:about="#FollowUpTreatmentForTreatmentAbroad"/>
-          <owl:Class rdf:about="#FollowUpTreatmentForTreatmentInland"/>
-        </owl:unionOf>
-      </owl:Class>
-    </owl:equivalentClass>
-    <rdfs:subClassOf rdf:resource="#Treatment"/>
-    <owl:disjointWith rdf:resource="#PrimaryTreatment"/>
   </owl:Class>
   <owl:Class rdf:about="#NephroblastomaMetastasis">
     <rdfs:subClassOf rdf:resource="#Nephroblastoma"/>
@@ -3565,7 +3521,6 @@
   </owl:Class>
   <owl:Class rdf:about="#SurgicalProcedure">
     <rdfs:subClassOf rdf:resource="#TherapeuticProcedure"/>
-    <owl:disjointWith rdf:resource="#Treatment"/>
     <owl:disjointWith rdf:resource="#Radiotherapy"/>
     <owl:equivalentClass>
       <owl:Class>
@@ -3872,7 +3827,6 @@
   </owl:Class>
   <owl:Class rdf:about="#Pharmacotherapy">
     <owl:disjointWith rdf:resource="#SurgicalProcedure"/>
-    <owl:disjointWith rdf:resource="#Treatment"/>
     <rdfs:subClassOf rdf:resource="#TherapeuticProcedure"/>
     <owl:disjointWith rdf:resource="#Radiotherapy"/>
   </owl:Class>
@@ -4415,6 +4369,9 @@
     <rdfs:subClassOf>
       <owl:Class rdf:about="#AdministrativeProcess"/>
     </rdfs:subClassOf>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#ClinicalTrialAndStudy"/>
+    </owl:disjointWith>
   </owl:Class>
   <owl:Class rdf:about="#Thrombosis">
     <owl:disjointWith rdf:resource="#Hypertension"/>
@@ -4422,17 +4379,12 @@
     <owl:disjointWith rdf:resource="#Hypotension"/>
   </owl:Class>
   <owl:Class rdf:about="#ClinicalTrialAndStudy">
-    <owl:equivalentClass>
-      <owl:Class>
-        <owl:unionOf rdf:parseType="Collection">
-          <owl:Class rdf:about="#ClinicalStudy"/>
-          <owl:Class rdf:about="#ClinicalTrial"/>
-        </owl:unionOf>
-      </owl:Class>
-    </owl:equivalentClass>
-    <rdfs:subClassOf rdf:resource="#MedicalProcess"/>
-    <owl:disjointWith rdf:resource="#TherapeuticProcedure"/>
-    <owl:disjointWith rdf:resource="#DiagnosticProcedure"/>
+    <owl:disjointWith rdf:resource="#Consent"/>
+    <owl:disjointWith rdf:resource="#ClinicalDocumentation"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#AdministrativeProcess"/>
+    </rdfs:subClassOf>
+    <owl:disjointWith rdf:resource="#Registration"/>
   </owl:Class>
   <owl:Class rdf:about="#VascularSymptom">
     <rdfs:subClassOf rdf:resource="#CardiovascularSystemSymptom"/>
@@ -4841,10 +4793,6 @@ The position here is, I think rather bad, but....</rdfs:comment>
   <owl:Class rdf:ID="UrogenitalMalformation">
     <rdfs:subClassOf rdf:resource="#PathologicalAnatomicalStructure"/>
   </owl:Class>
-  <owl:Class rdf:about="#FollowUpTreatmentForTreatmentAbroad">
-    <owl:disjointWith rdf:resource="#FollowUpTreatmentForTreatmentInland"/>
-    <rdfs:subClassOf rdf:resource="#FollowUpTreatment"/>
-  </owl:Class>
   <owl:Class rdf:about="#LiverLesion">
     <owl:disjointWith rdf:resource="#VascularLesion"/>
     <owl:disjointWith rdf:resource="#IntestinalLesion"/>
@@ -5100,6 +5048,10 @@ The position here is, I think rather bad, but....</rdfs:comment>
     <owl:inverseOf>
       <owl:ObjectProperty rdf:about="#isRoleOf"/>
     </owl:inverseOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="isFollowUpTo">
+    <rdfs:domain rdf:resource="#MedicalProcess"/>
+    <rdfs:range rdf:resource="#MedicalProcess"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="#hasLastName">
     <rdfs:subPropertyOf rdf:resource="#hasName"/>
