@@ -13,7 +13,7 @@
     <dc:creator rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Holger Stenzhorn</dc:creator>
     <owl:imports rdf:resource="http://www.ifomis.org/bfo/1.0"/>
-    <owl:imports rdf:resource="http://www.ifomis.org/bfo/ro.owl"/>
+    <owl:imports rdf:resource="http://www.ifomis.org/ro/1.0"/>
     <dc:publisher rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Insitute for Formal Ontology and Medical Information Science (IFOMIS)</dc:publisher>
     <dc:creator rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -519,7 +519,7 @@
         <owl:someValuesFrom>
           <owl:Class rdf:about="#TelephoneNumber"/>
         </owl:someValuesFrom>
-        <owl:onProperty rdf:resource="http://www.ifomis.org/bfo/ro.owl#hasPart"/>
+        <owl:onProperty rdf:resource="http://www.ifomis.org/ro/1.0#hasPart"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <owl:disjointWith>
@@ -533,7 +533,7 @@
     </owl:disjointWith>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.ifomis.org/bfo/ro.owl#hasPart"/>
+        <owl:onProperty rdf:resource="http://www.ifomis.org/ro/1.0#hasPart"/>
         <owl:someValuesFrom>
           <owl:Class rdf:ID="PlaceName"/>
         </owl:someValuesFrom>
@@ -547,7 +547,7 @@
         <owl:someValuesFrom>
           <owl:Class rdf:ID="CountryName"/>
         </owl:someValuesFrom>
-        <owl:onProperty rdf:resource="http://www.ifomis.org/bfo/ro.owl#hasPart"/>
+        <owl:onProperty rdf:resource="http://www.ifomis.org/ro/1.0#hasPart"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <owl:disjointWith>
@@ -558,7 +558,7 @@
         <owl:someValuesFrom>
           <owl:Class rdf:ID="HouseNumber"/>
         </owl:someValuesFrom>
-        <owl:onProperty rdf:resource="http://www.ifomis.org/bfo/ro.owl#hasPart"/>
+        <owl:onProperty rdf:resource="http://www.ifomis.org/ro/1.0#hasPart"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <owl:disjointWith>
@@ -566,7 +566,7 @@
     </owl:disjointWith>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.ifomis.org/bfo/ro.owl#hasPart"/>
+        <owl:onProperty rdf:resource="http://www.ifomis.org/ro/1.0#hasPart"/>
         <owl:someValuesFrom>
           <owl:Class rdf:ID="PostalCode"/>
         </owl:someValuesFrom>
@@ -578,7 +578,7 @@
     <owl:disjointWith rdf:resource="#ClinicalStudyIdentifier"/>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.ifomis.org/bfo/ro.owl#hasPart"/>
+        <owl:onProperty rdf:resource="http://www.ifomis.org/ro/1.0#hasPart"/>
         <owl:someValuesFrom>
           <owl:Class rdf:ID="StreetName"/>
         </owl:someValuesFrom>
@@ -679,7 +679,7 @@
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:allValuesFrom rdf:resource="#ClinicalStudy"/>
-        <owl:onProperty rdf:resource="http://www.ifomis.org/bfo/ro.owl#partOf"/>
+        <owl:onProperty rdf:resource="http://www.ifomis.org/ro/1.0#partOf"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
@@ -699,7 +699,7 @@
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:someValuesFrom rdf:resource="#ClinicalStudy"/>
-        <owl:onProperty rdf:resource="http://www.ifomis.org/bfo/ro.owl#partOf"/>
+        <owl:onProperty rdf:resource="http://www.ifomis.org/ro/1.0#partOf"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
@@ -1909,7 +1909,7 @@
         <owl:someValuesFrom>
           <owl:Class rdf:about="#LastName"/>
         </owl:someValuesFrom>
-        <owl:onProperty rdf:resource="http://www.ifomis.org/bfo/ro.owl#hasPart"/>
+        <owl:onProperty rdf:resource="http://www.ifomis.org/ro/1.0#hasPart"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <owl:disjointWith>
@@ -1923,7 +1923,7 @@
         <owl:someValuesFrom>
           <owl:Class rdf:about="#FirstName"/>
         </owl:someValuesFrom>
-        <owl:onProperty rdf:resource="http://www.ifomis.org/bfo/ro.owl#hasPart"/>
+        <owl:onProperty rdf:resource="http://www.ifomis.org/ro/1.0#hasPart"/>
       </owl:Restriction>
     </rdfs:subClassOf>
   </owl:Class>
@@ -4054,7 +4054,7 @@
     <owl:disjointWith rdf:resource="#ParentQuestionnaire"/>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.ifomis.org/bfo/ro.owl#hasPart"/>
+        <owl:onProperty rdf:resource="http://www.ifomis.org/ro/1.0#hasPart"/>
         <owl:someValuesFrom rdf:resource="#HospitalIdentifier"/>
       </owl:Restriction>
     </rdfs:subClassOf>
@@ -4274,7 +4274,7 @@
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:allValuesFrom rdf:resource="#FullName"/>
-        <owl:onProperty rdf:resource="http://www.ifomis.org/bfo/ro.owl#partOf"/>
+        <owl:onProperty rdf:resource="http://www.ifomis.org/ro/1.0#partOf"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <owl:disjointWith rdf:resource="#FullName"/>
@@ -4283,7 +4283,7 @@
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.ifomis.org/bfo/ro.owl#partOf"/>
+        <owl:onProperty rdf:resource="http://www.ifomis.org/ro/1.0#partOf"/>
         <owl:someValuesFrom rdf:resource="#FullName"/>
       </owl:Restriction>
     </rdfs:subClassOf>
@@ -4415,7 +4415,7 @@
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:allValuesFrom rdf:resource="#FullName"/>
-        <owl:onProperty rdf:resource="http://www.ifomis.org/bfo/ro.owl#partOf"/>
+        <owl:onProperty rdf:resource="http://www.ifomis.org/ro/1.0#partOf"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <owl:disjointWith rdf:resource="#LastName"/>
@@ -4426,7 +4426,7 @@
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:someValuesFrom rdf:resource="#FullName"/>
-        <owl:onProperty rdf:resource="http://www.ifomis.org/bfo/ro.owl#partOf"/>
+        <owl:onProperty rdf:resource="http://www.ifomis.org/ro/1.0#partOf"/>
       </owl:Restriction>
     </rdfs:subClassOf>
   </owl:Class>
@@ -4859,7 +4859,7 @@ The position here is, I think rather bad, but....</rdfs:comment>
   </owl:Class>
   <owl:ObjectProperty rdf:about="#hasClinicalTrialParticipant">
     <rdfs:domain rdf:resource="#ClinicalTrial"/>
-    <rdfs:subPropertyOf rdf:resource="http://www.ifomis.org/bfo/ro.owl#hasParticipant"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.ifomis.org/ro/1.0#hasParticipant"/>
     <owl:inverseOf>
       <owl:ObjectProperty rdf:about="#participatesInClinicalTrial"/>
     </owl:inverseOf>
@@ -4907,7 +4907,7 @@ The position here is, I think rather bad, but....</rdfs:comment>
     <rdfs:range rdf:resource="#Address"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="#hasClinicalStudyParticipant">
-    <rdfs:subPropertyOf rdf:resource="http://www.ifomis.org/bfo/ro.owl#hasParticipant"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.ifomis.org/ro/1.0#hasParticipant"/>
     <rdfs:range rdf:resource="#Patient"/>
     <rdfs:domain rdf:resource="#ClinicalStudy"/>
     <owl:inverseOf>
@@ -4929,7 +4929,7 @@ The position here is, I think rather bad, but....</rdfs:comment>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="#participatesInClinicalStudy">
     <rdfs:range rdf:resource="#ClinicalStudy"/>
-    <rdfs:subPropertyOf rdf:resource="http://www.ifomis.org/bfo/ro.owl#participatesIn"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.ifomis.org/ro/1.0#participatesIn"/>
     <owl:inverseOf rdf:resource="#hasClinicalStudyParticipant"/>
     <rdfs:domain rdf:resource="#Patient"/>
   </owl:ObjectProperty>
@@ -5027,7 +5027,7 @@ The position here is, I think rather bad, but....</rdfs:comment>
   <owl:ObjectProperty rdf:about="#participatesInClinicalTrial">
     <rdfs:range rdf:resource="#ClinicalTrial"/>
     <owl:inverseOf rdf:resource="#hasClinicalTrialParticipant"/>
-    <rdfs:subPropertyOf rdf:resource="http://www.ifomis.org/bfo/ro.owl#participatesIn"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.ifomis.org/ro/1.0#participatesIn"/>
     <rdfs:domain rdf:resource="#Patient"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:ID="isBrotherOf">
