@@ -21,7 +21,7 @@
     <dc:creator rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Mathias Brochhausen</dc:creator>
     <owl:imports rdf:resource="http://www.ifomis.org/bfo/1.0"/>
-    <owl:imports rdf:resource="http://www.ifomis.org/ro/1.0"/>
+    <owl:imports rdf:resource="http://www.ifomis.org/obo/ro/1.0"/>
     <owl:imports rdf:resource="http://protege.stanford.edu/plugins/owl/dc/protege-dc.owl"/>
   </owl:Ontology>
   <owl:Class rdf:ID="ConsentForm">
@@ -1384,7 +1384,7 @@ The position here is, I think rather bad, but....</rdfs:comment>
     </owl:disjointWith>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.ifomis.org/ro/1.0#partOf"/>
+        <owl:onProperty rdf:resource="http://www.ifomis.org/obo/ro/1.0#partOf"/>
         <owl:allValuesFrom>
           <owl:Class rdf:about="#FullName"/>
         </owl:allValuesFrom>
@@ -1398,7 +1398,7 @@ The position here is, I think rather bad, but....</rdfs:comment>
         <owl:someValuesFrom>
           <owl:Class rdf:about="#FullName"/>
         </owl:someValuesFrom>
-        <owl:onProperty rdf:resource="http://www.ifomis.org/ro/1.0#partOf"/>
+        <owl:onProperty rdf:resource="http://www.ifomis.org/obo/ro/1.0#partOf"/>
       </owl:Restriction>
     </rdfs:subClassOf>
   </owl:Class>
@@ -1599,7 +1599,7 @@ The position here is, I think rather bad, but....</rdfs:comment>
         <owl:someValuesFrom>
           <owl:Class rdf:about="#HospitalIdentifier"/>
         </owl:someValuesFrom>
-        <owl:onProperty rdf:resource="http://www.ifomis.org/ro/1.0#hasPart"/>
+        <owl:onProperty rdf:resource="http://www.ifomis.org/obo/ro/1.0#hasPart"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
@@ -1731,7 +1731,7 @@ The position here is, I think rather bad, but....</rdfs:comment>
   <owl:Class rdf:about="#FirstName">
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.ifomis.org/ro/1.0#partOf"/>
+        <owl:onProperty rdf:resource="http://www.ifomis.org/obo/ro/1.0#partOf"/>
         <owl:allValuesFrom>
           <owl:Class rdf:about="#FullName"/>
         </owl:allValuesFrom>
@@ -1742,7 +1742,7 @@ The position here is, I think rather bad, but....</rdfs:comment>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.ifomis.org/ro/1.0#partOf"/>
+        <owl:onProperty rdf:resource="http://www.ifomis.org/obo/ro/1.0#partOf"/>
         <owl:someValuesFrom>
           <owl:Class rdf:about="#FullName"/>
         </owl:someValuesFrom>
@@ -3376,7 +3376,7 @@ The position here is, I think rather bad, but....</rdfs:comment>
     <owl:disjointWith rdf:resource="#TelephoneNumber"/>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.ifomis.org/ro/1.0#hasPart"/>
+        <owl:onProperty rdf:resource="http://www.ifomis.org/obo/ro/1.0#hasPart"/>
         <owl:someValuesFrom>
           <owl:Class rdf:about="#PlaceName"/>
         </owl:someValuesFrom>
@@ -3385,7 +3385,7 @@ The position here is, I think rather bad, but....</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:someValuesFrom rdf:resource="#TelephoneNumber"/>
-        <owl:onProperty rdf:resource="http://www.ifomis.org/ro/1.0#hasPart"/>
+        <owl:onProperty rdf:resource="http://www.ifomis.org/obo/ro/1.0#hasPart"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <owl:disjointWith rdf:resource="#HospitalIdentifier"/>
@@ -3393,7 +3393,7 @@ The position here is, I think rather bad, but....</rdfs:comment>
     <rdfs:subClassOf rdf:resource="#Identifier"/>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.ifomis.org/ro/1.0#hasPart"/>
+        <owl:onProperty rdf:resource="http://www.ifomis.org/obo/ro/1.0#hasPart"/>
         <owl:someValuesFrom rdf:resource="#HouseNumber"/>
       </owl:Restriction>
     </rdfs:subClassOf>
@@ -3403,7 +3403,7 @@ The position here is, I think rather bad, but....</rdfs:comment>
     </owl:disjointWith>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.ifomis.org/ro/1.0#hasPart"/>
+        <owl:onProperty rdf:resource="http://www.ifomis.org/obo/ro/1.0#hasPart"/>
         <owl:someValuesFrom rdf:resource="#CountryName"/>
       </owl:Restriction>
     </rdfs:subClassOf>
@@ -3413,7 +3413,7 @@ The position here is, I think rather bad, but....</rdfs:comment>
     </owl:disjointWith>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.ifomis.org/ro/1.0#hasPart"/>
+        <owl:onProperty rdf:resource="http://www.ifomis.org/obo/ro/1.0#hasPart"/>
         <owl:someValuesFrom>
           <owl:Class rdf:about="#StreetName"/>
         </owl:someValuesFrom>
@@ -3421,7 +3421,7 @@ The position here is, I think rather bad, but....</rdfs:comment>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.ifomis.org/ro/1.0#hasPart"/>
+        <owl:onProperty rdf:resource="http://www.ifomis.org/obo/ro/1.0#hasPart"/>
         <owl:someValuesFrom rdf:resource="#PostalCode"/>
       </owl:Restriction>
     </rdfs:subClassOf>
@@ -4238,7 +4238,7 @@ The position here is, I think rather bad, but....</rdfs:comment>
     <owl:disjointWith rdf:resource="#LastName"/>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.ifomis.org/ro/1.0#hasPart"/>
+        <owl:onProperty rdf:resource="http://www.ifomis.org/obo/ro/1.0#hasPart"/>
         <owl:someValuesFrom rdf:resource="#LastName"/>
       </owl:Restriction>
     </rdfs:subClassOf>
@@ -4246,7 +4246,7 @@ The position here is, I think rather bad, but....</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:someValuesFrom rdf:resource="#FirstName"/>
-        <owl:onProperty rdf:resource="http://www.ifomis.org/ro/1.0#hasPart"/>
+        <owl:onProperty rdf:resource="http://www.ifomis.org/obo/ro/1.0#hasPart"/>
       </owl:Restriction>
     </rdfs:subClassOf>
   </owl:Class>
@@ -4314,7 +4314,7 @@ The position here is, I think rather bad, but....</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:allValuesFrom rdf:resource="#ClinicalStudy"/>
-        <owl:onProperty rdf:resource="http://www.ifomis.org/ro/1.0#partOf"/>
+        <owl:onProperty rdf:resource="http://www.ifomis.org/obo/ro/1.0#partOf"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
@@ -4331,7 +4331,7 @@ The position here is, I think rather bad, but....</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:someValuesFrom rdf:resource="#ClinicalStudy"/>
-        <owl:onProperty rdf:resource="http://www.ifomis.org/ro/1.0#partOf"/>
+        <owl:onProperty rdf:resource="http://www.ifomis.org/obo/ro/1.0#partOf"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
@@ -4845,7 +4845,7 @@ The position here is, I think rather bad, but....</rdfs:comment>
     <rdfs:domain rdf:resource="#FirstName"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="#hasClinicalStudyParticipant">
-    <rdfs:subPropertyOf rdf:resource="http://www.ifomis.org/ro/1.0#hasParticipant"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.ifomis.org/obo/ro/1.0#hasParticipant"/>
     <owl:inverseOf>
       <owl:ObjectProperty rdf:about="#participatesInClinicalStudy"/>
     </owl:inverseOf>
@@ -4910,7 +4910,7 @@ The position here is, I think rather bad, but....</rdfs:comment>
   <owl:ObjectProperty rdf:about="#participatesInClinicalStudy">
     <rdfs:domain rdf:resource="#Patient"/>
     <rdfs:range rdf:resource="#ClinicalStudy"/>
-    <rdfs:subPropertyOf rdf:resource="http://www.ifomis.org/ro/1.0#participatesIn"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.ifomis.org/obo/ro/1.0#participatesIn"/>
     <owl:inverseOf rdf:resource="#hasClinicalStudyParticipant"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="#isNameOf">
@@ -4999,14 +4999,14 @@ The position here is, I think rather bad, but....</rdfs:comment>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="#hasClinicalTrialParticipant">
     <rdfs:range rdf:resource="#Patient"/>
-    <rdfs:subPropertyOf rdf:resource="http://www.ifomis.org/ro/1.0#hasParticipant"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.ifomis.org/obo/ro/1.0#hasParticipant"/>
     <rdfs:domain rdf:resource="#ClinicalTrial"/>
     <owl:inverseOf>
       <owl:ObjectProperty rdf:about="#participatesInClinicalTrial"/>
     </owl:inverseOf>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="#participatesInClinicalTrial">
-    <rdfs:subPropertyOf rdf:resource="http://www.ifomis.org/ro/1.0#participatesIn"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.ifomis.org/obo/ro/1.0#participatesIn"/>
     <owl:inverseOf rdf:resource="#hasClinicalTrialParticipant"/>
     <rdfs:range rdf:resource="#ClinicalTrial"/>
     <rdfs:domain rdf:resource="#Patient"/>
