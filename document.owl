@@ -13,37 +13,17 @@
     <dc:creator rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Mathias Brochhausen</dc:creator>
     <dc:creator rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Cristian Cocos</dc:creator>
-    <dc:creator rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Holger Stenzhorn</dc:creator>
-    <owl:imports rdf:resource="http://protege.stanford.edu/plugins/owl/dc/protege-dc.owl"/>
-    <owl:imports rdf:resource="http://www.ifomis.org/obo/ro/1.0"/>
-    <owl:imports rdf:resource="http://www.ifomis.org/bfo/1.0"/>
+    <dc:creator rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Cristian Cocos</dc:creator>
     <dc:publisher rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Insitute for Formal Ontology and Medical Information Science (IFOMIS)</dc:publisher>
+    <owl:imports rdf:resource="http://www.ifomis.org/bfo/1.0"/>
+    <owl:imports rdf:resource="http://www.ifomis.org/obo/ro/1.0"/>
+    <owl:imports rdf:resource="http://protege.stanford.edu/plugins/owl/dc/protege-dc.owl"/>
     <dc:title rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >ACGT Master Ontology</dc:title>
   </owl:Ontology>
-  <owl:Class rdf:ID="HaematooncologicalTumor">
-    <owl:disjointWith>
-      <owl:Class rdf:ID="Sarcoma"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:ID="Carcinoma"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:ID="NeuroendocrineTumor"/>
-    </owl:disjointWith>
-    <rdfs:subClassOf>
-      <owl:Class rdf:ID="MalignNeoplasm"/>
-    </rdfs:subClassOf>
-    <owl:disjointWith>
-      <owl:Class rdf:ID="DysontogeneticTumor"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:ID="MixedTumor"/>
-    </owl:disjointWith>
-  </owl:Class>
   <owl:Class rdf:ID="Pharmacotherapy">
     <owl:disjointWith>
       <owl:Class rdf:ID="Radiotherapy"/>
@@ -68,6 +48,14 @@
     <owl:disjointWith>
       <owl:Class rdf:ID="MusculoskeletalSystemSymptom"/>
     </owl:disjointWith>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:ID="CardiacSymptom"/>
+          <owl:Class rdf:ID="VascularSymptom"/>
+        </owl:unionOf>
+      </owl:Class>
+    </owl:equivalentClass>
     <owl:disjointWith>
       <owl:Class rdf:ID="UrinarySystemSymptom"/>
     </owl:disjointWith>
@@ -80,14 +68,6 @@
     <owl:disjointWith>
       <owl:Class rdf:ID="GenitalSystemSymptom"/>
     </owl:disjointWith>
-    <owl:equivalentClass>
-      <owl:Class>
-        <owl:unionOf rdf:parseType="Collection">
-          <owl:Class rdf:ID="CardiacSymptom"/>
-          <owl:Class rdf:ID="VascularSymptom"/>
-        </owl:unionOf>
-      </owl:Class>
-    </owl:equivalentClass>
     <owl:disjointWith>
       <owl:Class rdf:ID="NervousSystemSymptom"/>
     </owl:disjointWith>
@@ -101,12 +81,21 @@
   <owl:Class rdf:ID="ClinicalStudy">
     <rdfs:subClassOf>
       <owl:Restriction>
+        <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:minCardinality>
         <owl:onProperty>
-          <owl:ObjectProperty rdf:ID="hasIdentifier"/>
+          <owl:ObjectProperty rdf:ID="hasClinicalStudyParticipant"/>
         </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
         <owl:allValuesFrom>
           <owl:Class rdf:ID="ClinicalStudyIdentifier"/>
         </owl:allValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="hasIdentifier"/>
+        </owl:onProperty>
       </owl:Restriction>
     </rdfs:subClassOf>
     <owl:disjointWith>
@@ -125,15 +114,6 @@
         </owl:someValuesFrom>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
-        >1</owl:minCardinality>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:ID="hasClinicalStudyParticipant"/>
-        </owl:onProperty>
-      </owl:Restriction>
-    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="StructuralNervousSystemSymptom">
     <owl:disjointWith>
@@ -144,6 +124,14 @@
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="FirstName">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.ifomis.org/obo/ro/1.0#partOf"/>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="FullName"/>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
     <owl:disjointWith>
       <owl:Class rdf:ID="LastName"/>
     </owl:disjointWith>
@@ -151,7 +139,7 @@
       <owl:Restriction>
         <owl:onProperty rdf:resource="http://www.ifomis.org/obo/ro/1.0#partOf"/>
         <owl:allValuesFrom>
-          <owl:Class rdf:ID="FullName"/>
+          <owl:Class rdf:about="#FullName"/>
         </owl:allValuesFrom>
       </owl:Restriction>
     </rdfs:subClassOf>
@@ -161,42 +149,16 @@
     <rdfs:subClassOf>
       <owl:Class rdf:ID="Name"/>
     </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.ifomis.org/obo/ro/1.0#partOf"/>
-        <owl:someValuesFrom>
-          <owl:Class rdf:about="#FullName"/>
-        </owl:someValuesFrom>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:about="#Carcinoma">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#MalignNeoplasm"/>
-    </rdfs:subClassOf>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#DysontogeneticTumor"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Sarcoma"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#MixedTumor"/>
-    </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#HaematooncologicalTumor"/>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#NeuroendocrineTumor"/>
-    </owl:disjointWith>
   </owl:Class>
   <owl:Class rdf:ID="Bedridden">
     <rdfs:subClassOf>
       <owl:Class rdf:ID="GeneralHealthState"/>
     </rdfs:subClassOf>
     <owl:disjointWith>
-      <owl:Class rdf:ID="IntensiveCareRequired"/>
+      <owl:Class rdf:ID="NormalActivity"/>
     </owl:disjointWith>
     <owl:disjointWith>
-      <owl:Class rdf:ID="NormalActivity"/>
+      <owl:Class rdf:ID="IntensiveCareRequired"/>
     </owl:disjointWith>
     <owl:disjointWith>
       <owl:Class rdf:ID="MinorImpairment"/>
@@ -209,13 +171,10 @@
     <owl:disjointWith>
       <owl:Class rdf:ID="Disease"/>
     </owl:disjointWith>
-    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.0/snap#Quality"/>
     <owl:disjointWith>
       <owl:Class rdf:ID="Gender"/>
     </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:ID="Symptom"/>
-    </owl:disjointWith>
+    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.0/snap#Quality"/>
     <owl:equivalentClass>
       <owl:Class>
         <owl:oneOf rdf:parseType="Collection">
@@ -227,10 +186,13 @@
       </owl:Class>
     </owl:equivalentClass>
     <owl:disjointWith>
-      <owl:Class rdf:ID="Malignancy"/>
+      <owl:Class rdf:ID="Symptom"/>
     </owl:disjointWith>
     <owl:disjointWith>
       <owl:Class rdf:ID="Measure"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="Malignancy"/>
     </owl:disjointWith>
     <owl:disjointWith>
       <owl:Class rdf:about="#GeneralHealthState"/>
@@ -248,6 +210,9 @@
     <owl:disjointWith>
       <owl:Class rdf:ID="ExtraOrganismalIndependenContinuant"/>
     </owl:disjointWith>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="BiologicalIndependentContinuant"/>
+    </rdfs:subClassOf>
     <owl:equivalentClass>
       <owl:Class>
         <owl:unionOf rdf:parseType="Collection">
@@ -256,9 +221,6 @@
         </owl:unionOf>
       </owl:Class>
     </owl:equivalentClass>
-    <rdfs:subClassOf>
-      <owl:Class rdf:ID="BiologicalIndependentContinuant"/>
-    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="FunctionalEndocrineSystemSymptom">
     <owl:disjointWith>
@@ -289,10 +251,10 @@
       <owl:Class rdf:ID="BirthPlace"/>
     </owl:disjointWith>
     <owl:disjointWith>
-      <owl:Class rdf:ID="Drug"/>
+      <owl:Class rdf:ID="Patient"/>
     </owl:disjointWith>
     <owl:disjointWith>
-      <owl:Class rdf:ID="Patient"/>
+      <owl:Class rdf:ID="Drug"/>
     </owl:disjointWith>
     <owl:disjointWith>
       <owl:Class rdf:ID="DeathPlace"/>
@@ -315,21 +277,15 @@
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="Hour">
-    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.0/span#TemporalInterval"/>
     <owl:disjointWith>
       <owl:Class rdf:ID="Second"/>
     </owl:disjointWith>
+    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.0/span#TemporalInterval"/>
     <owl:disjointWith>
       <owl:Class rdf:ID="Minute"/>
     </owl:disjointWith>
     <owl:disjointWith>
       <owl:Class rdf:ID="Month"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:ID="Year"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:ID="Day"/>
     </owl:disjointWith>
     <rdfs:subClassOf>
       <owl:Restriction>
@@ -340,6 +296,12 @@
         >1</owl:cardinality>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="Year"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="Day"/>
+    </owl:disjointWith>
     <owl:disjointWith>
       <owl:Class rdf:ID="Week"/>
     </owl:disjointWith>
@@ -365,6 +327,24 @@
     >???</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:about="#Patient">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:DatatypeProperty rdf:ID="isIdenticalTwin"/>
+        </owl:onProperty>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="participatesInClinicalStudy"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
     <owl:disjointWith>
       <owl:Class rdf:about="#DeathPlace"/>
     </owl:disjointWith>
@@ -373,60 +353,20 @@
     </owl:disjointWith>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
-        >1</owl:cardinality>
         <owl:onProperty>
-          <owl:FunctionalProperty rdf:ID="isDead"/>
-        </owl:onProperty>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
-        >1</owl:cardinality>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:ID="hasHeight"/>
-        </owl:onProperty>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty>
-          <owl:FunctionalProperty rdf:ID="hasMother"/>
+          <owl:FunctionalProperty rdf:ID="hasName"/>
         </owl:onProperty>
         <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
         >1</owl:cardinality>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#PatientRelative"/>
-    </owl:disjointWith>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="#hasIdentifier"/>
-        </owl:onProperty>
-        <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
-        >1</owl:minCardinality>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
-        >1</owl:maxCardinality>
-        <owl:onProperty>
-          <owl:DatatypeProperty rdf:ID="hasDeathDate"/>
-        </owl:onProperty>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.0/snap#Role"/>
-    <rdfs:subClassOf>
-      <owl:Restriction>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
         <owl:onProperty>
           <owl:FunctionalProperty rdf:ID="hasGender"/>
         </owl:onProperty>
-        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
-        >1</owl:cardinality>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
@@ -434,7 +374,7 @@
         <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
         >1</owl:cardinality>
         <owl:onProperty>
-          <owl:DatatypeProperty rdf:ID="hasIdenticalTwin"/>
+          <owl:ObjectProperty rdf:ID="hasWeight"/>
         </owl:onProperty>
       </owl:Restriction>
     </rdfs:subClassOf>
@@ -449,19 +389,50 @@
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
+        <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:minCardinality>
         <owl:onProperty>
-          <owl:ObjectProperty rdf:ID="participatesInClinicalTrial"/>
+          <owl:ObjectProperty rdf:about="#hasIdentifier"/>
         </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#PatientRelative"/>
+    </owl:disjointWith>
+    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.0/snap#Role"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
         <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
         >1</owl:cardinality>
+        <owl:onProperty>
+          <owl:FunctionalProperty rdf:ID="isDead"/>
+        </owl:onProperty>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
-        >1</owl:maxCardinality>
         <owl:onProperty>
           <owl:ObjectProperty rdf:ID="hasDeathPlace"/>
+        </owl:onProperty>
+        <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:maxCardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="hasHeight"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="hasGeneralHealthState"/>
         </owl:onProperty>
       </owl:Restriction>
     </rdfs:subClassOf>
@@ -470,59 +441,17 @@
     </owl:disjointWith>
     <rdfs:subClassOf>
       <owl:Restriction>
+        <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >0</owl:minCardinality>
         <owl:onProperty>
-          <owl:ObjectProperty rdf:ID="hasWeight"/>
+          <owl:ObjectProperty rdf:ID="hasSister"/>
         </owl:onProperty>
-        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
-        >1</owl:cardinality>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:ID="hasBirthPlace"/>
-        </owl:onProperty>
-        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
-        >1</owl:cardinality>
       </owl:Restriction>
     </rdfs:subClassOf>
     <owl:disjointWith rdf:resource="#Implant"/>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:ID="hasGeneralHealthState"/>
-        </owl:onProperty>
-        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
-        >1</owl:cardinality>
-      </owl:Restriction>
-    </rdfs:subClassOf>
     <owl:disjointWith>
       <owl:Class rdf:about="#Paramedic"/>
     </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Drug"/>
-    </owl:disjointWith>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty>
-          <owl:DatatypeProperty rdf:ID="hasBirthDate"/>
-        </owl:onProperty>
-        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
-        >1</owl:cardinality>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#MeasurementUnit"/>
-    </owl:disjointWith>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:ID="participatesInClinicalStudy"/>
-        </owl:onProperty>
-        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
-        >1</owl:cardinality>
-      </owl:Restriction>
-    </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty>
@@ -533,33 +462,66 @@
       </owl:Restriction>
     </rdfs:subClassOf>
     <owl:disjointWith>
+      <owl:Class rdf:about="#Drug"/>
+    </owl:disjointWith>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="hasBirthPlace"/>
+        </owl:onProperty>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#MeasurementUnit"/>
+    </owl:disjointWith>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
+        <owl:onProperty>
+          <owl:DatatypeProperty rdf:ID="hasIdenticalTwin"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:DatatypeProperty rdf:ID="hasBirthDate"/>
+        </owl:onProperty>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:DatatypeProperty rdf:ID="hasDeathDate"/>
+        </owl:onProperty>
+        <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:maxCardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
+        <owl:onProperty>
+          <owl:FunctionalProperty rdf:ID="hasMother"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <owl:disjointWith>
       <owl:Class rdf:about="#MedicalPractitioner"/>
     </owl:disjointWith>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty>
-          <owl:FunctionalProperty rdf:ID="hasName"/>
+          <owl:ObjectProperty rdf:ID="participatesInClinicalTrial"/>
         </owl:onProperty>
         <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
         >1</owl:cardinality>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty>
-          <owl:DatatypeProperty rdf:ID="isIdenticalTwin"/>
-        </owl:onProperty>
-        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
-        >1</owl:cardinality>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:ID="hasSister"/>
-        </owl:onProperty>
-        <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
-        >0</owl:minCardinality>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
@@ -605,10 +567,6 @@
     </owl:disjointWith>
   </owl:Class>
   <owl:Class rdf:about="#Chemotherapy">
-    <owl:disjointWith>
-      <owl:Class rdf:ID="SupportivePharmacotherapy"/>
-    </owl:disjointWith>
-    <rdfs:subClassOf rdf:resource="#Pharmacotherapy"/>
     <owl:equivalentClass>
       <owl:Class>
         <owl:unionOf rdf:parseType="Collection">
@@ -617,22 +575,26 @@
         </owl:unionOf>
       </owl:Class>
     </owl:equivalentClass>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="SupportivePharmacotherapy"/>
+    </owl:disjointWith>
+    <rdfs:subClassOf rdf:resource="#Pharmacotherapy"/>
   </owl:Class>
   <owl:Class rdf:ID="ProtocolledTherapyEnd">
-    <owl:disjointWith>
-      <owl:Class rdf:ID="ProtocolledTherapyStart"/>
-    </owl:disjointWith>
     <rdfs:subClassOf>
       <owl:Class rdf:ID="ProtocolledTherapyBoundary"/>
     </rdfs:subClassOf>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="ProtocolledTherapyStart"/>
+    </owl:disjointWith>
   </owl:Class>
   <owl:Class rdf:ID="Paediatrician">
-    <owl:disjointWith>
-      <owl:Class rdf:ID="Radiotherapist"/>
-    </owl:disjointWith>
     <rdfs:subClassOf>
       <owl:Class rdf:about="#MedicalPractitioner"/>
     </rdfs:subClassOf>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="Radiotherapist"/>
+    </owl:disjointWith>
     <owl:disjointWith>
       <owl:Class rdf:ID="Pathologist"/>
     </owl:disjointWith>
@@ -653,14 +615,6 @@
     <owl:disjointWith>
       <owl:Class rdf:about="#GeneralHealthState"/>
     </owl:disjointWith>
-    <owl:equivalentClass>
-      <owl:Class>
-        <owl:unionOf rdf:parseType="Collection">
-          <owl:Class rdf:ID="GeneralizedSymptom"/>
-          <owl:Class rdf:about="#SpecificSymptom"/>
-        </owl:unionOf>
-      </owl:Class>
-    </owl:equivalentClass>
     <owl:disjointWith>
       <owl:Class rdf:about="#Laterality"/>
     </owl:disjointWith>
@@ -675,6 +629,14 @@
       <owl:Class rdf:about="#Disease"/>
     </owl:disjointWith>
     <owl:disjointWith rdf:resource="#Toxicity"/>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:ID="GeneralizedSymptom"/>
+          <owl:Class rdf:about="#SpecificSymptom"/>
+        </owl:unionOf>
+      </owl:Class>
+    </owl:equivalentClass>
     <owl:disjointWith>
       <owl:Class rdf:about="#Measure"/>
     </owl:disjointWith>
@@ -682,16 +644,19 @@
   <owl:Class rdf:ID="Parent">
     <rdfs:subClassOf>
       <owl:Restriction>
+        <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:minCardinality>
         <owl:onProperty>
           <owl:ObjectProperty rdf:ID="isParentOf"/>
         </owl:onProperty>
-        <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
-        >1</owl:minCardinality>
       </owl:Restriction>
     </rdfs:subClassOf>
     <owl:disjointWith>
       <owl:Class rdf:ID="Sibling"/>
     </owl:disjointWith>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#PatientRelative"/>
+    </rdfs:subClassOf>
     <owl:equivalentClass>
       <owl:Class>
         <owl:unionOf rdf:parseType="Collection">
@@ -700,9 +665,6 @@
         </owl:unionOf>
       </owl:Class>
     </owl:equivalentClass>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#PatientRelative"/>
-    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="MedicalExpertIdentifier">
     <rdfs:subClassOf>
@@ -715,25 +677,25 @@
       <owl:Class rdf:ID="ClinicalTrialIdentifier"/>
     </owl:disjointWith>
     <owl:disjointWith>
-      <owl:Class rdf:ID="Address"/>
+      <owl:Class rdf:about="#ClinicalStudyIdentifier"/>
     </owl:disjointWith>
     <owl:disjointWith>
-      <owl:Class rdf:about="#ClinicalStudyIdentifier"/>
+      <owl:Class rdf:ID="Address"/>
     </owl:disjointWith>
     <owl:disjointWith>
       <owl:Class rdf:ID="TelephoneNumber"/>
     </owl:disjointWith>
     <owl:disjointWith>
+      <owl:Class rdf:ID="LegalGuardianIdentifier"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
       <owl:Class rdf:ID="AddressPart"/>
     </owl:disjointWith>
     <owl:disjointWith>
-      <owl:Class rdf:ID="LegalGuardianIdentifier"/>
+      <owl:Class rdf:ID="HospitalIdentifier"/>
     </owl:disjointWith>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >doctor´s name</rdfs:comment>
-    <owl:disjointWith>
-      <owl:Class rdf:ID="HospitalIdentifier"/>
-    </owl:disjointWith>
     <owl:disjointWith>
       <owl:Class rdf:ID="PatientIdentifier"/>
     </owl:disjointWith>
@@ -754,6 +716,26 @@
       <owl:Class rdf:ID="BiopsyWithoutIncision"/>
     </rdfs:subClassOf>
   </owl:Class>
+  <owl:Class rdf:ID="PrimaryHaematooncologicalTumor">
+    <owl:disjointWith>
+      <owl:Class rdf:ID="PrimaryMixedTumor"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="PrimaryNeuroendocrineTumor"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="PrimaryCarcinoma"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="PrimaryDysontogeneticTumor"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="PrimarySarcoma"/>
+    </owl:disjointWith>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="PrimaryMalignNeoplasm"/>
+    </rdfs:subClassOf>
+  </owl:Class>
   <owl:Class rdf:ID="StructuralUrinarySystemSymptom">
     <rdfs:subClassOf>
       <owl:Class rdf:about="#UrinarySystemSymptom"/>
@@ -764,43 +746,16 @@
   </owl:Class>
   <owl:Class rdf:ID="PaediatricSurgeon">
     <owl:disjointWith>
-      <owl:Class rdf:ID="GeneralSurgeon"/>
+      <owl:Class rdf:ID="VascularSurgeon"/>
     </owl:disjointWith>
     <owl:disjointWith>
-      <owl:Class rdf:ID="VascularSurgeon"/>
+      <owl:Class rdf:ID="GeneralSurgeon"/>
     </owl:disjointWith>
     <owl:disjointWith>
       <owl:Class rdf:ID="ThoracicSurgeon"/>
     </owl:disjointWith>
     <rdfs:subClassOf>
       <owl:Class rdf:about="#Surgeon"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="Sister">
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty>
-          <owl:FunctionalProperty rdf:about="#hasGender"/>
-        </owl:onProperty>
-        <owl:hasValue>
-          <Gender rdf:ID="Female"/>
-        </owl:hasValue>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#Sibling"/>
-    </rdfs:subClassOf>
-    <owl:disjointWith>
-      <owl:Class rdf:ID="Brother"/>
-    </owl:disjointWith>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
-        >1</owl:minCardinality>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:ID="isSisterOf"/>
-        </owl:onProperty>
-      </owl:Restriction>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="Atmosphere">
@@ -823,13 +778,40 @@
       <owl:Class rdf:ID="Bar"/>
     </owl:disjointWith>
   </owl:Class>
-  <owl:Class rdf:about="#ClinicalTrialAndStudy">
+  <owl:Class rdf:ID="Sister">
     <rdfs:subClassOf>
-      <owl:Class rdf:ID="AdministrativeProcess"/>
+      <owl:Restriction>
+        <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:minCardinality>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="isSisterOf"/>
+        </owl:onProperty>
+      </owl:Restriction>
     </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:hasValue>
+          <Gender rdf:ID="Female"/>
+        </owl:hasValue>
+        <owl:onProperty>
+          <owl:FunctionalProperty rdf:about="#hasGender"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Sibling"/>
+    </rdfs:subClassOf>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="Brother"/>
+    </owl:disjointWith>
+  </owl:Class>
+  <owl:Class rdf:about="#ClinicalTrialAndStudy">
     <owl:disjointWith>
       <owl:Class rdf:ID="Consent"/>
     </owl:disjointWith>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="AdministrativeProcess"/>
+    </rdfs:subClassOf>
     <owl:disjointWith>
       <owl:Class rdf:ID="Registration"/>
     </owl:disjointWith>
@@ -861,14 +843,6 @@
     <owl:disjointWith>
       <owl:Class rdf:about="#Laterality"/>
     </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Disease"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#GeneralHealthState"/>
-    </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#Symptom"/>
-    <owl:disjointWith rdf:resource="#Toxicity"/>
     <owl:equivalentClass>
       <owl:Class>
         <owl:oneOf rdf:parseType="Collection">
@@ -877,6 +851,14 @@
         </owl:oneOf>
       </owl:Class>
     </owl:equivalentClass>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Disease"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#GeneralHealthState"/>
+    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#Toxicity"/>
+    <owl:disjointWith rdf:resource="#Symptom"/>
     <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.0/snap#Quality"/>
     <owl:disjointWith>
       <owl:Class rdf:about="#Malignancy"/>
@@ -911,25 +893,17 @@
     </owl:disjointWith>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty>
-          <owl:FunctionalProperty rdf:ID="hasMalignancy"/>
-        </owl:onProperty>
         <owl:hasValue>
           <Malignancy rdf:ID="NoMalignancy"/>
         </owl:hasValue>
+        <owl:onProperty>
+          <owl:FunctionalProperty rdf:ID="hasMalignancy"/>
+        </owl:onProperty>
       </owl:Restriction>
     </rdfs:subClassOf>
     <owl:disjointWith>
-      <owl:Class rdf:about="#MalignNeoplasm"/>
+      <owl:Class rdf:ID="MalignNeoplasm"/>
     </owl:disjointWith>
-  </owl:Class>
-  <owl:Class rdf:ID="NephroblastomaMetastasis">
-    <owl:disjointWith>
-      <owl:Class rdf:ID="NephroblastomaPrimaryTumour"/>
-    </owl:disjointWith>
-    <rdfs:subClassOf>
-      <owl:Class rdf:ID="Nephroblastoma"/>
-    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="#ClinicalDocumentation">
     <owl:disjointWith rdf:resource="#ClinicalTrialAndStudy"/>
@@ -947,20 +921,23 @@
     <owl:disjointWith>
       <owl:Class rdf:about="#BirthPlace"/>
     </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#Patient"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#MedicalPractitioner"/>
+    </owl:disjointWith>
     <owl:disjointWith>
       <owl:Class rdf:about="#DeathPlace"/>
     </owl:disjointWith>
     <owl:disjointWith>
-      <owl:Class rdf:about="#MedicalPractitioner"/>
-    </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#Patient"/>
-    <owl:disjointWith>
       <owl:Class rdf:about="#Paramedic"/>
     </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#Implant"/>
     <owl:disjointWith>
       <owl:Class rdf:about="#PatientRelative"/>
     </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#Implant"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Drug"/>
+    </owl:disjointWith>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
@@ -970,9 +947,6 @@
         </owl:onProperty>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Drug"/>
-    </owl:disjointWith>
     <owl:disjointWith>
       <owl:Class rdf:about="#MeasurementUnit"/>
     </owl:disjointWith>
@@ -987,6 +961,10 @@
     </owl:disjointWith>
   </owl:Class>
   <owl:Class rdf:about="#OrganismalSpace">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#ImmaterialOrganismalIndependentContinuant"/>
+    </rdfs:subClassOf>
+    <owl:disjointWith rdf:resource="#OrganismalSurface"/>
     <owl:equivalentClass>
       <owl:Class>
         <owl:unionOf rdf:parseType="Collection">
@@ -995,10 +973,6 @@
         </owl:unionOf>
       </owl:Class>
     </owl:equivalentClass>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#ImmaterialOrganismalIndependentContinuant"/>
-    </rdfs:subClassOf>
-    <owl:disjointWith rdf:resource="#OrganismalSurface"/>
   </owl:Class>
   <owl:Class rdf:about="#Torr">
     <owl:disjointWith>
@@ -1049,10 +1023,10 @@
       <owl:Class rdf:ID="SurgicalOperation"/>
     </rdfs:subClassOf>
     <owl:disjointWith>
-      <owl:Class rdf:ID="Transplant"/>
+      <owl:Class rdf:ID="Metastasektomy"/>
     </owl:disjointWith>
     <owl:disjointWith>
-      <owl:Class rdf:ID="Metastasektomy"/>
+      <owl:Class rdf:ID="Transplant"/>
     </owl:disjointWith>
     <owl:disjointWith>
       <owl:Class rdf:ID="Resection"/>
@@ -1070,13 +1044,13 @@
     <rdfs:subClassOf>
       <owl:Class rdf:about="#VolumeUnit"/>
     </rdfs:subClassOf>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#CubicCentimeter"/>
-    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#CubicDecimeter"/>
     <owl:disjointWith>
       <owl:Class rdf:about="#CubicMeter"/>
     </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#CubicDecimeter"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#CubicCentimeter"/>
+    </owl:disjointWith>
   </owl:Class>
   <owl:Class rdf:about="#SpecificSymptom">
     <rdfs:subClassOf rdf:resource="#Symptom"/>
@@ -1097,10 +1071,10 @@
   </owl:Class>
   <owl:Class rdf:ID="MagneticResonanceImaging">
     <owl:disjointWith>
-      <owl:Class rdf:ID="Ultrasound"/>
+      <owl:Class rdf:ID="Computertomography"/>
     </owl:disjointWith>
     <owl:disjointWith>
-      <owl:Class rdf:ID="Computertomography"/>
+      <owl:Class rdf:ID="Ultrasound"/>
     </owl:disjointWith>
     <rdfs:subClassOf>
       <owl:Class rdf:ID="ClinicalDiagnosticProcedure"/>
@@ -1131,14 +1105,14 @@
     <owl:disjointWith>
       <owl:Class rdf:about="#DeathPlace"/>
     </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#Identifier"/>
     <owl:disjointWith>
       <owl:Class rdf:about="#Paramedic"/>
     </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#Identifier"/>
-    <owl:disjointWith rdf:resource="#Implant"/>
     <owl:disjointWith>
       <owl:Class rdf:about="#Drug"/>
     </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#Implant"/>
     <owl:disjointWith>
       <owl:Class rdf:about="#BirthPlace"/>
     </owl:disjointWith>
@@ -1148,12 +1122,6 @@
     </owl:disjointWith>
   </owl:Class>
   <owl:Class rdf:about="#LastName">
-    <owl:disjointWith>
-      <owl:Class rdf:about="#FullName"/>
-    </owl:disjointWith>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#Name"/>
-    </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:someValuesFrom>
@@ -1162,22 +1130,28 @@
         <owl:onProperty rdf:resource="http://www.ifomis.org/obo/ro/1.0#partOf"/>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <owl:disjointWith rdf:resource="#FirstName"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#FullName"/>
+    </owl:disjointWith>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.ifomis.org/obo/ro/1.0#partOf"/>
         <owl:allValuesFrom>
           <owl:Class rdf:about="#FullName"/>
         </owl:allValuesFrom>
+        <owl:onProperty rdf:resource="http://www.ifomis.org/obo/ro/1.0#partOf"/>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Name"/>
+    </rdfs:subClassOf>
+    <owl:disjointWith rdf:resource="#FirstName"/>
   </owl:Class>
   <owl:Class rdf:ID="SpecificDiagnosticProcess">
     <owl:disjointWith>
-      <owl:Class rdf:ID="Autopsy"/>
+      <owl:Class rdf:ID="HistologicalExamination"/>
     </owl:disjointWith>
     <owl:disjointWith>
-      <owl:Class rdf:ID="HistologicalExamination"/>
+      <owl:Class rdf:ID="Autopsy"/>
     </owl:disjointWith>
     <owl:disjointWith>
       <owl:Class rdf:ID="MacropathologicalExamination"/>
@@ -1186,10 +1160,10 @@
       <owl:Class rdf:ID="CytologicalExamination"/>
     </owl:disjointWith>
     <owl:disjointWith>
-      <owl:Class rdf:ID="Biopsy"/>
+      <owl:Class rdf:about="#ClinicalDiagnosticProcedure"/>
     </owl:disjointWith>
     <owl:disjointWith>
-      <owl:Class rdf:about="#ClinicalDiagnosticProcedure"/>
+      <owl:Class rdf:ID="Biopsy"/>
     </owl:disjointWith>
     <owl:disjointWith>
       <owl:Class rdf:ID="Surveillance"/>
@@ -1199,12 +1173,12 @@
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="#BiopsyWithoutIncision">
-    <owl:disjointWith>
-      <owl:Class rdf:ID="BiopsyWithIncision"/>
-    </owl:disjointWith>
     <rdfs:subClassOf>
       <owl:Class rdf:about="#Biopsy"/>
     </rdfs:subClassOf>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="BiopsyWithIncision"/>
+    </owl:disjointWith>
   </owl:Class>
   <owl:Class rdf:ID="TumorStage">
     <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.0/span#FiatProcessPart"/>
@@ -1214,10 +1188,10 @@
       <owl:Class rdf:about="#Drug"/>
     </rdfs:subClassOf>
     <owl:disjointWith>
-      <owl:Class rdf:ID="Adriamycin"/>
+      <owl:Class rdf:ID="Actinomycine-D"/>
     </owl:disjointWith>
     <owl:disjointWith>
-      <owl:Class rdf:ID="Actinomycine-D"/>
+      <owl:Class rdf:ID="Adriamycin"/>
     </owl:disjointWith>
   </owl:Class>
   <owl:Class rdf:ID="NightSweat">
@@ -1235,13 +1209,6 @@
     <owl:disjointWith>
       <owl:Class rdf:about="#Pathologist"/>
     </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#Paediatrician"/>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Urologist"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Radiotherapist"/>
-    </owl:disjointWith>
     <owl:equivalentClass>
       <owl:Class>
         <owl:unionOf rdf:parseType="Collection">
@@ -1250,6 +1217,13 @@
         </owl:unionOf>
       </owl:Class>
     </owl:equivalentClass>
+    <owl:disjointWith rdf:resource="#Paediatrician"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Urologist"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Radiotherapist"/>
+    </owl:disjointWith>
     <owl:disjointWith>
       <owl:Class rdf:about="#Surgeon"/>
     </owl:disjointWith>
@@ -1280,9 +1254,6 @@
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="#Nephrectomy">
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Lobectomy"/>
-    </owl:disjointWith>
     <owl:equivalentClass>
       <owl:Class>
         <owl:unionOf rdf:parseType="Collection">
@@ -1292,6 +1263,9 @@
       </owl:Class>
     </owl:equivalentClass>
     <owl:disjointWith>
+      <owl:Class rdf:about="#Lobectomy"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
       <owl:Class rdf:about="#Metastasektomy"/>
     </owl:disjointWith>
     <rdfs:subClassOf>
@@ -1299,10 +1273,10 @@
     </rdfs:subClassOf>
     <owl:disjointWith rdf:resource="#Pneumonectomy"/>
     <owl:disjointWith>
-      <owl:Class rdf:about="#Resection"/>
+      <owl:Class rdf:about="#Transplant"/>
     </owl:disjointWith>
     <owl:disjointWith>
-      <owl:Class rdf:about="#Transplant"/>
+      <owl:Class rdf:about="#Resection"/>
     </owl:disjointWith>
   </owl:Class>
   <owl:Class rdf:ID="Granuloma">
@@ -1324,25 +1298,16 @@
       <owl:Class rdf:ID="CanonicalBodySubstance"/>
     </rdfs:subClassOf>
   </owl:Class>
-  <owl:Class rdf:ID="StructuralCardiacSymtptom">
-    <owl:disjointWith>
-      <owl:Class rdf:ID="FunctionalCardiacSyptom"/>
-    </owl:disjointWith>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#CardiacSymptom"/>
-    </rdfs:subClassOf>
-  </owl:Class>
   <owl:Class rdf:about="#Measure">
     <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.0/snap#Quality"/>
-    <owl:disjointWith rdf:resource="#Toxicity"/>
     <owl:disjointWith>
       <owl:Class rdf:about="#Malignancy"/>
     </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#Toxicity"/>
     <owl:disjointWith>
       <owl:Class rdf:about="#GeneralHealthState"/>
     </owl:disjointWith>
     <owl:disjointWith rdf:resource="#Gender"/>
-    <owl:disjointWith rdf:resource="#Symptom"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty>
@@ -1352,11 +1317,38 @@
         >1</owl:cardinality>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <owl:disjointWith rdf:resource="#Symptom"/>
     <owl:disjointWith>
       <owl:Class rdf:about="#Laterality"/>
     </owl:disjointWith>
     <owl:disjointWith>
       <owl:Class rdf:about="#Disease"/>
+    </owl:disjointWith>
+  </owl:Class>
+  <owl:Class rdf:ID="StructuralCardiacSymtptom">
+    <owl:disjointWith>
+      <owl:Class rdf:ID="FunctionalCardiacSyptom"/>
+    </owl:disjointWith>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#CardiacSymptom"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#PrimaryMixedTumor">
+    <owl:disjointWith>
+      <owl:Class rdf:about="#PrimaryCarcinoma"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#PrimaryDysontogeneticTumor"/>
+    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#PrimaryHaematooncologicalTumor"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#PrimarySarcoma"/>
+    </owl:disjointWith>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#PrimaryMalignNeoplasm"/>
+    </rdfs:subClassOf>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#PrimaryNeuroendocrineTumor"/>
     </owl:disjointWith>
   </owl:Class>
   <owl:Class rdf:ID="SurgicalApproach">
@@ -1401,10 +1393,10 @@
     </owl:disjointWith>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.ifomis.org/obo/ro/1.0#hasPart"/>
         <owl:someValuesFrom>
           <owl:Class rdf:about="#HospitalIdentifier"/>
         </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="http://www.ifomis.org/obo/ro/1.0#hasPart"/>
       </owl:Restriction>
     </rdfs:subClassOf>
   </owl:Class>
@@ -1438,12 +1430,12 @@
     </owl:disjointWith>
   </owl:Class>
   <owl:Class rdf:about="#VascularSurgeon">
-    <owl:disjointWith>
-      <owl:Class rdf:about="#GeneralSurgeon"/>
-    </owl:disjointWith>
     <rdfs:subClassOf>
       <owl:Class rdf:about="#Surgeon"/>
     </rdfs:subClassOf>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#GeneralSurgeon"/>
+    </owl:disjointWith>
     <owl:disjointWith>
       <owl:Class rdf:about="#ThoracicSurgeon"/>
     </owl:disjointWith>
@@ -1465,10 +1457,10 @@
     <owl:disjointWith>
       <owl:Class rdf:about="#Surgeon"/>
     </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#Paediatrician"/>
     <owl:disjointWith>
       <owl:Class rdf:about="#Urologist"/>
     </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#Paediatrician"/>
     <owl:disjointWith>
       <owl:Class rdf:about="#Pathologist"/>
     </owl:disjointWith>
@@ -1481,36 +1473,27 @@
       <owl:Class rdf:about="#Resection"/>
     </rdfs:subClassOf>
   </owl:Class>
-  <owl:Class rdf:ID="CanonicalBleeding">
-    <rdfs:subClassOf>
-      <owl:Class rdf:ID="PhysiologicalProcess"/>
-    </rdfs:subClassOf>
-  </owl:Class>
   <owl:Class rdf:about="#CanonicalOrganismalSurface">
     <rdfs:subClassOf rdf:resource="#OrganismalSurface"/>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
-        >false</owl:hasValue>
         <owl:onProperty>
           <owl:FunctionalProperty rdf:ID="isPathological"/>
         </owl:onProperty>
+        <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+        >false</owl:hasValue>
       </owl:Restriction>
     </rdfs:subClassOf>
     <owl:disjointWith>
       <owl:Class rdf:about="#PathologicalOrganismalSurface"/>
     </owl:disjointWith>
   </owl:Class>
-  <owl:Class rdf:ID="TwinBrother">
+  <owl:Class rdf:ID="CanonicalBleeding">
     <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty>
-          <owl:DatatypeProperty rdf:ID="isTwin"/>
-        </owl:onProperty>
-        <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
-        >true</owl:hasValue>
-      </owl:Restriction>
+      <owl:Class rdf:ID="PhysiologicalProcess"/>
     </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="TwinBrother">
     <owl:equivalentClass>
       <owl:Class>
         <owl:unionOf rdf:parseType="Collection">
@@ -1522,49 +1505,58 @@
     <rdfs:subClassOf>
       <owl:Class rdf:about="#Brother"/>
     </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:about="#TelephoneNumber">
-    <owl:disjointWith>
-      <owl:Class rdf:about="#HospitalIdentifier"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Address"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#ClinicalStudyIdentifier"/>
-    </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#MedicalExpertIdentifier"/>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#LegalGuardianIdentifier"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#AddressPart"/>
-    </owl:disjointWith>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
-        >1</owl:cardinality>
         <owl:onProperty>
-          <owl:DatatypeProperty rdf:ID="hasNumericalValue"/>
+          <owl:DatatypeProperty rdf:ID="isTwin"/>
         </owl:onProperty>
+        <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+        >true</owl:hasValue>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="#Identifier"/>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#ClinicalTrialIdentifier"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Name"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#PatientIdentifier"/>
-    </owl:disjointWith>
   </owl:Class>
   <owl:Class rdf:about="#FunctionalIntegumentarySystemSymptom">
     <rdfs:subClassOf>
       <owl:Class rdf:about="#IntegumentarySystemSymptom"/>
     </rdfs:subClassOf>
     <owl:disjointWith rdf:resource="#StructuralIntegumentarySystemSymptom"/>
+  </owl:Class>
+  <owl:Class rdf:about="#TelephoneNumber">
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Address"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#HospitalIdentifier"/>
+    </owl:disjointWith>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:DatatypeProperty rdf:ID="hasNumericalValue"/>
+        </owl:onProperty>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <owl:disjointWith rdf:resource="#MedicalExpertIdentifier"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#ClinicalStudyIdentifier"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#LegalGuardianIdentifier"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#AddressPart"/>
+    </owl:disjointWith>
+    <rdfs:subClassOf rdf:resource="#Identifier"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Name"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#ClinicalTrialIdentifier"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#PatientIdentifier"/>
+    </owl:disjointWith>
   </owl:Class>
   <owl:Class rdf:about="#PatientIdentifier">
     <owl:disjointWith>
@@ -1573,20 +1565,20 @@
     <owl:disjointWith>
       <owl:Class rdf:about="#Name"/>
     </owl:disjointWith>
-    <rdfs:subClassOf rdf:resource="#Identifier"/>
     <owl:disjointWith rdf:resource="#MedicalExpertIdentifier"/>
+    <rdfs:subClassOf rdf:resource="#Identifier"/>
     <owl:disjointWith>
       <owl:Class rdf:about="#AddressPart"/>
     </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#TelephoneNumber"/>
     <owl:disjointWith>
       <owl:Class rdf:about="#Address"/>
     </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#LegalGuardianIdentifier"/>
-    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#TelephoneNumber"/>
     <owl:disjointWith>
       <owl:Class rdf:about="#HospitalIdentifier"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#LegalGuardianIdentifier"/>
     </owl:disjointWith>
     <owl:disjointWith>
       <owl:Class rdf:about="#ClinicalStudyIdentifier"/>
@@ -1594,10 +1586,10 @@
   </owl:Class>
   <owl:Class rdf:ID="SquareMillimeter">
     <owl:disjointWith>
-      <owl:Class rdf:ID="SquareKilometer"/>
+      <owl:Class rdf:ID="SquareMeter"/>
     </owl:disjointWith>
     <owl:disjointWith>
-      <owl:Class rdf:ID="SquareMeter"/>
+      <owl:Class rdf:ID="SquareKilometer"/>
     </owl:disjointWith>
     <rdfs:subClassOf>
       <owl:Class rdf:about="#SurfaceUnit"/>
@@ -1620,10 +1612,10 @@
       <owl:Class rdf:about="#LinearUnit"/>
     </rdfs:subClassOf>
     <owl:disjointWith>
-      <owl:Class rdf:ID="Centimeter"/>
+      <owl:Class rdf:ID="Kilometer"/>
     </owl:disjointWith>
     <owl:disjointWith>
-      <owl:Class rdf:ID="Kilometer"/>
+      <owl:Class rdf:ID="Centimeter"/>
     </owl:disjointWith>
   </owl:Class>
   <owl:Class rdf:about="#PathologicalFormation">
@@ -1671,6 +1663,9 @@
     <owl:disjointWith>
       <owl:Class rdf:ID="HouseNumber"/>
     </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="CountryName"/>
+    </owl:disjointWith>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty>
@@ -1681,17 +1676,37 @@
       </owl:Restriction>
     </rdfs:subClassOf>
     <owl:disjointWith>
-      <owl:Class rdf:ID="CountryName"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
       <owl:Class rdf:ID="PlaceName"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:ID="StreetName"/>
     </owl:disjointWith>
     <rdfs:subClassOf>
       <owl:Class rdf:about="#AddressPart"/>
     </rdfs:subClassOf>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="StreetName"/>
+    </owl:disjointWith>
+  </owl:Class>
+  <owl:Class rdf:about="#Father">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="isFatherOf"/>
+        </owl:onProperty>
+        <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:minCardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="#Parent"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:FunctionalProperty rdf:about="#hasGender"/>
+        </owl:onProperty>
+        <owl:hasValue rdf:resource="#Male"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Mother"/>
+    </owl:disjointWith>
   </owl:Class>
   <owl:Class rdf:about="#SquareCentimeter">
     <owl:disjointWith rdf:resource="#SquareMillimeter"/>
@@ -1706,29 +1721,6 @@
     </rdfs:subClassOf>
     <owl:disjointWith>
       <owl:Class rdf:about="#SquareMeter"/>
-    </owl:disjointWith>
-  </owl:Class>
-  <owl:Class rdf:about="#Father">
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:hasValue rdf:resource="#Male"/>
-        <owl:onProperty>
-          <owl:FunctionalProperty rdf:about="#hasGender"/>
-        </owl:onProperty>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:ID="isFatherOf"/>
-        </owl:onProperty>
-        <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
-        >1</owl:minCardinality>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="#Parent"/>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Mother"/>
     </owl:disjointWith>
   </owl:Class>
   <owl:Class rdf:ID="AdverseDrugReaction">
@@ -1772,16 +1764,16 @@
   </owl:Class>
   <owl:Class rdf:about="#DiagnosticProcedure">
     <rdfs:subClassOf>
+      <owl:Class rdf:ID="MedicalProcess"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
-        >1</owl:cardinality>
         <owl:onProperty>
           <owl:FunctionalProperty rdf:ID="hasDate"/>
         </owl:onProperty>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
       </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Class rdf:ID="MedicalProcess"/>
     </rdfs:subClassOf>
     <owl:disjointWith>
       <owl:Class rdf:about="#TherapeuticProcedure"/>
@@ -1815,28 +1807,22 @@
     <owl:disjointWith>
       <owl:Class rdf:about="#Disease"/>
     </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#Toxicity"/>
     <owl:disjointWith rdf:resource="#Symptom"/>
-    <owl:disjointWith rdf:resource="#Gender"/>
+    <owl:disjointWith rdf:resource="#Toxicity"/>
     <owl:disjointWith>
       <owl:Class rdf:about="#Malignancy"/>
     </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#Measure"/>
+    <owl:disjointWith rdf:resource="#Gender"/>
     <owl:disjointWith>
       <owl:Class rdf:about="#GeneralHealthState"/>
     </owl:disjointWith>
-  </owl:Class>
-  <owl:Class rdf:ID="MammaryCarcinoma">
-    <owl:disjointWith>
-      <owl:Class rdf:ID="RenalCellCarcinoma"/>
-    </owl:disjointWith>
-    <rdfs:subClassOf rdf:resource="#Carcinoma"/>
+    <owl:disjointWith rdf:resource="#Measure"/>
   </owl:Class>
   <owl:Class rdf:about="#Hypertension">
+    <owl:disjointWith rdf:resource="#Thrombosis"/>
     <owl:disjointWith>
       <owl:Class rdf:about="#Hypotension"/>
     </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#Thrombosis"/>
     <rdfs:subClassOf>
       <owl:Class rdf:about="#FunctionalVascularSymptom"/>
     </rdfs:subClassOf>
@@ -1847,22 +1833,6 @@
     </rdfs:subClassOf>
     <owl:disjointWith rdf:resource="#CRF"/>
     <owl:disjointWith rdf:resource="#ConsentForm"/>
-  </owl:Class>
-  <owl:Class rdf:about="#Sarcoma">
-    <owl:disjointWith>
-      <owl:Class rdf:about="#NeuroendocrineTumor"/>
-    </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#HaematooncologicalTumor"/>
-    <owl:disjointWith rdf:resource="#Carcinoma"/>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#MixedTumor"/>
-    </owl:disjointWith>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#MalignNeoplasm"/>
-    </rdfs:subClassOf>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#DysontogeneticTumor"/>
-    </owl:disjointWith>
   </owl:Class>
   <owl:Class rdf:about="#IntegumentarySystemSymptom">
     <owl:disjointWith rdf:resource="#CardiovascularSystemSymptom"/>
@@ -1890,6 +1860,9 @@
     <owl:disjointWith>
       <owl:Class rdf:about="#DeepFascialSystemSymptom"/>
     </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#RespiratorySystemSymptom"/>
+    </owl:disjointWith>
     <owl:equivalentClass>
       <owl:Class>
         <owl:unionOf rdf:parseType="Collection">
@@ -1898,48 +1871,25 @@
         </owl:unionOf>
       </owl:Class>
     </owl:equivalentClass>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#RespiratorySystemSymptom"/>
-    </owl:disjointWith>
     <rdfs:subClassOf rdf:resource="#SpecificSymptom"/>
   </owl:Class>
   <owl:Class rdf:ID="WedgeResection">
     <owl:disjointWith>
       <owl:Class rdf:ID="StandardPartialNephrectomy"/>
     </owl:disjointWith>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#PartialNephrectomy"/>
-    </rdfs:subClassOf>
     <owl:disjointWith>
       <owl:Class rdf:ID="Enucleation"/>
     </owl:disjointWith>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#PartialNephrectomy"/>
+    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="BloodPressure">
     <rdfs:subClassOf>
       <owl:Class rdf:ID="Pressure"/>
     </rdfs:subClassOf>
   </owl:Class>
-  <owl:Class rdf:about="#NeuroendocrineTumor">
-    <owl:disjointWith rdf:resource="#Sarcoma"/>
-    <owl:disjointWith rdf:resource="#HaematooncologicalTumor"/>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#MixedTumor"/>
-    </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#Carcinoma"/>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#MalignNeoplasm"/>
-    </rdfs:subClassOf>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#DysontogeneticTumor"/>
-    </owl:disjointWith>
-  </owl:Class>
   <owl:Class rdf:ID="MaleGenitalSystemSymptom">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#GenitalSystemSymptom"/>
-    </rdfs:subClassOf>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#FemaleGenitalSystemSymptom"/>
-    </owl:disjointWith>
     <owl:equivalentClass>
       <owl:Class>
         <owl:unionOf rdf:parseType="Collection">
@@ -1948,34 +1898,24 @@
         </owl:unionOf>
       </owl:Class>
     </owl:equivalentClass>
-  </owl:Class>
-  <owl:Class rdf:about="#RenalCellCarcinoma">
-    <rdfs:subClassOf rdf:resource="#Carcinoma"/>
-    <owl:disjointWith rdf:resource="#MammaryCarcinoma"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#GenitalSystemSymptom"/>
+    </rdfs:subClassOf>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#FemaleGenitalSystemSymptom"/>
+    </owl:disjointWith>
   </owl:Class>
   <owl:Class rdf:ID="ChemicalSubstance">
     <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.0/snap#Object"/>
     <rdfs:subClassOf>
       <owl:Restriction>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
         <owl:onProperty>
           <owl:ObjectProperty rdf:ID="hasToxicity"/>
         </owl:onProperty>
-        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
-        >1</owl:cardinality>
       </owl:Restriction>
     </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:about="#MixedTumor">
-    <owl:disjointWith rdf:resource="#Sarcoma"/>
-    <owl:disjointWith rdf:resource="#HaematooncologicalTumor"/>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#DysontogeneticTumor"/>
-    </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#Carcinoma"/>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#MalignNeoplasm"/>
-    </rdfs:subClassOf>
-    <owl:disjointWith rdf:resource="#NeuroendocrineTumor"/>
   </owl:Class>
   <owl:Class rdf:ID="MaidenName">
     <rdfs:subClassOf rdf:resource="#LastName"/>
@@ -1995,15 +1935,15 @@
       <owl:Class rdf:about="#ActivityReducedConsiderably"/>
     </owl:disjointWith>
     <owl:disjointWith rdf:resource="#Bedridden"/>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#NormalActivity"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#IntensiveCareRequired"/>
-    </owl:disjointWith>
     <rdfs:subClassOf>
       <owl:Class rdf:about="#GeneralHealthState"/>
     </rdfs:subClassOf>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#IntensiveCareRequired"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#NormalActivity"/>
+    </owl:disjointWith>
   </owl:Class>
   <owl:Class rdf:about="#StandardPartialNephrectomy">
     <owl:disjointWith>
@@ -2025,52 +1965,18 @@
     <rdfs:subClassOf rdf:resource="#PatientIdentifier"/>
   </owl:Class>
   <owl:Class rdf:about="#Address">
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.ifomis.org/obo/ro/1.0#hasPart"/>
-        <owl:someValuesFrom>
-          <owl:Class rdf:about="#CountryName"/>
-        </owl:someValuesFrom>
-      </owl:Restriction>
-    </rdfs:subClassOf>
     <owl:disjointWith>
       <owl:Class rdf:about="#Name"/>
     </owl:disjointWith>
     <owl:disjointWith rdf:resource="#MedicalExpertIdentifier"/>
     <rdfs:subClassOf rdf:resource="#Identifier"/>
-    <owl:disjointWith rdf:resource="#PatientIdentifier"/>
-    <owl:disjointWith rdf:resource="#TelephoneNumber"/>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.ifomis.org/obo/ro/1.0#hasPart"/>
         <owl:someValuesFrom rdf:resource="#TelephoneNumber"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom>
-          <owl:Class rdf:about="#PlaceName"/>
-        </owl:someValuesFrom>
         <owl:onProperty rdf:resource="http://www.ifomis.org/obo/ro/1.0#hasPart"/>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom>
-          <owl:Class rdf:about="#HouseNumber"/>
-        </owl:someValuesFrom>
-        <owl:onProperty rdf:resource="http://www.ifomis.org/obo/ro/1.0#hasPart"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="#PostalCode"/>
-        <owl:onProperty rdf:resource="http://www.ifomis.org/obo/ro/1.0#hasPart"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#HospitalIdentifier"/>
-    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#PatientIdentifier"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty rdf:resource="http://www.ifomis.org/obo/ro/1.0#hasPart"/>
@@ -2079,27 +1985,61 @@
         </owl:someValuesFrom>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <owl:disjointWith rdf:resource="#TelephoneNumber"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.ifomis.org/obo/ro/1.0#hasPart"/>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#PlaceName"/>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#HospitalIdentifier"/>
+    </owl:disjointWith>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#HouseNumber"/>
+        </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="http://www.ifomis.org/obo/ro/1.0#hasPart"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
     <owl:disjointWith>
       <owl:Class rdf:about="#ClinicalTrialIdentifier"/>
     </owl:disjointWith>
     <owl:disjointWith>
       <owl:Class rdf:about="#LegalGuardianIdentifier"/>
     </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#AddressPart"/>
-    </owl:disjointWith>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#PostalCode"/>
+        <owl:onProperty rdf:resource="http://www.ifomis.org/obo/ro/1.0#hasPart"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#CountryName"/>
+        </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="http://www.ifomis.org/obo/ro/1.0#hasPart"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
     <owl:disjointWith>
       <owl:Class rdf:about="#ClinicalStudyIdentifier"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#AddressPart"/>
     </owl:disjointWith>
   </owl:Class>
   <owl:Class rdf:about="#Document">
     <rdfs:subClassOf>
       <owl:Restriction>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
         <owl:onProperty>
           <owl:DatatypeProperty rdf:ID="hasCompletionDate"/>
         </owl:onProperty>
-        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
-        >1</owl:cardinality>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.0/snap#Object"/>
@@ -2108,6 +2048,10 @@
     <owl:disjointWith>
       <owl:Class rdf:about="#Second"/>
     </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Month"/>
+    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#Hour"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
@@ -2117,10 +2061,6 @@
         </owl:onProperty>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Month"/>
-    </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#Hour"/>
     <owl:disjointWith>
       <owl:Class rdf:about="#Week"/>
     </owl:disjointWith>
@@ -2143,6 +2083,15 @@
     <owl:disjointWith>
       <owl:Class rdf:about="#PlaceName"/>
     </owl:disjointWith>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:DatatypeProperty rdf:about="#hasStringValue"/>
+        </owl:onProperty>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
     <owl:disjointWith>
       <owl:Class rdf:about="#HouseNumber"/>
     </owl:disjointWith>
@@ -2152,21 +2101,11 @@
     <rdfs:subClassOf>
       <owl:Class rdf:about="#AddressPart"/>
     </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
-        >1</owl:cardinality>
-        <owl:onProperty>
-          <owl:DatatypeProperty rdf:about="#hasStringValue"/>
-        </owl:onProperty>
-      </owl:Restriction>
-    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="#MedicalProcess">
     <owl:disjointWith>
       <owl:Class rdf:about="#AdministrativeProcess"/>
     </owl:disjointWith>
-    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.0/span#Process"/>
     <owl:equivalentClass>
       <owl:Class>
         <owl:unionOf rdf:parseType="Collection">
@@ -2175,6 +2114,7 @@
         </owl:unionOf>
       </owl:Class>
     </owl:equivalentClass>
+    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.0/span#Process"/>
     <owl:disjointWith>
       <owl:Class rdf:ID="BiologicalProcess"/>
     </owl:disjointWith>
@@ -2188,10 +2128,10 @@
   <owl:Class rdf:about="#Hectopascal">
     <owl:disjointWith rdf:resource="#Torr"/>
     <rdfs:subClassOf rdf:resource="#PressureUnit"/>
-    <owl:disjointWith rdf:resource="#Pascal"/>
     <owl:disjointWith>
       <owl:Class rdf:about="#Bar"/>
     </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#Pascal"/>
     <owl:equivalentClass>
       <owl:Class rdf:about="#Millibar"/>
     </owl:equivalentClass>
@@ -2199,10 +2139,10 @@
   </owl:Class>
   <owl:Class rdf:ID="Kilogramm">
     <owl:disjointWith>
-      <owl:Class rdf:ID="Decigramm"/>
+      <owl:Class rdf:ID="Milligramm"/>
     </owl:disjointWith>
     <owl:disjointWith>
-      <owl:Class rdf:ID="Milligramm"/>
+      <owl:Class rdf:ID="Decigramm"/>
     </owl:disjointWith>
     <rdfs:subClassOf rdf:resource="#MassUnit"/>
     <owl:disjointWith>
@@ -2217,25 +2157,25 @@
     <owl:disjointWith>
       <owl:Class rdf:about="#Drug"/>
     </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#BirthPlace"/>
-    </owl:disjointWith>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
-        >1</owl:cardinality>
         <owl:onProperty>
           <owl:ObjectProperty rdf:ID="hasAddress"/>
         </owl:onProperty>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
       </owl:Restriction>
     </rdfs:subClassOf>
     <owl:disjointWith>
+      <owl:Class rdf:about="#BirthPlace"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
       <owl:Class rdf:about="#Paramedic"/>
     </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#Identifier"/>
     <owl:disjointWith>
       <owl:Class rdf:about="#MedicalPractitioner"/>
     </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#Identifier"/>
     <owl:disjointWith rdf:resource="#Patient"/>
     <owl:disjointWith rdf:resource="#Implant"/>
     <owl:disjointWith rdf:resource="#MeasurementUnit"/>
@@ -2273,13 +2213,6 @@
       <owl:Class rdf:about="#PathologicalProcess"/>
     </rdfs:subClassOf>
   </owl:Class>
-  <owl:Class rdf:about="#Enucleation">
-    <owl:disjointWith rdf:resource="#StandardPartialNephrectomy"/>
-    <owl:disjointWith rdf:resource="#WedgeResection"/>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#PartialNephrectomy"/>
-    </rdfs:subClassOf>
-  </owl:Class>
   <owl:Class rdf:about="#LegalGuardianConsent">
     <owl:disjointWith>
       <owl:Class rdf:ID="PatientConsent"/>
@@ -2288,13 +2221,20 @@
       <owl:Class rdf:about="#Consent"/>
     </rdfs:subClassOf>
   </owl:Class>
-  <owl:Class rdf:about="#Centimeter">
+  <owl:Class rdf:about="#Enucleation">
+    <owl:disjointWith rdf:resource="#StandardPartialNephrectomy"/>
+    <owl:disjointWith rdf:resource="#WedgeResection"/>
     <rdfs:subClassOf>
-      <owl:Class rdf:about="#LinearUnit"/>
+      <owl:Class rdf:about="#PartialNephrectomy"/>
     </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Centimeter">
     <owl:disjointWith>
       <owl:Class rdf:about="#Kilometer"/>
     </owl:disjointWith>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#LinearUnit"/>
+    </rdfs:subClassOf>
     <owl:disjointWith rdf:resource="#Meter"/>
     <owl:disjointWith>
       <owl:Class rdf:about="#Decimeter"/>
@@ -2314,32 +2254,32 @@
     </owl:disjointWith>
     <owl:disjointWith rdf:resource="#CubicDecimeter"/>
   </owl:Class>
-  <owl:Class rdf:ID="Lesion">
-    <rdfs:subClassOf rdf:resource="#Trauma"/>
-    <owl:disjointWith>
-      <owl:Class rdf:ID="Rupture"/>
-    </owl:disjointWith>
-  </owl:Class>
   <owl:Class rdf:about="#Mother">
     <owl:disjointWith rdf:resource="#Father"/>
     <rdfs:subClassOf rdf:resource="#Parent"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty>
-          <owl:FunctionalProperty rdf:about="#hasGender"/>
+          <owl:InverseFunctionalProperty rdf:ID="isMotherOf"/>
         </owl:onProperty>
-        <owl:hasValue rdf:resource="#Female"/>
+        <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:minCardinality>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
-        >1</owl:minCardinality>
+        <owl:hasValue rdf:resource="#Female"/>
         <owl:onProperty>
-          <owl:InverseFunctionalProperty rdf:ID="isMotherOf"/>
+          <owl:FunctionalProperty rdf:about="#hasGender"/>
         </owl:onProperty>
       </owl:Restriction>
     </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Lesion">
+    <rdfs:subClassOf rdf:resource="#Trauma"/>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="Rupture"/>
+    </owl:disjointWith>
   </owl:Class>
   <owl:Class rdf:ID="UrineSample">
     <rdfs:subClassOf>
@@ -2355,14 +2295,14 @@
     <owl:disjointWith>
       <owl:Class rdf:about="#Perlman"/>
     </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#Aniridia"/>
     <owl:disjointWith>
       <owl:Class rdf:about="#WiedemannBeckWithEMG"/>
     </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#Drash"/>
+    <owl:disjointWith rdf:resource="#Aniridia"/>
     <rdfs:subClassOf>
       <owl:Class rdf:about="#Syndrome"/>
     </rdfs:subClassOf>
+    <owl:disjointWith rdf:resource="#Drash"/>
     <owl:disjointWith>
       <owl:Class rdf:about="#Hemihypertrophy"/>
     </owl:disjointWith>
@@ -2382,20 +2322,20 @@
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="#HouseNumber">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#AddressPart"/>
+    </rdfs:subClassOf>
     <owl:disjointWith>
       <owl:Class rdf:about="#PlaceName"/>
     </owl:disjointWith>
     <rdfs:subClassOf>
       <owl:Restriction>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
         <owl:onProperty>
           <owl:DatatypeProperty rdf:about="#hasStringValue"/>
         </owl:onProperty>
-        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
-        >1</owl:cardinality>
       </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#AddressPart"/>
     </rdfs:subClassOf>
     <owl:disjointWith rdf:resource="#CountryName"/>
     <owl:disjointWith>
@@ -2427,36 +2367,36 @@
     <owl:disjointWith>
       <owl:Class rdf:about="#Paramedic"/>
     </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#MeasurementUnit"/>
     <owl:disjointWith>
       <owl:Class rdf:about="#PatientRelative"/>
     </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#MeasurementUnit"/>
     <owl:disjointWith rdf:resource="#Identifier"/>
     <owl:disjointWith rdf:resource="#DeathPlace"/>
     <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.0/snap#Role"/>
     <owl:disjointWith>
-      <owl:Class rdf:about="#Drug"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
       <owl:Class rdf:about="#BirthPlace"/>
     </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#Implant"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Drug"/>
+    </owl:disjointWith>
     <owl:disjointWith rdf:resource="#Patient"/>
+    <owl:disjointWith rdf:resource="#Implant"/>
   </owl:Class>
   <owl:Class rdf:ID="Length">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >?</rdfs:comment>
     <owl:disjointWith>
       <owl:Class rdf:ID="Weight"/>
     </owl:disjointWith>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >?</rdfs:comment>
     <owl:disjointWith>
-      <owl:Class rdf:ID="Height"/>
+      <owl:Class rdf:ID="Dose"/>
     </owl:disjointWith>
     <owl:disjointWith>
       <owl:Class rdf:ID="Breadth"/>
     </owl:disjointWith>
     <owl:disjointWith>
-      <owl:Class rdf:ID="Dose"/>
+      <owl:Class rdf:ID="Height"/>
     </owl:disjointWith>
     <rdfs:subClassOf rdf:resource="#Measure"/>
     <owl:disjointWith>
@@ -2522,10 +2462,10 @@
     <owl:disjointWith>
       <owl:Class rdf:about="#ClinicalStudyIdentifier"/>
     </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#TelephoneNumber"/>
     <owl:disjointWith>
       <owl:Class rdf:about="#Name"/>
     </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#TelephoneNumber"/>
     <owl:disjointWith>
       <owl:Class rdf:about="#ClinicalTrialIdentifier"/>
     </owl:disjointWith>
@@ -2567,10 +2507,10 @@
       <owl:Class rdf:about="#Weight"/>
     </owl:disjointWith>
     <owl:disjointWith>
-      <owl:Class rdf:about="#Height"/>
+      <owl:Class rdf:about="#Size"/>
     </owl:disjointWith>
     <owl:disjointWith>
-      <owl:Class rdf:about="#Size"/>
+      <owl:Class rdf:about="#Height"/>
     </owl:disjointWith>
     <owl:disjointWith>
       <owl:Class rdf:about="#Dose"/>
@@ -2592,34 +2532,26 @@
   <owl:Class rdf:about="#Autopsy">
     <rdfs:subClassOf rdf:resource="#DiagnosticProcedure"/>
     <owl:disjointWith>
-      <owl:Class rdf:about="#CytologicalExamination"/>
+      <owl:Class rdf:about="#MacropathologicalExamination"/>
     </owl:disjointWith>
     <owl:disjointWith>
-      <owl:Class rdf:about="#MacropathologicalExamination"/>
+      <owl:Class rdf:about="#CytologicalExamination"/>
     </owl:disjointWith>
     <owl:disjointWith>
       <owl:Class rdf:about="#HistologicalExamination"/>
     </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#ClinicalDiagnosticProcedure"/>
-    </owl:disjointWith>
     <owl:disjointWith rdf:resource="#SpecificDiagnosticProcess"/>
     <owl:disjointWith>
-      <owl:Class rdf:about="#Biopsy"/>
+      <owl:Class rdf:about="#ClinicalDiagnosticProcedure"/>
     </owl:disjointWith>
     <owl:disjointWith>
       <owl:Class rdf:about="#Surveillance"/>
     </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Biopsy"/>
+    </owl:disjointWith>
   </owl:Class>
   <owl:Class rdf:about="#MusculoskeletalSystemSymptom">
-    <owl:equivalentClass>
-      <owl:Class>
-        <owl:unionOf rdf:parseType="Collection">
-          <owl:Class rdf:about="#FunctionalMuscoskeletalSystemSymptom"/>
-          <owl:Class rdf:about="#StructuralMuscoskeletalSystemSymptom"/>
-        </owl:unionOf>
-      </owl:Class>
-    </owl:equivalentClass>
     <owl:disjointWith>
       <owl:Class rdf:about="#RespiratorySystemSymptom"/>
     </owl:disjointWith>
@@ -2641,6 +2573,14 @@
     </owl:disjointWith>
     <owl:disjointWith rdf:resource="#IntegumentarySystemSymptom"/>
     <owl:disjointWith rdf:resource="#CardiovascularSystemSymptom"/>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#FunctionalMuscoskeletalSystemSymptom"/>
+          <owl:Class rdf:about="#StructuralMuscoskeletalSystemSymptom"/>
+        </owl:unionOf>
+      </owl:Class>
+    </owl:equivalentClass>
     <owl:disjointWith>
       <owl:Class rdf:about="#NervousSystemSymptom"/>
     </owl:disjointWith>
@@ -2696,10 +2636,10 @@
   <owl:Class rdf:about="#SurfaceUnit">
     <owl:disjointWith rdf:resource="#MassUnit"/>
     <owl:disjointWith>
-      <owl:Class rdf:about="#LinearUnit"/>
+      <owl:Class rdf:about="#VolumeUnit"/>
     </owl:disjointWith>
     <owl:disjointWith>
-      <owl:Class rdf:about="#VolumeUnit"/>
+      <owl:Class rdf:about="#LinearUnit"/>
     </owl:disjointWith>
     <rdfs:subClassOf rdf:resource="#MeasurementUnit"/>
   </owl:Class>
@@ -2707,10 +2647,10 @@
     <rdfs:subClassOf rdf:resource="#OrganismalIndependentContinuant"/>
     <owl:disjointWith rdf:resource="#ImmaterialOrganismalIndependentContinuant"/>
   </owl:Class>
-  <owl:Class rdf:ID="PhysiologicalAdhesion">
-    <rdfs:subClassOf rdf:resource="#PhysiologicalProcess"/>
-  </owl:Class>
   <owl:Class rdf:ID="PathologicalBodySubstance">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="BodySubstance"/>
+    </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
@@ -2720,17 +2660,33 @@
         </owl:onProperty>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Class rdf:ID="BodySubstance"/>
-    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="PhysiologicalAdhesion">
+    <rdfs:subClassOf rdf:resource="#PhysiologicalProcess"/>
   </owl:Class>
   <owl:Class rdf:ID="Hernia">
     <rdfs:subClassOf>
       <owl:Class rdf:about="#PathologicalProcess"/>
     </rdfs:subClassOf>
   </owl:Class>
+  <owl:Class rdf:about="#Hypotension">
+    <owl:disjointWith rdf:resource="#Thrombosis"/>
+    <rdfs:subClassOf rdf:resource="#FunctionalVascularSymptom"/>
+    <owl:disjointWith rdf:resource="#Hypertension"/>
+  </owl:Class>
   <owl:Class rdf:about="#Brother">
     <owl:disjointWith rdf:resource="#Sister"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:FunctionalProperty rdf:about="#hasGender"/>
+        </owl:onProperty>
+        <owl:hasValue rdf:resource="#Male"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Sibling"/>
+    </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
@@ -2740,39 +2696,32 @@
         </owl:onProperty>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#Sibling"/>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty>
-          <owl:FunctionalProperty rdf:about="#hasGender"/>
-        </owl:onProperty>
-        <owl:hasValue rdf:resource="#Male"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:about="#Hypotension">
-    <rdfs:subClassOf rdf:resource="#FunctionalVascularSymptom"/>
-    <owl:disjointWith rdf:resource="#Thrombosis"/>
-    <owl:disjointWith rdf:resource="#Hypertension"/>
   </owl:Class>
   <owl:Class rdf:about="#Neoplasm">
-    <owl:disjointWith rdf:resource="#Granuloma"/>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Scar"/>
-    </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#Thrombus"/>
-    <rdfs:subClassOf rdf:resource="#PathologicalFormation"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="hasNeoplasmStructure"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty>
-          <owl:ObjectProperty rdf:ID="hasNeoplasmStructure"/>
+          <owl:FunctionalProperty rdf:ID="isOperable"/>
         </owl:onProperty>
         <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
         >1</owl:cardinality>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <owl:disjointWith rdf:resource="#Granuloma"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Scar"/>
+    </owl:disjointWith>
+    <rdfs:subClassOf rdf:resource="#PathologicalFormation"/>
+    <owl:disjointWith rdf:resource="#Thrombus"/>
     <owl:equivalentClass>
       <owl:Class>
         <owl:unionOf rdf:parseType="Collection">
@@ -2784,15 +2733,6 @@
     </owl:equivalentClass>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >aka tumor</rdfs:comment>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
-        >1</owl:cardinality>
-        <owl:onProperty>
-          <owl:FunctionalProperty rdf:ID="isOperable"/>
-        </owl:onProperty>
-      </owl:Restriction>
-    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="#MalignNeoplasm">
     <owl:disjointWith>
@@ -2802,20 +2742,20 @@
       <owl:Class>
         <owl:unionOf rdf:parseType="Collection">
           <owl:Restriction>
+            <owl:onProperty>
+              <owl:FunctionalProperty rdf:about="#hasMalignancy"/>
+            </owl:onProperty>
             <owl:hasValue>
               <Malignancy rdf:ID="LowMalignancy"/>
             </owl:hasValue>
+          </owl:Restriction>
+          <owl:Restriction>
             <owl:onProperty>
               <owl:FunctionalProperty rdf:about="#hasMalignancy"/>
             </owl:onProperty>
-          </owl:Restriction>
-          <owl:Restriction>
             <owl:hasValue>
               <Malignancy rdf:ID="IntermediateMalignancy"/>
             </owl:hasValue>
-            <owl:onProperty>
-              <owl:FunctionalProperty rdf:about="#hasMalignancy"/>
-            </owl:onProperty>
           </owl:Restriction>
           <owl:Restriction>
             <owl:hasValue>
@@ -2836,12 +2776,6 @@
       <owl:Class rdf:about="#VascularSymptom"/>
     </rdfs:subClassOf>
     <owl:disjointWith rdf:resource="#FunctionalVascularSymptom"/>
-  </owl:Class>
-  <owl:Class rdf:about="#NephroblastomaPrimaryTumour">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#Nephroblastoma"/>
-    </rdfs:subClassOf>
-    <owl:disjointWith rdf:resource="#NephroblastomaMetastasis"/>
   </owl:Class>
   <owl:Class rdf:about="#NormalActivity">
     <owl:disjointWith rdf:resource="#Bedridden"/>
@@ -2865,16 +2799,24 @@
     <rdfs:subClassOf rdf:resource="#MedicalPractitioner"/>
     <owl:disjointWith rdf:resource="#Radiologist"/>
     <owl:disjointWith>
-      <owl:Class rdf:about="#Surgeon"/>
+      <owl:Class rdf:about="#Internist"/>
     </owl:disjointWith>
     <owl:disjointWith>
-      <owl:Class rdf:about="#Internist"/>
+      <owl:Class rdf:about="#Surgeon"/>
     </owl:disjointWith>
   </owl:Class>
   <owl:Class rdf:about="#NervousSystemSymptom">
     <owl:disjointWith>
       <owl:Class rdf:about="#UrinarySystemSymptom"/>
     </owl:disjointWith>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#FunctionalNervousSystemSymptom"/>
+          <owl:Class rdf:about="#StructuralNervousSystemSymptom"/>
+        </owl:unionOf>
+      </owl:Class>
+    </owl:equivalentClass>
     <owl:disjointWith>
       <owl:Class rdf:about="#EndocrineSystemSymptom"/>
     </owl:disjointWith>
@@ -2895,14 +2837,6 @@
     <owl:disjointWith>
       <owl:Class rdf:about="#RespiratorySystemSymptom"/>
     </owl:disjointWith>
-    <owl:equivalentClass>
-      <owl:Class>
-        <owl:unionOf rdf:parseType="Collection">
-          <owl:Class rdf:about="#FunctionalNervousSystemSymptom"/>
-          <owl:Class rdf:about="#StructuralNervousSystemSymptom"/>
-        </owl:unionOf>
-      </owl:Class>
-    </owl:equivalentClass>
     <owl:disjointWith rdf:resource="#CardiovascularSystemSymptom"/>
     <rdfs:subClassOf rdf:resource="#SpecificSymptom"/>
   </owl:Class>
@@ -2916,38 +2850,38 @@
         </owl:onProperty>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="#hasIdentifier"/>
-        </owl:onProperty>
-        <owl:someValuesFrom>
-          <owl:Class rdf:about="#ClinicalTrialIdentifier"/>
-        </owl:someValuesFrom>
-      </owl:Restriction>
-    </rdfs:subClassOf>
     <owl:disjointWith rdf:resource="#ClinicalStudy"/>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.ifomis.org/obo/ro/1.0#partOf"/>
         <owl:allValuesFrom rdf:resource="#ClinicalStudy"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="#ClinicalTrialAndStudy"/>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="#hasIdentifier"/>
-        </owl:onProperty>
-        <owl:allValuesFrom>
-          <owl:Class rdf:about="#ClinicalTrialIdentifier"/>
-        </owl:allValuesFrom>
+        <owl:onProperty rdf:resource="http://www.ifomis.org/obo/ro/1.0#partOf"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty rdf:resource="http://www.ifomis.org/obo/ro/1.0#partOf"/>
         <owl:someValuesFrom rdf:resource="#ClinicalStudy"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="#ClinicalTrialAndStudy"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#ClinicalTrialIdentifier"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#hasIdentifier"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom>
+          <owl:Class rdf:about="#ClinicalTrialIdentifier"/>
+        </owl:allValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#hasIdentifier"/>
+        </owl:onProperty>
       </owl:Restriction>
     </rdfs:subClassOf>
   </owl:Class>
@@ -2985,16 +2919,32 @@
   </owl:Class>
   <owl:Class rdf:about="#PathologicalOrganismalSurface">
     <rdfs:subClassOf rdf:resource="#OrganismalSurface"/>
-    <owl:disjointWith rdf:resource="#CanonicalOrganismalSurface"/>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
-        >true</owl:hasValue>
         <owl:onProperty>
           <owl:FunctionalProperty rdf:about="#isPathological"/>
         </owl:onProperty>
+        <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+        >true</owl:hasValue>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <owl:disjointWith rdf:resource="#CanonicalOrganismalSurface"/>
+  </owl:Class>
+  <owl:Class rdf:about="#PrimarySarcoma">
+    <owl:disjointWith>
+      <owl:Class rdf:about="#PrimaryCarcinoma"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#PrimaryNeuroendocrineTumor"/>
+    </owl:disjointWith>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#PrimaryMalignNeoplasm"/>
+    </rdfs:subClassOf>
+    <owl:disjointWith rdf:resource="#PrimaryHaematooncologicalTumor"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#PrimaryDysontogeneticTumor"/>
+    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#PrimaryMixedTumor"/>
   </owl:Class>
   <owl:Class rdf:ID="Infiltration">
     <rdfs:subClassOf>
@@ -3004,10 +2954,10 @@
   <owl:Class rdf:ID="IntestinalLesion">
     <rdfs:subClassOf rdf:resource="#Lesion"/>
     <owl:disjointWith>
-      <owl:Class rdf:ID="LiverLesion"/>
+      <owl:Class rdf:ID="SpleenLesion"/>
     </owl:disjointWith>
     <owl:disjointWith>
-      <owl:Class rdf:ID="SpleenLesion"/>
+      <owl:Class rdf:ID="LiverLesion"/>
     </owl:disjointWith>
     <owl:disjointWith>
       <owl:Class rdf:ID="VascularLesion"/>
@@ -3015,36 +2965,16 @@
   </owl:Class>
   <owl:Class rdf:about="#TransversalApproach">
     <owl:disjointWith rdf:resource="#EpigastricTransverseIncision"/>
-    <owl:disjointWith rdf:resource="#ThoracoAbdominalApproach"/>
     <owl:disjointWith>
       <owl:Class rdf:about="#LongitudinalIncision"/>
     </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#ThoracoAbdominalApproach"/>
     <owl:disjointWith>
       <owl:Class rdf:about="#CardiopulmonaryBypass"/>
     </owl:disjointWith>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Transverser Zugang?</rdfs:comment>
     <rdfs:subClassOf rdf:resource="#SurgicalApproach"/>
-  </owl:Class>
-  <owl:Class rdf:about="#CytologicalExamination">
-    <owl:disjointWith rdf:resource="#SpecificDiagnosticProcess"/>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Biopsy"/>
-    </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#Autopsy"/>
-    <rdfs:subClassOf rdf:resource="#DiagnosticProcedure"/>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#MacropathologicalExamination"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#ClinicalDiagnosticProcedure"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Surveillance"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#HistologicalExamination"/>
-    </owl:disjointWith>
   </owl:Class>
   <owl:Class rdf:about="#GeneralHealthState">
     <owl:disjointWith>
@@ -3058,10 +2988,30 @@
     <owl:disjointWith rdf:resource="#Gender"/>
     <owl:disjointWith rdf:resource="#Measure"/>
   </owl:Class>
+  <owl:Class rdf:about="#CytologicalExamination">
+    <owl:disjointWith rdf:resource="#SpecificDiagnosticProcess"/>
+    <owl:disjointWith rdf:resource="#Autopsy"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Biopsy"/>
+    </owl:disjointWith>
+    <rdfs:subClassOf rdf:resource="#DiagnosticProcedure"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#MacropathologicalExamination"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#ClinicalDiagnosticProcedure"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#HistologicalExamination"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Surveillance"/>
+    </owl:disjointWith>
+  </owl:Class>
   <owl:Class rdf:about="#Paramedic">
     <owl:disjointWith rdf:resource="#Identifier"/>
-    <owl:disjointWith rdf:resource="#MedicalPractitioner"/>
     <owl:disjointWith rdf:resource="#Implant"/>
+    <owl:disjointWith rdf:resource="#MedicalPractitioner"/>
     <owl:disjointWith>
       <owl:Class rdf:about="#Drug"/>
     </owl:disjointWith>
@@ -3070,13 +3020,19 @@
     </owl:disjointWith>
     <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.0/snap#Role"/>
     <owl:disjointWith rdf:resource="#DeathPlace"/>
+    <owl:disjointWith rdf:resource="#Patient"/>
+    <owl:disjointWith rdf:resource="#MeasurementUnit"/>
     <owl:disjointWith>
       <owl:Class rdf:about="#PatientRelative"/>
     </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#MeasurementUnit"/>
-    <owl:disjointWith rdf:resource="#Patient"/>
+  </owl:Class>
+  <owl:Class rdf:ID="PrimaryNephroblastoma">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#PrimaryDysontogeneticTumor"/>
+    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="AnatomicalStructure">
+    <rdfs:subClassOf rdf:resource="#MaterialOrganismalIndependentContinuant"/>
     <owl:equivalentClass>
       <owl:Class>
         <owl:unionOf rdf:parseType="Collection">
@@ -3086,7 +3042,6 @@
         </owl:unionOf>
       </owl:Class>
     </owl:equivalentClass>
-    <rdfs:subClassOf rdf:resource="#MaterialOrganismalIndependentContinuant"/>
   </owl:Class>
   <owl:Class rdf:about="#Malignancy">
     <owl:disjointWith rdf:resource="#Gender"/>
@@ -3094,9 +3049,6 @@
     <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.0/snap#Quality"/>
     <owl:disjointWith rdf:resource="#Symptom"/>
     <owl:disjointWith rdf:resource="#GeneralHealthState"/>
-    <owl:disjointWith rdf:resource="#Laterality"/>
-    <owl:disjointWith rdf:resource="#Disease"/>
-    <owl:disjointWith rdf:resource="#Measure"/>
     <owl:equivalentClass>
       <owl:Class>
         <owl:oneOf rdf:parseType="Collection">
@@ -3107,6 +3059,9 @@
         </owl:oneOf>
       </owl:Class>
     </owl:equivalentClass>
+    <owl:disjointWith rdf:resource="#Disease"/>
+    <owl:disjointWith rdf:resource="#Laterality"/>
+    <owl:disjointWith rdf:resource="#Measure"/>
   </owl:Class>
   <owl:Class rdf:about="#VariantAnatomicalStructure">
     <owl:disjointWith>
@@ -3130,8 +3085,8 @@
     <owl:disjointWith>
       <owl:Class rdf:about="#Decigramm"/>
     </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#Kilogramm"/>
     <rdfs:subClassOf rdf:resource="#MassUnit"/>
+    <owl:disjointWith rdf:resource="#Kilogramm"/>
     <owl:disjointWith>
       <owl:Class rdf:about="#Milligramm"/>
     </owl:disjointWith>
@@ -3167,13 +3122,27 @@
     <rdfs:subClassOf rdf:resource="#MassUnit"/>
     <owl:disjointWith rdf:resource="#Centigramm"/>
   </owl:Class>
+  <owl:Class rdf:about="#PrimaryNeuroendocrineTumor">
+    <owl:disjointWith rdf:resource="#PrimaryMixedTumor"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#PrimaryDysontogeneticTumor"/>
+    </owl:disjointWith>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#PrimaryMalignNeoplasm"/>
+    </rdfs:subClassOf>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#PrimaryCarcinoma"/>
+    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#PrimaryHaematooncologicalTumor"/>
+    <owl:disjointWith rdf:resource="#PrimarySarcoma"/>
+  </owl:Class>
   <owl:Class rdf:about="#SquareDecimeter">
-    <owl:disjointWith rdf:resource="#SquareCentimeter"/>
     <owl:disjointWith rdf:resource="#SquareMillimeter"/>
+    <owl:disjointWith rdf:resource="#SquareCentimeter"/>
+    <rdfs:subClassOf rdf:resource="#SurfaceUnit"/>
     <owl:disjointWith>
       <owl:Class rdf:about="#SquareMeter"/>
     </owl:disjointWith>
-    <rdfs:subClassOf rdf:resource="#SurfaceUnit"/>
     <owl:disjointWith>
       <owl:Class rdf:about="#SquareKilometer"/>
     </owl:disjointWith>
@@ -3186,15 +3155,15 @@
     <owl:disjointWith>
       <owl:Class rdf:about="#Height"/>
     </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#Length"/>
     <owl:disjointWith>
       <owl:Class rdf:about="#Diameter"/>
     </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Depth"/>
-    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#Length"/>
     <owl:disjointWith>
       <owl:Class rdf:about="#Weight"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Depth"/>
     </owl:disjointWith>
     <owl:disjointWith>
       <owl:Class rdf:about="#Size"/>
@@ -3233,6 +3202,10 @@
       <owl:Class rdf:about="#StreetName"/>
     </owl:disjointWith>
     <owl:disjointWith rdf:resource="#CountryName"/>
+    <owl:disjointWith rdf:resource="#HouseNumber"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#AddressPart"/>
+    </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty>
@@ -3242,15 +3215,22 @@
         >1</owl:cardinality>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <owl:disjointWith rdf:resource="#HouseNumber"/>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#AddressPart"/>
-    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="#DeepFascialSystemSymptom">
     <owl:disjointWith>
       <owl:Class rdf:about="#RespiratorySystemSymptom"/>
     </owl:disjointWith>
+    <rdfs:subClassOf rdf:resource="#SpecificSymptom"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#UrinarySystemSymptom"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#HemolymphoidSystemSymptom"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#AlimentarySystemSymptom"/>
+    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#IntegumentarySystemSymptom"/>
     <owl:equivalentClass>
       <owl:Class>
         <owl:unionOf rdf:parseType="Collection">
@@ -3259,17 +3239,6 @@
         </owl:unionOf>
       </owl:Class>
     </owl:equivalentClass>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#UrinarySystemSymptom"/>
-    </owl:disjointWith>
-    <rdfs:subClassOf rdf:resource="#SpecificSymptom"/>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#HemolymphoidSystemSymptom"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#AlimentarySystemSymptom"/>
-    </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#IntegumentarySystemSymptom"/>
     <owl:disjointWith rdf:resource="#CardiovascularSystemSymptom"/>
     <owl:disjointWith rdf:resource="#MusculoskeletalSystemSymptom"/>
     <owl:disjointWith>
@@ -3325,8 +3294,8 @@
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="#SquareKilometer">
-    <owl:disjointWith rdf:resource="#SquareDecimeter"/>
     <owl:disjointWith rdf:resource="#SquareCentimeter"/>
+    <owl:disjointWith rdf:resource="#SquareDecimeter"/>
     <owl:disjointWith rdf:resource="#SquareMillimeter"/>
     <owl:disjointWith>
       <owl:Class rdf:about="#SquareMeter"/>
@@ -3358,10 +3327,10 @@
       <owl:Class rdf:about="#HistologicalExamination"/>
     </owl:disjointWith>
     <owl:disjointWith>
-      <owl:Class rdf:about="#Surveillance"/>
+      <owl:Class rdf:about="#ClinicalDiagnosticProcedure"/>
     </owl:disjointWith>
     <owl:disjointWith>
-      <owl:Class rdf:about="#ClinicalDiagnosticProcedure"/>
+      <owl:Class rdf:about="#Surveillance"/>
     </owl:disjointWith>
     <rdfs:subClassOf rdf:resource="#DiagnosticProcedure"/>
   </owl:Class>
@@ -3370,10 +3339,10 @@
     <owl:disjointWith>
       <owl:Class rdf:about="#HistologicalExamination"/>
     </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#SpecificDiagnosticProcess"/>
     <owl:disjointWith>
       <owl:Class rdf:about="#Biopsy"/>
     </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#SpecificDiagnosticProcess"/>
     <owl:disjointWith rdf:resource="#MacropathologicalExamination"/>
     <owl:disjointWith>
       <owl:Class rdf:about="#Surveillance"/>
@@ -3381,12 +3350,20 @@
     <rdfs:subClassOf rdf:resource="#DiagnosticProcedure"/>
     <owl:disjointWith rdf:resource="#Autopsy"/>
   </owl:Class>
+  <owl:Class rdf:about="#Registration">
+    <owl:disjointWith rdf:resource="#ClinicalTrialAndStudy"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Consent"/>
+    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#ClinicalDocumentation"/>
+    <rdfs:subClassOf rdf:resource="#AdministrativeProcess"/>
+  </owl:Class>
   <owl:Class rdf:about="#Perlman">
     <rdfs:subClassOf>
       <owl:Class rdf:about="#Syndrome"/>
     </rdfs:subClassOf>
-    <owl:disjointWith rdf:resource="#Aniridia"/>
     <owl:disjointWith rdf:resource="#Drash"/>
+    <owl:disjointWith rdf:resource="#Aniridia"/>
     <owl:disjointWith>
       <owl:Class rdf:about="#WiedemannBeckWithEMG"/>
     </owl:disjointWith>
@@ -3395,22 +3372,14 @@
       <owl:Class rdf:about="#Hemihypertrophy"/>
     </owl:disjointWith>
   </owl:Class>
-  <owl:Class rdf:about="#Registration">
-    <owl:disjointWith rdf:resource="#ClinicalTrialAndStudy"/>
-    <owl:disjointWith rdf:resource="#ClinicalDocumentation"/>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Consent"/>
-    </owl:disjointWith>
-    <rdfs:subClassOf rdf:resource="#AdministrativeProcess"/>
-  </owl:Class>
   <owl:Class rdf:about="#Metastasektomy">
     <owl:disjointWith>
       <owl:Class rdf:about="#Transplant"/>
     </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#Pneumonectomy"/>
     <owl:disjointWith>
       <owl:Class rdf:about="#Resection"/>
     </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#Pneumonectomy"/>
     <rdfs:subClassOf>
       <owl:Class rdf:about="#SurgicalOperation"/>
     </rdfs:subClassOf>
@@ -3426,10 +3395,10 @@
     <rdfs:subClassOf rdf:resource="#GeneralHealthState"/>
     <owl:disjointWith rdf:resource="#NormalActivity"/>
     <owl:disjointWith rdf:resource="#Bedridden"/>
-    <owl:disjointWith rdf:resource="#MinorImpairment"/>
     <owl:disjointWith>
       <owl:Class rdf:about="#ActivityReducedConsiderably"/>
     </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#MinorImpairment"/>
   </owl:Class>
   <owl:Class rdf:about="#Bar">
     <rdfs:subClassOf rdf:resource="#PressureUnit"/>
@@ -3442,57 +3411,29 @@
   <owl:Class rdf:about="#SubstanceSample">
     <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.0/snap#FiatObjectPart"/>
   </owl:Class>
-  <owl:Class rdf:ID="CoagulationDisorder">
-    <rdfs:subClassOf rdf:resource="#FunctionalHemolymphoidSystemSymptom"/>
-  </owl:Class>
   <owl:Class rdf:ID="TumorSample">
     <rdfs:subClassOf rdf:resource="#HistologicalSample"/>
+  </owl:Class>
+  <owl:Class rdf:ID="CoagulationDisorder">
+    <rdfs:subClassOf rdf:resource="#FunctionalHemolymphoidSystemSymptom"/>
   </owl:Class>
   <owl:Class rdf:ID="Invagination">
     <rdfs:subClassOf>
       <owl:Class rdf:about="#PathologicalProcess"/>
     </rdfs:subClassOf>
   </owl:Class>
-  <owl:Class rdf:about="#Biopsy">
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Surveillance"/>
-    </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#ClinicalDiagnosticProcedure"/>
-    <owl:equivalentClass>
-      <owl:Class>
-        <owl:unionOf rdf:parseType="Collection">
-          <owl:Class rdf:about="#BiopsyWithIncision"/>
-          <owl:Class rdf:about="#BiopsyWithoutIncision"/>
-        </owl:unionOf>
-      </owl:Class>
-    </owl:equivalentClass>
-    <owl:disjointWith rdf:resource="#Autopsy"/>
-    <owl:disjointWith rdf:resource="#CytologicalExamination"/>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#HistologicalExamination"/>
-    </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#SpecificDiagnosticProcess"/>
-    <rdfs:subClassOf rdf:resource="#DiagnosticProcedure"/>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
-        >1</owl:cardinality>
-        <owl:onProperty>
-          <owl:FunctionalProperty rdf:about="#hasDate"/>
-        </owl:onProperty>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-  </owl:Class>
   <owl:Class rdf:about="#HistologicalExamination">
     <owl:disjointWith rdf:resource="#CytologicalExamination"/>
-    <owl:disjointWith rdf:resource="#Biopsy"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Biopsy"/>
+    </owl:disjointWith>
     <owl:disjointWith>
       <owl:Class rdf:about="#Surveillance"/>
     </owl:disjointWith>
     <owl:disjointWith rdf:resource="#MacropathologicalExamination"/>
     <rdfs:subClassOf rdf:resource="#DiagnosticProcedure"/>
-    <owl:disjointWith rdf:resource="#ClinicalDiagnosticProcedure"/>
     <owl:disjointWith rdf:resource="#Autopsy"/>
+    <owl:disjointWith rdf:resource="#ClinicalDiagnosticProcedure"/>
     <owl:disjointWith rdf:resource="#SpecificDiagnosticProcess"/>
   </owl:Class>
   <owl:Class rdf:about="#HemolymphoidSystemSymptom">
@@ -3506,10 +3447,6 @@
     <owl:disjointWith>
       <owl:Class rdf:about="#RespiratorySystemSymptom"/>
     </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#NervousSystemSymptom"/>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#AlimentarySystemSymptom"/>
-    </owl:disjointWith>
     <owl:equivalentClass>
       <owl:Class>
         <owl:unionOf rdf:parseType="Collection">
@@ -3518,6 +3455,10 @@
         </owl:unionOf>
       </owl:Class>
     </owl:equivalentClass>
+    <owl:disjointWith rdf:resource="#NervousSystemSymptom"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#AlimentarySystemSymptom"/>
+    </owl:disjointWith>
     <owl:disjointWith>
       <owl:Class rdf:about="#EndocrineSystemSymptom"/>
     </owl:disjointWith>
@@ -3525,6 +3466,34 @@
     <owl:disjointWith rdf:resource="#CardiovascularSystemSymptom"/>
     <owl:disjointWith rdf:resource="#IntegumentarySystemSymptom"/>
     <owl:disjointWith rdf:resource="#DeepFascialSystemSymptom"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Biopsy">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#BiopsyWithIncision"/>
+          <owl:Class rdf:about="#BiopsyWithoutIncision"/>
+        </owl:unionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+    <owl:disjointWith rdf:resource="#ClinicalDiagnosticProcedure"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Surveillance"/>
+    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#Autopsy"/>
+    <owl:disjointWith rdf:resource="#HistologicalExamination"/>
+    <owl:disjointWith rdf:resource="#CytologicalExamination"/>
+    <owl:disjointWith rdf:resource="#SpecificDiagnosticProcess"/>
+    <rdfs:subClassOf rdf:resource="#DiagnosticProcedure"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:FunctionalProperty rdf:about="#hasDate"/>
+        </owl:onProperty>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="HumanBeing">
     <rdfs:subClassOf>
@@ -3535,8 +3504,8 @@
     <owl:disjointWith rdf:resource="#TransversalApproach"/>
     <rdfs:subClassOf rdf:resource="#SurgicalApproach"/>
     <owl:disjointWith rdf:resource="#EpigastricTransverseIncision"/>
-    <owl:disjointWith rdf:resource="#ThoracoAbdominalApproach"/>
     <owl:disjointWith rdf:resource="#LongitudinalIncision"/>
+    <owl:disjointWith rdf:resource="#ThoracoAbdominalApproach"/>
   </owl:Class>
   <owl:Class rdf:ID="Pus">
     <rdfs:subClassOf rdf:resource="#PathologicalBodySubstance"/>
@@ -3565,13 +3534,13 @@
     <owl:disjointWith>
       <owl:Class rdf:about="#ClinicalStudyIdentifier"/>
     </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#AddressPart"/>
-    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#HospitalIdentifier"/>
     <owl:disjointWith>
       <owl:Class rdf:about="#Name"/>
     </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#HospitalIdentifier"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#AddressPart"/>
+    </owl:disjointWith>
     <owl:disjointWith rdf:resource="#PatientIdentifier"/>
     <owl:disjointWith rdf:resource="#MedicalExpertIdentifier"/>
   </owl:Class>
@@ -3580,6 +3549,8 @@
     <rdfs:subClassOf rdf:resource="#BenignNeoplasm"/>
   </owl:Class>
   <owl:Class rdf:about="#VascularSymptom">
+    <owl:disjointWith rdf:resource="#CardiacSymptom"/>
+    <rdfs:subClassOf rdf:resource="#CardiovascularSystemSymptom"/>
     <owl:equivalentClass>
       <owl:Class>
         <owl:unionOf rdf:parseType="Collection">
@@ -3588,8 +3559,6 @@
         </owl:unionOf>
       </owl:Class>
     </owl:equivalentClass>
-    <owl:disjointWith rdf:resource="#CardiacSymptom"/>
-    <rdfs:subClassOf rdf:resource="#CardiovascularSystemSymptom"/>
   </owl:Class>
   <owl:Class rdf:about="#ProtocolledTherapyStart">
     <owl:disjointWith rdf:resource="#ProtocolledTherapyEnd"/>
@@ -3611,15 +3580,15 @@
       <owl:Class rdf:about="#Size"/>
     </owl:disjointWith>
     <rdfs:subClassOf rdf:resource="#Measure"/>
-    <owl:disjointWith rdf:resource="#Breadth"/>
     <owl:disjointWith>
       <owl:Class rdf:about="#Dose"/>
     </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Weight"/>
-    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#Breadth"/>
     <owl:disjointWith>
       <owl:Class rdf:about="#Diameter"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Weight"/>
     </owl:disjointWith>
     <owl:disjointWith rdf:resource="#Pressure"/>
   </owl:Class>
@@ -3633,8 +3602,6 @@
     <owl:disjointWith>
       <owl:Class rdf:about="#RespiratorySystemSymptom"/>
     </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#IntegumentarySystemSymptom"/>
-    <owl:disjointWith rdf:resource="#NervousSystemSymptom"/>
     <owl:equivalentClass>
       <owl:Class>
         <owl:unionOf rdf:parseType="Collection">
@@ -3643,6 +3610,8 @@
         </owl:unionOf>
       </owl:Class>
     </owl:equivalentClass>
+    <owl:disjointWith rdf:resource="#IntegumentarySystemSymptom"/>
+    <owl:disjointWith rdf:resource="#NervousSystemSymptom"/>
     <owl:disjointWith rdf:resource="#MusculoskeletalSystemSymptom"/>
     <owl:disjointWith rdf:resource="#CardiovascularSystemSymptom"/>
     <owl:disjointWith rdf:resource="#HemolymphoidSystemSymptom"/>
@@ -3658,9 +3627,6 @@
       <owl:Class rdf:about="#UrinarySystemSymptom"/>
     </owl:disjointWith>
   </owl:Class>
-  <owl:Class rdf:ID="PaediatricOncologist">
-    <rdfs:subClassOf rdf:resource="#Paediatrician"/>
-  </owl:Class>
   <owl:Class rdf:about="#ThoracicSurgeon">
     <owl:disjointWith rdf:resource="#PaediatricSurgeon"/>
     <owl:disjointWith rdf:resource="#VascularSurgeon"/>
@@ -3671,13 +3637,23 @@
       <owl:Class rdf:about="#Surgeon"/>
     </rdfs:subClassOf>
   </owl:Class>
-  <owl:Class rdf:about="#DysontogeneticTumor">
-    <owl:disjointWith rdf:resource="#MixedTumor"/>
-    <rdfs:subClassOf rdf:resource="#MalignNeoplasm"/>
-    <owl:disjointWith rdf:resource="#Sarcoma"/>
-    <owl:disjointWith rdf:resource="#HaematooncologicalTumor"/>
-    <owl:disjointWith rdf:resource="#NeuroendocrineTumor"/>
-    <owl:disjointWith rdf:resource="#Carcinoma"/>
+  <owl:Class rdf:ID="PaediatricOncologist">
+    <rdfs:subClassOf rdf:resource="#Paediatrician"/>
+  </owl:Class>
+  <owl:Class rdf:about="#PrimaryDysontogeneticTumor">
+    <owl:disjointWith rdf:resource="#PrimaryHaematooncologicalTumor"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#PrimaryCarcinoma"/>
+    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#PrimarySarcoma"/>
+    <owl:disjointWith rdf:resource="#PrimaryMixedTumor"/>
+    <owl:disjointWith rdf:resource="#PrimaryNeuroendocrineTumor"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#PrimaryMalignNeoplasm"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Catecholamin">
+    <rdfs:subClassOf rdf:resource="#Hormone"/>
   </owl:Class>
   <owl:Class rdf:about="#Ultrasound">
     <owl:disjointWith>
@@ -3689,9 +3665,6 @@
       <owl:Class rdf:about="#Computertomography"/>
     </owl:disjointWith>
   </owl:Class>
-  <owl:Class rdf:ID="Catecholamin">
-    <rdfs:subClassOf rdf:resource="#Hormone"/>
-  </owl:Class>
   <owl:Class rdf:about="#Size">
     <owl:disjointWith rdf:resource="#Breadth"/>
     <rdfs:subClassOf rdf:resource="#Measure"/>
@@ -3699,11 +3672,11 @@
       <owl:Class rdf:about="#Dose"/>
     </owl:disjointWith>
     <owl:disjointWith>
-      <owl:Class rdf:about="#Weight"/>
+      <owl:Class rdf:about="#Diameter"/>
     </owl:disjointWith>
     <owl:disjointWith rdf:resource="#Pressure"/>
     <owl:disjointWith>
-      <owl:Class rdf:about="#Diameter"/>
+      <owl:Class rdf:about="#Weight"/>
     </owl:disjointWith>
     <owl:disjointWith rdf:resource="#Height"/>
     <owl:disjointWith rdf:resource="#Length"/>
@@ -3736,16 +3709,15 @@
     <rdfs:subClassOf>
       <owl:Class rdf:about="#LinearUnit"/>
     </rdfs:subClassOf>
-    <owl:disjointWith rdf:resource="#Centimeter"/>
     <owl:disjointWith>
       <owl:Class rdf:about="#Kilometer"/>
     </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#Centimeter"/>
   </owl:Class>
   <owl:Class rdf:about="#NonIdenticalTwinBrother">
     <owl:disjointWith>
       <owl:Class rdf:about="#IdenticalTwinBrother"/>
     </owl:disjointWith>
-    <rdfs:subClassOf rdf:resource="#TwinBrother"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty>
@@ -3755,6 +3727,7 @@
         >false</owl:hasValue>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="#TwinBrother"/>
   </owl:Class>
   <owl:Class rdf:about="#SpleenLesion">
     <rdfs:subClassOf rdf:resource="#Lesion"/>
@@ -3768,33 +3741,34 @@
   </owl:Class>
   <owl:Class rdf:about="#PatientRelative">
     <owl:disjointWith rdf:resource="#Implant"/>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Drug"/>
-    </owl:disjointWith>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty>
-          <owl:ObjectProperty rdf:ID="hasFullName"/>
+          <owl:FunctionalProperty rdf:about="#isDead"/>
         </owl:onProperty>
         <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
         >1</owl:cardinality>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:DatatypeProperty rdf:about="#hasDeathDate"/>
+        </owl:onProperty>
+        <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:maxCardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Drug"/>
+    </owl:disjointWith>
     <owl:disjointWith rdf:resource="#Paramedic"/>
     <owl:disjointWith>
       <owl:Class rdf:about="#BirthPlace"/>
     </owl:disjointWith>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
-        >1</owl:maxCardinality>
-        <owl:onProperty>
-          <owl:DatatypeProperty rdf:about="#hasDeathDate"/>
-        </owl:onProperty>
-      </owl:Restriction>
-    </rdfs:subClassOf>
     <owl:disjointWith rdf:resource="#Identifier"/>
     <owl:disjointWith rdf:resource="#MedicalPractitioner"/>
+    <owl:disjointWith rdf:resource="#DeathPlace"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty>
@@ -3804,7 +3778,18 @@
         >1</owl:cardinality>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <owl:disjointWith rdf:resource="#DeathPlace"/>
+    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.0/snap#Role"/>
+    <owl:disjointWith rdf:resource="#Patient"/>
+    <owl:disjointWith rdf:resource="#MeasurementUnit"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="hasFullName"/>
+        </owl:onProperty>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty>
@@ -3814,22 +3799,10 @@
         >1</owl:cardinality>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.0/snap#Role"/>
-    <owl:disjointWith rdf:resource="#MeasurementUnit"/>
-    <owl:disjointWith rdf:resource="#Patient"/>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
-        >1</owl:cardinality>
-        <owl:onProperty>
-          <owl:FunctionalProperty rdf:about="#isDead"/>
-        </owl:onProperty>
-      </owl:Restriction>
-    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="#PostoperativeChemotherapy">
-    <owl:disjointWith rdf:resource="#PreoperativeChemotherapy"/>
     <rdfs:subClassOf rdf:resource="#Chemotherapy"/>
+    <owl:disjointWith rdf:resource="#PreoperativeChemotherapy"/>
   </owl:Class>
   <owl:Class rdf:about="#TumorDevelopment">
     <rdfs:subClassOf>
@@ -3843,8 +3816,16 @@
     <owl:disjointWith>
       <owl:Class rdf:about="#GenitalSystemSymptom"/>
     </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#HemolymphoidSystemSymptom"/>
     <rdfs:subClassOf rdf:resource="#SpecificSymptom"/>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#FunctionalEndocrineSystemSymptom"/>
+          <owl:Class rdf:about="#StructuralEndocrineSystemSymptom"/>
+        </owl:unionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+    <owl:disjointWith rdf:resource="#HemolymphoidSystemSymptom"/>
     <owl:disjointWith>
       <owl:Class rdf:about="#UrinarySystemSymptom"/>
     </owl:disjointWith>
@@ -3854,14 +3835,6 @@
       <owl:Class rdf:about="#RespiratorySystemSymptom"/>
     </owl:disjointWith>
     <owl:disjointWith rdf:resource="#DeepFascialSystemSymptom"/>
-    <owl:equivalentClass>
-      <owl:Class>
-        <owl:unionOf rdf:parseType="Collection">
-          <owl:Class rdf:about="#FunctionalEndocrineSystemSymptom"/>
-          <owl:Class rdf:about="#StructuralEndocrineSystemSymptom"/>
-        </owl:unionOf>
-      </owl:Class>
-    </owl:equivalentClass>
   </owl:Class>
   <owl:Class rdf:about="#Death">
     <rdfs:subClassOf>
@@ -3870,11 +3843,11 @@
     <owl:disjointWith rdf:resource="#Birth"/>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
-        >1</owl:cardinality>
         <owl:onProperty>
           <owl:DatatypeProperty rdf:about="#hasDeathDate"/>
         </owl:onProperty>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
       </owl:Restriction>
     </rdfs:subClassOf>
   </owl:Class>
@@ -3887,11 +3860,11 @@
   <owl:Class rdf:about="#SurgicalProcedure">
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
-        >1</owl:cardinality>
         <owl:onProperty>
           <owl:FunctionalProperty rdf:ID="isEmergency"/>
         </owl:onProperty>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
       </owl:Restriction>
     </rdfs:subClassOf>
     <owl:equivalentClass>
@@ -3920,34 +3893,32 @@
   </owl:Class>
   <owl:Class rdf:ID="InfectiousDiseases">
     <owl:disjointWith>
-      <owl:Class rdf:about="#Syndrome"/>
+      <owl:Class rdf:about="#TumorDisease"/>
     </owl:disjointWith>
     <owl:disjointWith>
-      <owl:Class rdf:about="#TumorDisease"/>
+      <owl:Class rdf:about="#Syndrome"/>
     </owl:disjointWith>
     <rdfs:subClassOf rdf:resource="#Disease"/>
   </owl:Class>
+  <owl:Class rdf:about="#PrimaryMalignNeoplasm">
+    <rdfs:subClassOf rdf:resource="#MalignNeoplasm"/>
+  </owl:Class>
+  <owl:Class rdf:ID="PrimaryMammaryCarcinoma">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#PrimaryCarcinoma"/>
+    </rdfs:subClassOf>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="PrimaryRenalCellCarcinoma"/>
+    </owl:disjointWith>
+  </owl:Class>
   <owl:Class rdf:about="#Milligramm">
-    <rdfs:subClassOf rdf:resource="#MassUnit"/>
     <owl:disjointWith rdf:resource="#Centigramm"/>
+    <rdfs:subClassOf rdf:resource="#MassUnit"/>
     <owl:disjointWith rdf:resource="#Kilogramm"/>
     <owl:disjointWith rdf:resource="#Gramm"/>
     <owl:disjointWith>
       <owl:Class rdf:about="#Decigramm"/>
     </owl:disjointWith>
-  </owl:Class>
-  <owl:Class rdf:about="#Surgeon">
-    <owl:disjointWith rdf:resource="#Radiologist"/>
-    <owl:disjointWith rdf:resource="#Radiotherapist"/>
-    <owl:disjointWith rdf:resource="#Urologist"/>
-    <rdfs:subClassOf rdf:resource="#MedicalPractitioner"/>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Internist"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Pathologist"/>
-    </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#Paediatrician"/>
   </owl:Class>
   <owl:Class rdf:about="#FullName">
     <rdfs:subClassOf>
@@ -3956,17 +3927,36 @@
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty rdf:resource="http://www.ifomis.org/obo/ro/1.0#hasPart"/>
+        <owl:someValuesFrom rdf:resource="#FirstName"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.ifomis.org/obo/ro/1.0#hasPart"/>
         <owl:someValuesFrom rdf:resource="#LastName"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <owl:disjointWith rdf:resource="#FirstName"/>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.ifomis.org/obo/ro/1.0#hasPart"/>
-        <owl:someValuesFrom rdf:resource="#FirstName"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
     <owl:disjointWith rdf:resource="#LastName"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Surgeon">
+    <owl:disjointWith rdf:resource="#Radiotherapist"/>
+    <owl:disjointWith rdf:resource="#Radiologist"/>
+    <owl:disjointWith rdf:resource="#Urologist"/>
+    <rdfs:subClassOf rdf:resource="#MedicalPractitioner"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Internist"/>
+    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#Paediatrician"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Pathologist"/>
+    </owl:disjointWith>
+  </owl:Class>
+  <owl:Class rdf:about="#PrimaryRenalCellCarcinoma">
+    <owl:disjointWith rdf:resource="#PrimaryMammaryCarcinoma"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#PrimaryCarcinoma"/>
+    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="#FollowUpTimeStart">
     <owl:disjointWith rdf:resource="#FollowUpTimeEnd"/>
@@ -3976,8 +3966,8 @@
     <owl:disjointWith>
       <owl:Class rdf:about="#LiverLesion"/>
     </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#SpleenLesion"/>
     <owl:disjointWith rdf:resource="#IntestinalLesion"/>
+    <owl:disjointWith rdf:resource="#SpleenLesion"/>
     <rdfs:subClassOf rdf:resource="#Lesion"/>
   </owl:Class>
   <owl:Class rdf:about="#PathologicalOrganismalSpace">
@@ -3997,17 +3987,17 @@
     <owl:disjointWith>
       <owl:Class rdf:about="#Weight"/>
     </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#Size"/>
-    <owl:disjointWith rdf:resource="#Length"/>
-    <owl:disjointWith rdf:resource="#Pressure"/>
     <owl:disjointWith>
       <owl:Class rdf:about="#Depth"/>
     </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#Pressure"/>
+    <owl:disjointWith rdf:resource="#Length"/>
+    <owl:disjointWith rdf:resource="#Size"/>
     <rdfs:subClassOf rdf:resource="#Measure"/>
-    <owl:disjointWith rdf:resource="#Breadth"/>
     <owl:disjointWith>
       <owl:Class rdf:about="#Dose"/>
     </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#Breadth"/>
     <owl:disjointWith rdf:resource="#Height"/>
   </owl:Class>
   <owl:Class rdf:about="#ThorarcicComputertomography">
@@ -4029,6 +4019,7 @@
     <owl:disjointWith rdf:resource="#Pneumonectomy"/>
   </owl:Class>
   <owl:Class rdf:about="#GenitalSystemSymptom">
+    <owl:disjointWith rdf:resource="#AlimentarySystemSymptom"/>
     <owl:equivalentClass>
       <owl:Class>
         <owl:unionOf rdf:parseType="Collection">
@@ -4037,7 +4028,6 @@
         </owl:unionOf>
       </owl:Class>
     </owl:equivalentClass>
-    <owl:disjointWith rdf:resource="#AlimentarySystemSymptom"/>
     <owl:disjointWith rdf:resource="#MusculoskeletalSystemSymptom"/>
     <owl:disjointWith>
       <owl:Class rdf:about="#UrinarySystemSymptom"/>
@@ -4054,8 +4044,8 @@
     </owl:disjointWith>
   </owl:Class>
   <owl:Class rdf:about="#PartialNephrectomy">
-    <owl:disjointWith rdf:resource="#TotalNephrectomy"/>
     <rdfs:subClassOf rdf:resource="#Nephrectomy"/>
+    <owl:disjointWith rdf:resource="#TotalNephrectomy"/>
   </owl:Class>
   <owl:Class rdf:about="#Actinomycine-D">
     <rdfs:subClassOf>
@@ -4067,12 +4057,20 @@
     <owl:disjointWith rdf:resource="#Adriamycin"/>
   </owl:Class>
   <owl:Class rdf:about="#Computertomography">
+    <owl:disjointWith rdf:resource="#MagneticResonanceImaging"/>
     <owl:disjointWith>
       <owl:Class rdf:about="#RoentgenologicalImaging"/>
     </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#MagneticResonanceImaging"/>
     <rdfs:subClassOf rdf:resource="#ClinicalDiagnosticProcedure"/>
     <owl:disjointWith rdf:resource="#Ultrasound"/>
+  </owl:Class>
+  <owl:Class rdf:about="#PrimaryCarcinoma">
+    <owl:disjointWith rdf:resource="#PrimaryHaematooncologicalTumor"/>
+    <owl:disjointWith rdf:resource="#PrimaryMixedTumor"/>
+    <owl:disjointWith rdf:resource="#PrimaryDysontogeneticTumor"/>
+    <owl:disjointWith rdf:resource="#PrimaryNeuroendocrineTumor"/>
+    <rdfs:subClassOf rdf:resource="#PrimaryMalignNeoplasm"/>
+    <owl:disjointWith rdf:resource="#PrimarySarcoma"/>
   </owl:Class>
   <owl:Class rdf:ID="HepaticVeinOcclusion">
     <rdfs:subClassOf rdf:resource="#Thrombosis"/>
@@ -4085,6 +4083,12 @@
     <rdfs:subClassOf rdf:resource="#Disease"/>
   </owl:Class>
   <owl:Class rdf:about="#UrinarySystemSymptom">
+    <owl:disjointWith rdf:resource="#EndocrineSystemSymptom"/>
+    <owl:disjointWith rdf:resource="#CardiovascularSystemSymptom"/>
+    <owl:disjointWith rdf:resource="#DeepFascialSystemSymptom"/>
+    <owl:disjointWith rdf:resource="#NervousSystemSymptom"/>
+    <rdfs:subClassOf rdf:resource="#SpecificSymptom"/>
+    <owl:disjointWith rdf:resource="#AlimentarySystemSymptom"/>
     <owl:equivalentClass>
       <owl:Class>
         <owl:unionOf rdf:parseType="Collection">
@@ -4093,12 +4097,6 @@
         </owl:unionOf>
       </owl:Class>
     </owl:equivalentClass>
-    <owl:disjointWith rdf:resource="#EndocrineSystemSymptom"/>
-    <owl:disjointWith rdf:resource="#CardiovascularSystemSymptom"/>
-    <owl:disjointWith rdf:resource="#DeepFascialSystemSymptom"/>
-    <owl:disjointWith rdf:resource="#NervousSystemSymptom"/>
-    <rdfs:subClassOf rdf:resource="#SpecificSymptom"/>
-    <owl:disjointWith rdf:resource="#AlimentarySystemSymptom"/>
     <owl:disjointWith>
       <owl:Class rdf:about="#RespiratorySystemSymptom"/>
     </owl:disjointWith>
@@ -4111,11 +4109,11 @@
     <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.0/snap#Site"/>
   </owl:Class>
   <owl:Class rdf:about="#Weight">
-    <owl:disjointWith rdf:resource="#Diameter"/>
     <owl:disjointWith rdf:resource="#Size"/>
-    <owl:disjointWith rdf:resource="#Pressure"/>
-    <owl:disjointWith rdf:resource="#Breadth"/>
+    <owl:disjointWith rdf:resource="#Diameter"/>
     <owl:disjointWith rdf:resource="#Length"/>
+    <owl:disjointWith rdf:resource="#Breadth"/>
+    <owl:disjointWith rdf:resource="#Pressure"/>
     <rdfs:subClassOf rdf:resource="#Measure"/>
     <owl:disjointWith>
       <owl:Class rdf:about="#Depth"/>
@@ -4135,26 +4133,26 @@
     <owl:disjointWith>
       <owl:Class rdf:about="#Day"/>
     </owl:disjointWith>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty>
-          <owl:DatatypeProperty rdf:about="#hasIntegerValue"/>
-        </owl:onProperty>
-        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
-        >1</owl:cardinality>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Second"/>
-    </owl:disjointWith>
     <owl:disjointWith>
       <owl:Class rdf:about="#Week"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Second"/>
     </owl:disjointWith>
     <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.0/span#TemporalInterval"/>
     <owl:disjointWith rdf:resource="#Year"/>
     <owl:disjointWith>
       <owl:Class rdf:about="#Minute"/>
     </owl:disjointWith>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
+        <owl:onProperty>
+          <owl:DatatypeProperty rdf:about="#hasIntegerValue"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
     <owl:disjointWith rdf:resource="#Hour"/>
   </owl:Class>
   <owl:Class rdf:ID="CanonicalBody">
@@ -4170,14 +4168,6 @@ The position here is, I think rather bad, but....</rdfs:comment>
     <owl:disjointWith rdf:resource="#Identifier"/>
     <owl:disjointWith rdf:resource="#DeathPlace"/>
     <owl:disjointWith rdf:resource="#PatientRelative"/>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:ID="isRoleOf"/>
-        </owl:onProperty>
-        <owl:someValuesFrom rdf:resource="#ChemicalSubstance"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
     <owl:disjointWith>
       <owl:Class rdf:about="#BirthPlace"/>
     </owl:disjointWith>
@@ -4188,10 +4178,18 @@ The position here is, I think rather bad, but....</rdfs:comment>
     <owl:disjointWith rdf:resource="#MeasurementUnit"/>
     <rdfs:subClassOf>
       <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="isRoleOf"/>
+        </owl:onProperty>
         <owl:allValuesFrom rdf:resource="#ChemicalSubstance"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
         <owl:onProperty>
           <owl:ObjectProperty rdf:about="#isRoleOf"/>
         </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="#ChemicalSubstance"/>
       </owl:Restriction>
     </rdfs:subClassOf>
   </owl:Class>
@@ -4199,8 +4197,8 @@ The position here is, I think rather bad, but....</rdfs:comment>
     <rdfs:subClassOf rdf:resource="#CanonicalBodySubstance"/>
   </owl:Class>
   <owl:Class rdf:about="#GeneralSurgeon">
-    <owl:disjointWith rdf:resource="#ThoracicSurgeon"/>
     <owl:disjointWith rdf:resource="#VascularSurgeon"/>
+    <owl:disjointWith rdf:resource="#ThoracicSurgeon"/>
     <owl:disjointWith rdf:resource="#PaediatricSurgeon"/>
     <rdfs:subClassOf rdf:resource="#Surgeon"/>
   </owl:Class>
@@ -4225,6 +4223,13 @@ The position here is, I think rather bad, but....</rdfs:comment>
   <owl:Class rdf:about="#StructuralFemaleGenitalSystemSymptom">
     <owl:disjointWith rdf:resource="#FunctionalFemaleGenitalSystemSymptom"/>
     <rdfs:subClassOf rdf:resource="#FemaleGenitalSystemSymptom"/>
+  </owl:Class>
+  <owl:Class rdf:ID="MetastaticMalignNeoplasm">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >&lt;p style="margin-top: 0">
+      Replicate here all the branches under PrimaryMalignNeoplasm
+    &lt;/p></rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#MalignNeoplasm"/>
   </owl:Class>
   <owl:Class rdf:ID="Hospital">
     <rdfs:subClassOf rdf:resource="#Place"/>
@@ -4258,6 +4263,7 @@ The position here is, I think rather bad, but....</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:about="#Consent">
     <owl:disjointWith rdf:resource="#ClinicalTrialAndStudy"/>
+    <owl:disjointWith rdf:resource="#Registration"/>
     <owl:equivalentClass>
       <owl:Class>
         <owl:unionOf rdf:parseType="Collection">
@@ -4266,14 +4272,13 @@ The position here is, I think rather bad, but....</rdfs:comment>
         </owl:unionOf>
       </owl:Class>
     </owl:equivalentClass>
-    <owl:disjointWith rdf:resource="#Registration"/>
     <owl:disjointWith rdf:resource="#ClinicalDocumentation"/>
     <rdfs:subClassOf rdf:resource="#AdministrativeProcess"/>
   </owl:Class>
   <owl:Class rdf:about="#RoentgenologicalImaging">
-    <owl:disjointWith rdf:resource="#Computertomography"/>
-    <owl:disjointWith rdf:resource="#Ultrasound"/>
     <rdfs:subClassOf rdf:resource="#ClinicalDiagnosticProcedure"/>
+    <owl:disjointWith rdf:resource="#Ultrasound"/>
+    <owl:disjointWith rdf:resource="#Computertomography"/>
     <owl:disjointWith rdf:resource="#MagneticResonanceImaging"/>
   </owl:Class>
   <owl:Class rdf:about="#SurgicalOperation">
@@ -4285,21 +4290,13 @@ The position here is, I think rather bad, but....</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:about="#Sibling">
     <rdfs:subClassOf rdf:resource="#PatientRelative"/>
-    <owl:equivalentClass>
-      <owl:Class>
-        <owl:unionOf rdf:parseType="Collection">
-          <owl:Class rdf:about="#Brother"/>
-          <owl:Class rdf:about="#Sister"/>
-        </owl:unionOf>
-      </owl:Class>
-    </owl:equivalentClass>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
-        >1</owl:cardinality>
         <owl:onProperty>
-          <owl:DatatypeProperty rdf:about="#isTwin"/>
+          <owl:ObjectProperty rdf:ID="isSiblingOf"/>
         </owl:onProperty>
+        <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:minCardinality>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
@@ -4311,18 +4308,30 @@ The position here is, I think rather bad, but....</rdfs:comment>
         >1</owl:cardinality>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Brother"/>
+          <owl:Class rdf:about="#Sister"/>
+        </owl:unionOf>
+      </owl:Class>
+    </owl:equivalentClass>
     <owl:disjointWith rdf:resource="#Parent"/>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
-        >1</owl:minCardinality>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
         <owl:onProperty>
-          <owl:ObjectProperty rdf:ID="isSiblingOf"/>
+          <owl:DatatypeProperty rdf:about="#isTwin"/>
         </owl:onProperty>
       </owl:Restriction>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="#LiveBoundary">
+    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.0/span#ProcessBoundary"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#ProtocolledTherapyBoundary"/>
+    </owl:disjointWith>
     <owl:equivalentClass>
       <owl:Class>
         <owl:unionOf rdf:parseType="Collection">
@@ -4331,13 +4340,10 @@ The position here is, I think rather bad, but....</rdfs:comment>
         </owl:unionOf>
       </owl:Class>
     </owl:equivalentClass>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#ProtocolledTherapyBoundary"/>
-    </owl:disjointWith>
-    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.0/span#ProcessBoundary"/>
   </owl:Class>
   <owl:Class rdf:about="#ProtocolledTherapyBoundary">
     <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.0/span#ProcessBoundary"/>
+    <owl:disjointWith rdf:resource="#LiveBoundary"/>
     <owl:equivalentClass>
       <owl:Class>
         <owl:unionOf rdf:parseType="Collection">
@@ -4346,7 +4352,6 @@ The position here is, I think rather bad, but....</rdfs:comment>
         </owl:unionOf>
       </owl:Class>
     </owl:equivalentClass>
-    <owl:disjointWith rdf:resource="#LiveBoundary"/>
   </owl:Class>
   <owl:Class rdf:about="#RespiratorySystemSymptom">
     <owl:disjointWith rdf:resource="#AlimentarySystemSymptom"/>
@@ -4354,6 +4359,10 @@ The position here is, I think rather bad, but....</rdfs:comment>
     <rdfs:subClassOf rdf:resource="#SpecificSymptom"/>
     <owl:disjointWith rdf:resource="#GenitalSystemSymptom"/>
     <owl:disjointWith rdf:resource="#MusculoskeletalSystemSymptom"/>
+    <owl:disjointWith rdf:resource="#IntegumentarySystemSymptom"/>
+    <owl:disjointWith rdf:resource="#NervousSystemSymptom"/>
+    <owl:disjointWith rdf:resource="#CardiovascularSystemSymptom"/>
+    <owl:disjointWith rdf:resource="#HemolymphoidSystemSymptom"/>
     <owl:equivalentClass>
       <owl:Class>
         <owl:unionOf rdf:parseType="Collection">
@@ -4362,31 +4371,27 @@ The position here is, I think rather bad, but....</rdfs:comment>
         </owl:unionOf>
       </owl:Class>
     </owl:equivalentClass>
-    <owl:disjointWith rdf:resource="#IntegumentarySystemSymptom"/>
-    <owl:disjointWith rdf:resource="#NervousSystemSymptom"/>
-    <owl:disjointWith rdf:resource="#CardiovascularSystemSymptom"/>
-    <owl:disjointWith rdf:resource="#HemolymphoidSystemSymptom"/>
     <owl:disjointWith rdf:resource="#UrinarySystemSymptom"/>
     <owl:disjointWith rdf:resource="#EndocrineSystemSymptom"/>
   </owl:Class>
   <owl:Class rdf:about="#PathologicalProcess">
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
-        >true</owl:hasValue>
         <owl:onProperty>
           <owl:FunctionalProperty rdf:about="#isPathological"/>
         </owl:onProperty>
+        <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+        >true</owl:hasValue>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf rdf:resource="#OrganismalProcess"/>
   </owl:Class>
+  <owl:Class rdf:ID="Infection">
+    <rdfs:subClassOf rdf:resource="#PathologicalProcess"/>
+  </owl:Class>
   <owl:Class rdf:about="#BiopsyWithIncision">
     <owl:disjointWith rdf:resource="#BiopsyWithoutIncision"/>
     <rdfs:subClassOf rdf:resource="#Biopsy"/>
-  </owl:Class>
-  <owl:Class rdf:ID="Infection">
-    <rdfs:subClassOf rdf:resource="#PathologicalProcess"/>
   </owl:Class>
   <owl:Class rdf:about="#Decigramm">
     <rdfs:subClassOf rdf:resource="#MassUnit"/>
@@ -4404,10 +4409,14 @@ The position here is, I think rather bad, but....</rdfs:comment>
       <owl:Class rdf:about="#WiedemannBeckWithEMG"/>
     </owl:disjointWith>
     <owl:disjointWith rdf:resource="#WAGR"/>
-    <owl:disjointWith rdf:resource="#Aniridia"/>
     <owl:disjointWith rdf:resource="#Perlman"/>
+    <owl:disjointWith rdf:resource="#Aniridia"/>
   </owl:Class>
   <owl:Class rdf:about="#CanonicalAnatomicalStructure">
+    <rdfs:subClassOf rdf:resource="#AnatomicalStructure"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >I think we should get rid of this here, please consult Anads Ontology. I am unsure....</rdfs:comment>
+    <owl:disjointWith rdf:resource="#VariantAnatomicalStructure"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty>
@@ -4417,10 +4426,6 @@ The position here is, I think rather bad, but....</rdfs:comment>
         >false</owl:hasValue>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="#AnatomicalStructure"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >I think we should get rid of this here, please consult Anads Ontology. I am unsure....</rdfs:comment>
-    <owl:disjointWith rdf:resource="#VariantAnatomicalStructure"/>
     <owl:disjointWith rdf:resource="#PathologicalAnatomicalStructure"/>
   </owl:Class>
   <owl:Class rdf:about="#ReferenceRadiotherapist">
@@ -4428,6 +4433,14 @@ The position here is, I think rather bad, but....</rdfs:comment>
     <owl:disjointWith rdf:resource="#LocalRadiotherapist"/>
   </owl:Class>
   <owl:Class rdf:about="#Pathologist">
+    <owl:disjointWith rdf:resource="#Urologist"/>
+    <owl:disjointWith rdf:resource="#Radiotherapist"/>
+    <owl:disjointWith rdf:resource="#Radiologist"/>
+    <rdfs:subClassOf rdf:resource="#MedicalPractitioner"/>
+    <owl:disjointWith rdf:resource="#Paediatrician"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Internist"/>
+    </owl:disjointWith>
     <owl:equivalentClass>
       <owl:Class>
         <owl:unionOf rdf:parseType="Collection">
@@ -4436,14 +4449,6 @@ The position here is, I think rather bad, but....</rdfs:comment>
         </owl:unionOf>
       </owl:Class>
     </owl:equivalentClass>
-    <owl:disjointWith rdf:resource="#Radiotherapist"/>
-    <owl:disjointWith rdf:resource="#Urologist"/>
-    <owl:disjointWith rdf:resource="#Radiologist"/>
-    <rdfs:subClassOf rdf:resource="#MedicalPractitioner"/>
-    <owl:disjointWith rdf:resource="#Paediatrician"/>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Internist"/>
-    </owl:disjointWith>
     <owl:disjointWith rdf:resource="#Surgeon"/>
   </owl:Class>
   <owl:Class rdf:about="#Scar">
@@ -4458,44 +4463,24 @@ The position here is, I think rather bad, but....</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:about="#Surveillance">
     <rdfs:subClassOf rdf:resource="#DiagnosticProcedure"/>
-    <owl:disjointWith rdf:resource="#Biopsy"/>
     <owl:disjointWith rdf:resource="#CytologicalExamination"/>
-    <owl:disjointWith rdf:resource="#MacropathologicalExamination"/>
+    <owl:disjointWith rdf:resource="#Biopsy"/>
     <owl:disjointWith rdf:resource="#SpecificDiagnosticProcess"/>
+    <owl:disjointWith rdf:resource="#MacropathologicalExamination"/>
     <owl:disjointWith rdf:resource="#ClinicalDiagnosticProcedure"/>
     <owl:disjointWith rdf:resource="#HistologicalExamination"/>
     <owl:disjointWith rdf:resource="#Autopsy"/>
   </owl:Class>
-  <owl:Class rdf:about="#Nephroblastoma">
-    <owl:equivalentClass>
-      <owl:Class>
-        <owl:unionOf rdf:parseType="Collection">
-          <owl:Class rdf:about="#NephroblastomaMetastasis"/>
-          <owl:Class rdf:about="#NephroblastomaPrimaryTumour"/>
-        </owl:unionOf>
-      </owl:Class>
-    </owl:equivalentClass>
-    <rdfs:subClassOf rdf:resource="#DysontogeneticTumor"/>
-  </owl:Class>
   <owl:Class rdf:about="#Internist">
     <owl:disjointWith rdf:resource="#Radiotherapist"/>
     <rdfs:subClassOf rdf:resource="#MedicalPractitioner"/>
-    <owl:disjointWith rdf:resource="#Paediatrician"/>
     <owl:disjointWith rdf:resource="#Pathologist"/>
+    <owl:disjointWith rdf:resource="#Paediatrician"/>
     <owl:disjointWith rdf:resource="#Surgeon"/>
     <owl:disjointWith rdf:resource="#Radiologist"/>
     <owl:disjointWith rdf:resource="#Urologist"/>
   </owl:Class>
   <owl:Class rdf:about="#Week">
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
-        >1</owl:cardinality>
-        <owl:onProperty>
-          <owl:DatatypeProperty rdf:about="#hasIntegerValue"/>
-        </owl:onProperty>
-      </owl:Restriction>
-    </rdfs:subClassOf>
     <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.0/span#TemporalInterval"/>
     <owl:disjointWith>
       <owl:Class rdf:about="#Day"/>
@@ -4505,6 +4490,15 @@ The position here is, I think rather bad, but....</rdfs:comment>
     </owl:disjointWith>
     <owl:disjointWith rdf:resource="#Hour"/>
     <owl:disjointWith rdf:resource="#Month"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:DatatypeProperty rdf:about="#hasIntegerValue"/>
+        </owl:onProperty>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
     <owl:disjointWith rdf:resource="#Year"/>
     <owl:disjointWith>
       <owl:Class rdf:about="#Second"/>
@@ -4513,12 +4507,12 @@ The position here is, I think rather bad, but....</rdfs:comment>
   <owl:Class rdf:about="#Dose">
     <owl:disjointWith rdf:resource="#Weight"/>
     <owl:disjointWith rdf:resource="#Pressure"/>
-    <owl:disjointWith rdf:resource="#Height"/>
     <owl:disjointWith>
       <owl:Class rdf:about="#Depth"/>
     </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#Diameter"/>
+    <owl:disjointWith rdf:resource="#Height"/>
     <owl:disjointWith rdf:resource="#Breadth"/>
+    <owl:disjointWith rdf:resource="#Diameter"/>
     <owl:disjointWith rdf:resource="#Size"/>
     <rdfs:subClassOf rdf:resource="#Measure"/>
     <owl:disjointWith rdf:resource="#Length"/>
@@ -4528,11 +4522,26 @@ The position here is, I think rather bad, but....</rdfs:comment>
       <owl:Class rdf:about="#LegalGuardianIdentifier"/>
     </owl:disjointWith>
     <rdfs:subClassOf rdf:resource="#Identifier"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:DatatypeProperty rdf:about="#hasStringValue"/>
+        </owl:onProperty>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
     <owl:disjointWith rdf:resource="#Address"/>
     <owl:disjointWith>
       <owl:Class rdf:about="#AddressPart"/>
     </owl:disjointWith>
     <owl:disjointWith rdf:resource="#TelephoneNumber"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#ClinicalStudyIdentifier"/>
+    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#ClinicalTrialIdentifier"/>
+    <owl:disjointWith rdf:resource="#HospitalIdentifier"/>
+    <owl:disjointWith rdf:resource="#MedicalExpertIdentifier"/>
     <owl:equivalentClass>
       <owl:Class>
         <owl:unionOf rdf:parseType="Collection">
@@ -4542,29 +4551,13 @@ The position here is, I think rather bad, but....</rdfs:comment>
         </owl:unionOf>
       </owl:Class>
     </owl:equivalentClass>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#ClinicalStudyIdentifier"/>
-    </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#ClinicalTrialIdentifier"/>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
-        >1</owl:cardinality>
-        <owl:onProperty>
-          <owl:DatatypeProperty rdf:about="#hasStringValue"/>
-        </owl:onProperty>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <owl:disjointWith rdf:resource="#HospitalIdentifier"/>
-    <owl:disjointWith rdf:resource="#MedicalExpertIdentifier"/>
     <owl:disjointWith rdf:resource="#PatientIdentifier"/>
   </owl:Class>
   <owl:Class rdf:about="#AddressPart">
+    <owl:disjointWith rdf:resource="#HospitalIdentifier"/>
     <owl:disjointWith>
       <owl:Class rdf:about="#ClinicalStudyIdentifier"/>
     </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#HospitalIdentifier"/>
-    <owl:disjointWith rdf:resource="#TelephoneNumber"/>
     <owl:equivalentClass>
       <owl:Class>
         <owl:unionOf rdf:parseType="Collection">
@@ -4576,12 +4569,13 @@ The position here is, I think rather bad, but....</rdfs:comment>
         </owl:unionOf>
       </owl:Class>
     </owl:equivalentClass>
+    <owl:disjointWith rdf:resource="#TelephoneNumber"/>
     <owl:disjointWith rdf:resource="#PatientIdentifier"/>
     <rdfs:subClassOf rdf:resource="#Identifier"/>
-    <owl:disjointWith rdf:resource="#MedicalExpertIdentifier"/>
     <owl:disjointWith rdf:resource="#Name"/>
-    <owl:disjointWith rdf:resource="#ClinicalTrialIdentifier"/>
+    <owl:disjointWith rdf:resource="#MedicalExpertIdentifier"/>
     <owl:disjointWith rdf:resource="#Address"/>
+    <owl:disjointWith rdf:resource="#ClinicalTrialIdentifier"/>
     <owl:disjointWith>
       <owl:Class rdf:about="#LegalGuardianIdentifier"/>
     </owl:disjointWith>
@@ -4590,6 +4584,7 @@ The position here is, I think rather bad, but....</rdfs:comment>
     <owl:disjointWith rdf:resource="#PostalCode"/>
     <owl:disjointWith rdf:resource="#PlaceName"/>
     <rdfs:subClassOf rdf:resource="#AddressPart"/>
+    <owl:disjointWith rdf:resource="#CountryName"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty>
@@ -4599,7 +4594,6 @@ The position here is, I think rather bad, but....</rdfs:comment>
         >1</owl:cardinality>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <owl:disjointWith rdf:resource="#CountryName"/>
     <owl:disjointWith rdf:resource="#HouseNumber"/>
   </owl:Class>
   <owl:Class rdf:about="#LocalRadiologist">
@@ -4616,18 +4610,26 @@ The position here is, I think rather bad, but....</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Class rdf:about="#Syndrome"/>
     </rdfs:subClassOf>
-    <owl:disjointWith rdf:resource="#Perlman"/>
     <owl:disjointWith rdf:resource="#WAGR"/>
+    <owl:disjointWith rdf:resource="#Perlman"/>
+  </owl:Class>
+  <owl:Class rdf:about="#VolumeUnit">
+    <rdfs:subClassOf rdf:resource="#MeasurementUnit"/>
+    <owl:disjointWith rdf:resource="#MassUnit"/>
+    <owl:disjointWith rdf:resource="#SurfaceUnit"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#LinearUnit"/>
+    </owl:disjointWith>
   </owl:Class>
   <owl:Class rdf:about="#BirthPlace">
     <owl:disjointWith rdf:resource="#Patient"/>
     <rdfs:subClassOf>
       <owl:Restriction>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
         <owl:onProperty>
           <owl:ObjectProperty rdf:about="#hasAddress"/>
         </owl:onProperty>
-        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
-        >1</owl:cardinality>
       </owl:Restriction>
     </rdfs:subClassOf>
     <owl:disjointWith rdf:resource="#PatientRelative"/>
@@ -4643,26 +4645,18 @@ The position here is, I think rather bad, but....</rdfs:comment>
     <owl:disjointWith rdf:resource="#MeasurementUnit"/>
     <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.0/snap#Role"/>
   </owl:Class>
-  <owl:Class rdf:about="#VolumeUnit">
-    <rdfs:subClassOf rdf:resource="#MeasurementUnit"/>
-    <owl:disjointWith rdf:resource="#SurfaceUnit"/>
-    <owl:disjointWith rdf:resource="#MassUnit"/>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#LinearUnit"/>
-    </owl:disjointWith>
-  </owl:Class>
   <owl:Class rdf:about="#NonIdenticalTwinSister">
-    <owl:disjointWith rdf:resource="#IdenticalTwinSister"/>
-    <rdfs:subClassOf rdf:resource="#TwinSister"/>
     <rdfs:subClassOf>
       <owl:Restriction>
+        <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+        >false</owl:hasValue>
         <owl:onProperty>
           <owl:DatatypeProperty rdf:about="#isIdenticalTwin"/>
         </owl:onProperty>
-        <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
-        >false</owl:hasValue>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <owl:disjointWith rdf:resource="#IdenticalTwinSister"/>
+    <rdfs:subClassOf rdf:resource="#TwinSister"/>
   </owl:Class>
   <owl:Class rdf:about="#Organism">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -4679,8 +4673,8 @@ The position here is, I think rather bad, but....</rdfs:comment>
       </owl:Class>
     </owl:equivalentClass>
     <owl:disjointWith rdf:resource="#AdministrativeProcess"/>
-    <owl:disjointWith rdf:resource="#MedicalProcess"/>
     <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.0/span#Process"/>
+    <owl:disjointWith rdf:resource="#MedicalProcess"/>
   </owl:Class>
   <owl:Class rdf:about="#ClinicalStudyIdentifier">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -4692,12 +4686,12 @@ The position here is, I think rather bad, but....</rdfs:comment>
       <owl:Class rdf:about="#LegalGuardianIdentifier"/>
     </owl:disjointWith>
     <owl:disjointWith rdf:resource="#Name"/>
-    <owl:disjointWith rdf:resource="#TelephoneNumber"/>
     <owl:disjointWith rdf:resource="#PatientIdentifier"/>
-    <owl:disjointWith rdf:resource="#MedicalExpertIdentifier"/>
+    <owl:disjointWith rdf:resource="#TelephoneNumber"/>
     <owl:disjointWith rdf:resource="#HospitalIdentifier"/>
-    <owl:disjointWith rdf:resource="#Address"/>
+    <owl:disjointWith rdf:resource="#MedicalExpertIdentifier"/>
     <owl:disjointWith rdf:resource="#ClinicalTrialIdentifier"/>
+    <owl:disjointWith rdf:resource="#Address"/>
   </owl:Class>
   <owl:Class rdf:about="#IdenticalTwinBrother">
     <rdfs:subClassOf rdf:resource="#TwinBrother"/>
@@ -4723,15 +4717,16 @@ The position here is, I think rather bad, but....</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:about="#Day">
     <owl:disjointWith rdf:resource="#Month"/>
-    <owl:disjointWith rdf:resource="#Hour"/>
     <owl:disjointWith>
       <owl:Class rdf:about="#Minute"/>
     </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#Hour"/>
+    <owl:disjointWith rdf:resource="#Year"/>
     <owl:disjointWith>
       <owl:Class rdf:about="#Second"/>
     </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#Year"/>
     <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.0/span#TemporalInterval"/>
+    <owl:disjointWith rdf:resource="#Week"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
@@ -4741,11 +4736,10 @@ The position here is, I think rather bad, but....</rdfs:comment>
         </owl:onProperty>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <owl:disjointWith rdf:resource="#Week"/>
   </owl:Class>
   <owl:Class rdf:about="#Resection">
-    <owl:disjointWith rdf:resource="#Lobectomy"/>
     <owl:disjointWith rdf:resource="#Pneumonectomy"/>
+    <owl:disjointWith rdf:resource="#Lobectomy"/>
     <owl:disjointWith rdf:resource="#Nephrectomy"/>
     <rdfs:subClassOf rdf:resource="#SurgicalOperation"/>
     <owl:disjointWith rdf:resource="#Transplant"/>
@@ -4753,8 +4747,8 @@ The position here is, I think rather bad, but....</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:about="#ActivityReducedConsiderably">
     <rdfs:subClassOf rdf:resource="#GeneralHealthState"/>
-    <owl:disjointWith rdf:resource="#NormalActivity"/>
     <owl:disjointWith rdf:resource="#Bedridden"/>
+    <owl:disjointWith rdf:resource="#NormalActivity"/>
     <owl:disjointWith rdf:resource="#MinorImpairment"/>
     <owl:disjointWith rdf:resource="#IntensiveCareRequired"/>
   </owl:Class>
@@ -4766,13 +4760,11 @@ The position here is, I think rather bad, but....</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:about="#Second">
     <owl:disjointWith rdf:resource="#Hour"/>
-    <owl:disjointWith rdf:resource="#Day"/>
     <owl:disjointWith rdf:resource="#Week"/>
+    <owl:disjointWith rdf:resource="#Day"/>
     <owl:disjointWith>
       <owl:Class rdf:about="#Minute"/>
     </owl:disjointWith>
-    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.0/span#TemporalInterval"/>
-    <owl:disjointWith rdf:resource="#Year"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
@@ -4782,34 +4774,38 @@ The position here is, I think rather bad, but....</rdfs:comment>
         </owl:onProperty>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.0/span#TemporalInterval"/>
+    <owl:disjointWith rdf:resource="#Year"/>
     <owl:disjointWith rdf:resource="#Month"/>
   </owl:Class>
   <owl:Class rdf:about="#Depth">
-    <rdfs:subClassOf rdf:resource="#Measure"/>
     <owl:disjointWith rdf:resource="#Size"/>
+    <rdfs:subClassOf rdf:resource="#Measure"/>
     <owl:disjointWith rdf:resource="#Weight"/>
     <owl:disjointWith rdf:resource="#Height"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >?</rdfs:comment>
     <owl:disjointWith rdf:resource="#Breadth"/>
-    <owl:disjointWith rdf:resource="#Pressure"/>
     <owl:disjointWith rdf:resource="#Dose"/>
+    <owl:disjointWith rdf:resource="#Pressure"/>
     <owl:disjointWith rdf:resource="#Length"/>
     <owl:disjointWith rdf:resource="#Diameter"/>
   </owl:Class>
   <owl:Class rdf:about="#SquareMeter">
     <owl:disjointWith rdf:resource="#SquareMillimeter"/>
-    <owl:disjointWith rdf:resource="#SquareKilometer"/>
     <owl:disjointWith rdf:resource="#SquareCentimeter"/>
-    <rdfs:subClassOf rdf:resource="#SurfaceUnit"/>
+    <owl:disjointWith rdf:resource="#SquareKilometer"/>
     <owl:disjointWith rdf:resource="#SquareDecimeter"/>
+    <rdfs:subClassOf rdf:resource="#SurfaceUnit"/>
   </owl:Class>
   <owl:Class rdf:about="#Minute">
     <owl:disjointWith rdf:resource="#Week"/>
-    <owl:disjointWith rdf:resource="#Year"/>
     <owl:disjointWith rdf:resource="#Day"/>
-    <owl:disjointWith rdf:resource="#Hour"/>
+    <owl:disjointWith rdf:resource="#Year"/>
     <owl:disjointWith rdf:resource="#Month"/>
+    <owl:disjointWith rdf:resource="#Hour"/>
+    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.0/span#TemporalInterval"/>
+    <owl:disjointWith rdf:resource="#Second"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
@@ -4819,26 +4815,9 @@ The position here is, I think rather bad, but....</rdfs:comment>
         </owl:onProperty>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.0/span#TemporalInterval"/>
-    <owl:disjointWith rdf:resource="#Second"/>
   </owl:Class>
   <owl:Class rdf:ID="ProtocolPatient">
     <rdfs:subClassOf rdf:resource="#Patient"/>
-  </owl:Class>
-  <owl:Class rdf:about="#BiologicalIndependentContinuant">
-    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.0/snap#Object"/>
-  </owl:Class>
-  <owl:Class rdf:about="#LegalGuardianIdentifier">
-    <owl:disjointWith rdf:resource="#ClinicalTrialIdentifier"/>
-    <owl:disjointWith rdf:resource="#Address"/>
-    <owl:disjointWith rdf:resource="#PatientIdentifier"/>
-    <owl:disjointWith rdf:resource="#HospitalIdentifier"/>
-    <owl:disjointWith rdf:resource="#MedicalExpertIdentifier"/>
-    <owl:disjointWith rdf:resource="#AddressPart"/>
-    <owl:disjointWith rdf:resource="#Name"/>
-    <owl:disjointWith rdf:resource="#ClinicalStudyIdentifier"/>
-    <rdfs:subClassOf rdf:resource="#Identifier"/>
-    <owl:disjointWith rdf:resource="#TelephoneNumber"/>
   </owl:Class>
   <owl:Class rdf:about="#Syndrome">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -4846,6 +4825,21 @@ The position here is, I think rather bad, but....</rdfs:comment>
     <owl:disjointWith rdf:resource="#InfectiousDiseases"/>
     <rdfs:subClassOf rdf:resource="#Disease"/>
     <owl:disjointWith rdf:resource="#TumorDisease"/>
+  </owl:Class>
+  <owl:Class rdf:about="#BiologicalIndependentContinuant">
+    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.0/snap#Object"/>
+  </owl:Class>
+  <owl:Class rdf:about="#LegalGuardianIdentifier">
+    <owl:disjointWith rdf:resource="#Address"/>
+    <owl:disjointWith rdf:resource="#ClinicalTrialIdentifier"/>
+    <owl:disjointWith rdf:resource="#HospitalIdentifier"/>
+    <owl:disjointWith rdf:resource="#PatientIdentifier"/>
+    <owl:disjointWith rdf:resource="#MedicalExpertIdentifier"/>
+    <owl:disjointWith rdf:resource="#AddressPart"/>
+    <owl:disjointWith rdf:resource="#ClinicalStudyIdentifier"/>
+    <owl:disjointWith rdf:resource="#Name"/>
+    <rdfs:subClassOf rdf:resource="#Identifier"/>
+    <owl:disjointWith rdf:resource="#TelephoneNumber"/>
   </owl:Class>
   <owl:Class rdf:about="#BodySubstance">
     <rdfs:subClassOf rdf:resource="#ChemicalSubstance"/>
@@ -4885,6 +4879,9 @@ The position here is, I think rather bad, but....</rdfs:comment>
     <rdfs:domain rdf:resource="#Patient"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:ID="hasRelative">
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:ID="isRelativeOf"/>
+    </owl:inverseOf>
     <rdfs:range>
       <owl:Class>
         <owl:unionOf rdf:parseType="Collection">
@@ -4894,9 +4891,6 @@ The position here is, I think rather bad, but....</rdfs:comment>
         </owl:unionOf>
       </owl:Class>
     </rdfs:range>
-    <owl:inverseOf>
-      <owl:ObjectProperty rdf:ID="isRelativeOf"/>
-    </owl:inverseOf>
     <rdfs:domain>
       <owl:Class>
         <owl:unionOf rdf:parseType="Collection">
@@ -4927,10 +4921,10 @@ The position here is, I think rather bad, but....</rdfs:comment>
       <owl:ObjectProperty rdf:ID="hasLastName"/>
     </owl:inverseOf>
     <rdfs:subPropertyOf>
-      <owl:ObjectProperty rdf:ID="isNameOf"/>
+      <owl:ObjectProperty rdf:ID="isIdentifierOf"/>
     </rdfs:subPropertyOf>
     <rdfs:subPropertyOf>
-      <owl:ObjectProperty rdf:ID="isIdentifierOf"/>
+      <owl:ObjectProperty rdf:ID="isNameOf"/>
     </rdfs:subPropertyOf>
     <rdfs:domain rdf:resource="#LastName"/>
   </owl:ObjectProperty>
@@ -4945,10 +4939,10 @@ The position here is, I think rather bad, but....</rdfs:comment>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:ID="isFirstNameOf">
     <rdfs:subPropertyOf>
-      <owl:ObjectProperty rdf:about="#isNameOf"/>
+      <owl:ObjectProperty rdf:about="#isIdentifierOf"/>
     </rdfs:subPropertyOf>
     <rdfs:subPropertyOf>
-      <owl:ObjectProperty rdf:about="#isIdentifierOf"/>
+      <owl:ObjectProperty rdf:about="#isNameOf"/>
     </rdfs:subPropertyOf>
     <rdfs:domain rdf:resource="#FirstName"/>
     <owl:inverseOf>
@@ -4960,10 +4954,10 @@ The position here is, I think rather bad, but....</rdfs:comment>
     <rdfs:subPropertyOf>
       <owl:FunctionalProperty rdf:ID="hasPlace"/>
     </rdfs:subPropertyOf>
+    <rdfs:range rdf:resource="#BirthPlace"/>
     <owl:inverseOf>
       <owl:ObjectProperty rdf:ID="isBirthPlaceOf"/>
     </owl:inverseOf>
-    <rdfs:range rdf:resource="#BirthPlace"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:ID="hasParent">
     <rdfs:range rdf:resource="#Parent"/>
@@ -5105,17 +5099,17 @@ The position here is, I think rather bad, but....</rdfs:comment>
       <owl:ObjectProperty rdf:about="#isRelativeOf"/>
     </rdfs:subPropertyOf>
   </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="#hasGeneralHealthState">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-    <rdfs:range rdf:resource="#GeneralHealthState"/>
-    <rdfs:domain rdf:resource="#Patient"/>
-  </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="#hasFullName">
     <rdfs:subPropertyOf>
       <owl:FunctionalProperty rdf:about="#hasName"/>
     </rdfs:subPropertyOf>
     <owl:inverseOf rdf:resource="#isFullNameOf"/>
     <rdfs:range rdf:resource="#FullName"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#hasGeneralHealthState">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:range rdf:resource="#GeneralHealthState"/>
+    <rdfs:domain rdf:resource="#Patient"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="#hasSibling">
     <rdfs:subPropertyOf rdf:resource="#hasRelative"/>
@@ -5303,12 +5297,6 @@ The position here is, I think rather bad, but....</rdfs:comment>
   </owl:InverseFunctionalProperty>
   <owl:AllDifferent>
     <owl:distinctMembers rdf:parseType="Collection">
-      <Gender rdf:about="#Male"/>
-      <Gender rdf:about="#Female"/>
-    </owl:distinctMembers>
-  </owl:AllDifferent>
-  <owl:AllDifferent>
-    <owl:distinctMembers rdf:parseType="Collection">
       <Laterality rdf:about="#Left"/>
       <Laterality rdf:about="#Center"/>
       <Laterality rdf:about="#Right"/>
@@ -5319,6 +5307,12 @@ The position here is, I think rather bad, but....</rdfs:comment>
       <Toxicity rdf:about="#MildToxicity"/>
       <Toxicity rdf:about="#SevereToxicity"/>
       <Toxicity rdf:about="#IntermediateToxicity"/>
+    </owl:distinctMembers>
+  </owl:AllDifferent>
+  <owl:AllDifferent>
+    <owl:distinctMembers rdf:parseType="Collection">
+      <Gender rdf:about="#Male"/>
+      <Gender rdf:about="#Female"/>
     </owl:distinctMembers>
   </owl:AllDifferent>
 </rdf:RDF>
