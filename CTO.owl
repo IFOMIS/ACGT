@@ -7,112 +7,29 @@
     xmlns="http://www.ifomis.org/bfo/1.0#"
   xml:base="http://www.ifomis.org/bfo/1.0">
   <owl:Ontology rdf:about=""/>
-  <owl:Class rdf:ID="CoIntervention">
-    <rdfs:subClassOf>
-      <owl:Class rdf:ID="Intervention"/>
-    </rdfs:subClassOf>
-  </owl:Class>
   <owl:Class rdf:ID="SecondaryStudyProtocol">
     <rdfs:subClassOf>
       <owl:Class rdf:ID="Protocol"/>
     </rdfs:subClassOf>
   </owl:Class>
-  <owl:Class rdf:ID="Reason">
+  <owl:Class rdf:ID="SiteEnrollment">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Prior"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="InformationObject">
     <rdfs:subClassOf>
       <owl:Class rdf:ID="Continuant"/>
     </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="Entity"/>
-  <owl:Class rdf:ID="RegistryID">
-    <rdfs:subClassOf>
-      <owl:Class rdf:ID="InformationObject"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:about="#Protocol">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#Continuant"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="Population">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#Continuant"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="EthicsCommittee">
-    <rdfs:subClassOf>
-      <owl:Class rdf:ID="Institution"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="Blinding">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#Intervention"/>
-    </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >&lt;p style="margin-top: 0">
-      I take it Blinding, while an Intervention, is &lt;i>not&lt;/i> an 
-      InterventionStep?
-    &lt;/p></rdfs:comment>
   </owl:Class>
   <owl:Class rdf:ID="ClinicalTrial">
     <rdfs:subClassOf>
       <owl:Class rdf:ID="Occurrent"/>
     </rdfs:subClassOf>
   </owl:Class>
-  <owl:Class rdf:ID="StudyCommittee">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#Institution"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:about="#Occurrent">
-    <rdfs:subClassOf rdf:resource="#Entity"/>
-  </owl:Class>
-  <owl:Class rdf:ID="OutcomeFollowUp">
-    <rdfs:subClassOf>
-      <owl:Class rdf:ID="FollowUp"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="DrugStep">
-    <rdfs:subClassOf>
-      <owl:Class rdf:ID="InterventionStep"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="Investigator">
-    <rdfs:subClassOf>
-      <owl:Class rdf:ID="Person"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="ProtocolChange">
-    <rdfs:subClassOf rdf:resource="#Occurrent"/>
-  </owl:Class>
-  <owl:Class rdf:about="#Person">
+  <owl:Class rdf:ID="RecruitmentFlowchart">
     <rdfs:subClassOf>
       <owl:Class rdf:about="#Continuant"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="TreatmentAssignment">
-    <rdfs:subClassOf>
-      <owl:Class rdf:ID="Prior"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="FollowUpActivity">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#FollowUp"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="TrialSubject">
-    <rdfs:subClassOf rdf:resource="#Person"/>
-  </owl:Class>
-  <owl:Class rdf:ID="SecondaryStudy">
-    <rdfs:subClassOf rdf:resource="#ClinicalTrial"/>
-  </owl:Class>
-  <owl:Class rdf:ID="Funder">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#Institution"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="SiteEnrollment">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#Prior"/>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="StudySite">
@@ -120,55 +37,132 @@
       <owl:Class rdf:about="#Continuant"/>
     </rdfs:subClassOf>
   </owl:Class>
-  <owl:Class rdf:about="#FollowUp">
-    <rdfs:subClassOf rdf:resource="#Occurrent"/>
+  <owl:Class rdf:ID="EthicsCommittee">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Committee"/>
+    </rdfs:subClassOf>
   </owl:Class>
-  <owl:Class rdf:ID="RecruitmentFlowchart">
+  <owl:Class rdf:ID="Reason">
     <rdfs:subClassOf>
       <owl:Class rdf:about="#Continuant"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="SecondaryStudy">
+    <rdfs:subClassOf rdf:resource="#ClinicalTrial"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Occurrent">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Entity"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="StudyCommittee">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Committee"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Blinding">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Intervention"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >&lt;p style="margin-top: 0">
+      I take it Blinding, while an Intervention, is &lt;i>not&lt;/i> an 
+      InterventionStep?
+    &lt;/p></rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="CoIntervention">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Intervention"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="RegistryID">
+    <rdfs:subClassOf rdf:resource="#InformationObject"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Design">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Continuant"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Institution">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Continuant"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="FollowUpActivity">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="FollowUp"/>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="#Prior">
     <rdfs:subClassOf rdf:resource="#Occurrent"/>
   </owl:Class>
-  <owl:Class rdf:about="#Institution">
+  <owl:Class rdf:about="#Protocol">
     <rdfs:subClassOf>
       <owl:Class rdf:about="#Continuant"/>
     </rdfs:subClassOf>
   </owl:Class>
-  <owl:Class rdf:about="#InformationObject">
+  <owl:Class rdf:about="#Intervention">
+    <rdfs:subClassOf rdf:resource="#Occurrent"/>
+  </owl:Class>
+  <owl:Class rdf:ID="ProtocolChange">
+    <rdfs:subClassOf rdf:resource="#Occurrent"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Publication">
+    <rdfs:subClassOf rdf:resource="#InformationObject"/>
+  </owl:Class>
+  <owl:Class rdf:ID="TrialSubject">
     <rdfs:subClassOf>
-      <owl:Class rdf:about="#Continuant"/>
+      <owl:Class rdf:ID="Person"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Funder">
+    <rdfs:subClassOf rdf:resource="#Institution"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Subgroup">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Population"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="TreatmentAssignment">
+    <rdfs:subClassOf rdf:resource="#Prior"/>
+  </owl:Class>
+  <owl:Class rdf:ID="InterventionStep">
+    <rdfs:subClassOf rdf:resource="#Intervention"/>
+  </owl:Class>
+  <owl:Class rdf:ID="OutcomeFollowUp">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#FollowUp"/>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="#Continuant">
     <rdfs:subClassOf rdf:resource="#Entity"/>
   </owl:Class>
-  <owl:Class rdf:ID="Subgroup">
-    <rdfs:subClassOf rdf:resource="#Population"/>
-  </owl:Class>
-  <owl:Class rdf:ID="Design">
-    <rdfs:subClassOf rdf:resource="#Continuant"/>
-  </owl:Class>
-  <owl:Class rdf:about="#InterventionStep">
+  <owl:Class rdf:ID="Investigator">
     <rdfs:subClassOf>
-      <owl:Class rdf:about="#Intervention"/>
+      <owl:Class rdf:about="#Person"/>
     </rdfs:subClassOf>
   </owl:Class>
-  <owl:Class rdf:ID="InterventionArm">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#Intervention"/>
-    </rdfs:subClassOf>
+  <owl:Class rdf:about="#FollowUp">
+    <rdfs:subClassOf rdf:resource="#Occurrent"/>
   </owl:Class>
   <owl:Class rdf:ID="Recruitment">
     <rdfs:subClassOf rdf:resource="#Prior"/>
   </owl:Class>
-  <owl:Class rdf:ID="Publication">
-    <rdfs:subClassOf rdf:resource="#InformationObject"/>
+  <owl:Class rdf:about="#Population">
+    <rdfs:subClassOf rdf:resource="#Continuant"/>
   </owl:Class>
-  <owl:Class rdf:about="#Intervention">
-    <rdfs:subClassOf rdf:resource="#Occurrent"/>
+  <owl:Class rdf:about="#Person">
+    <rdfs:subClassOf rdf:resource="#Continuant"/>
+  </owl:Class>
+  <owl:Class rdf:ID="InterventionArm">
+    <rdfs:subClassOf rdf:resource="#Intervention"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Committee">
+    <rdfs:subClassOf rdf:resource="#Institution"/>
+  </owl:Class>
+  <owl:Class rdf:ID="DrugStep">
+    <rdfs:subClassOf rdf:resource="#InterventionStep"/>
   </owl:Class>
 </rdf:RDF>
 
-<!-- Created with Protege (with OWL Plugin 2.2, Build 324)  http://protege.stanford.edu -->
+<!-- Created with Protege (with OWL Plugin 3.2.1, Build 365)  http://protege.stanford.edu -->
