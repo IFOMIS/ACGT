@@ -61,14 +61,13 @@
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="Blinding">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >II take it Blinding, while an Intervention, is *not* an InterventionStep?
+
+The double blind method is an important part of the scientific method, used to prevent research outcomes from being 'influenced' by the placebo effect or observer bias. Blinded research is an important tool in many fields of research, from medicine, to psychology and the social sciences, to forensics.</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Class rdf:ID="Intervention"/>
     </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >&lt;p style="margin-top: 0">
-      I take it Blinding, while an Intervention, is &lt;i>not&lt;/i> an 
-      InterventionStep?
-    &lt;/p></rdfs:comment>
   </owl:Class>
   <owl:Class rdf:ID="CoIntervention">
     <rdfs:subClassOf>
