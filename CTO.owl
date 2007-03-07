@@ -7,14 +7,14 @@
     xmlns="http://www.ifomis.org/bfo/1.0#"
   xml:base="http://www.ifomis.org/bfo/1.0">
   <owl:Ontology rdf:about=""/>
-  <owl:Class rdf:ID="SecondaryStudyProtocol">
-    <rdfs:subClassOf>
-      <owl:Class rdf:ID="Protocol"/>
-    </rdfs:subClassOf>
-  </owl:Class>
   <owl:Class rdf:ID="SiteEnrollment">
     <rdfs:subClassOf>
       <owl:Class rdf:ID="Prior"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="SecondaryStudyProtocol">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Protocol"/>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="InformationObject">
@@ -24,7 +24,7 @@
   </owl:Class>
   <owl:Class rdf:ID="ClinicalTrial">
     <rdfs:subClassOf>
-      <owl:Class rdf:ID="Occurrent"/>
+      <owl:Class rdf:ID="AggregateOfProcesses"/>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="RecruitmentFlowchart">
@@ -37,20 +37,20 @@
       <owl:Class rdf:about="#Continuant"/>
     </rdfs:subClassOf>
   </owl:Class>
-  <owl:Class rdf:ID="EthicsCommittee">
-    <rdfs:subClassOf>
-      <owl:Class rdf:ID="Committee"/>
-    </rdfs:subClassOf>
-  </owl:Class>
   <owl:Class rdf:ID="Reason">
     <rdfs:subClassOf>
       <owl:Class rdf:about="#Continuant"/>
     </rdfs:subClassOf>
   </owl:Class>
+  <owl:Class rdf:ID="EthicsCommittee">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Committee"/>
+    </rdfs:subClassOf>
+  </owl:Class>
   <owl:Class rdf:ID="SecondaryStudy">
     <rdfs:subClassOf rdf:resource="#ClinicalTrial"/>
   </owl:Class>
-  <owl:Class rdf:about="#Occurrent">
+  <owl:Class rdf:ID="Occurrent">
     <rdfs:subClassOf>
       <owl:Class rdf:ID="Entity"/>
     </rdfs:subClassOf>
@@ -93,7 +93,9 @@ The double blind method is an important part of the scientific method, used to p
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="#Prior">
-    <rdfs:subClassOf rdf:resource="#Occurrent"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#AggregateOfProcesses"/>
+    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="#Protocol">
     <rdfs:subClassOf>
@@ -101,10 +103,14 @@ The double blind method is an important part of the scientific method, used to p
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="#Intervention">
-    <rdfs:subClassOf rdf:resource="#Occurrent"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="ProcessualEntity"/>
+    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="ProtocolChange">
-    <rdfs:subClassOf rdf:resource="#Occurrent"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#ProcessualEntity"/>
+    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="Publication">
     <rdfs:subClassOf rdf:resource="#InformationObject"/>
@@ -114,12 +120,20 @@ The double blind method is an important part of the scientific method, used to p
       <owl:Class rdf:ID="Person"/>
     </rdfs:subClassOf>
   </owl:Class>
+  <owl:Class rdf:ID="SpaceTimeRegion">
+    <rdfs:subClassOf rdf:resource="#Occurrent"/>
+  </owl:Class>
   <owl:Class rdf:ID="Funder">
     <rdfs:subClassOf rdf:resource="#Institution"/>
   </owl:Class>
   <owl:Class rdf:ID="Subgroup">
     <rdfs:subClassOf>
       <owl:Class rdf:ID="Population"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#AggregateOfProcesses">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#ProcessualEntity"/>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="TreatmentAssignment">
@@ -142,10 +156,13 @@ The double blind method is an important part of the scientific method, used to p
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="#FollowUp">
-    <rdfs:subClassOf rdf:resource="#Occurrent"/>
+    <rdfs:subClassOf rdf:resource="#AggregateOfProcesses"/>
   </owl:Class>
   <owl:Class rdf:ID="Recruitment">
     <rdfs:subClassOf rdf:resource="#Prior"/>
+  </owl:Class>
+  <owl:Class rdf:about="#ProcessualEntity">
+    <rdfs:subClassOf rdf:resource="#Occurrent"/>
   </owl:Class>
   <owl:Class rdf:about="#Population">
     <rdfs:subClassOf rdf:resource="#Continuant"/>
