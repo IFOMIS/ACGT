@@ -1,38 +1,28 @@
 <?xml version="1.0"?>
 <rdf:RDF
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
     xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
     xmlns="http://www.ifomis.org/bfo/1.0#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
   xml:base="http://www.ifomis.org/bfo/1.0">
   <owl:Ontology rdf:about=""/>
-  <owl:Class rdf:ID="SiteEnrollment">
+  <owl:Class rdf:ID="Funder">
     <rdfs:subClassOf>
-      <owl:Class rdf:ID="Prior"/>
+      <owl:Class rdf:ID="Institution"/>
     </rdfs:subClassOf>
   </owl:Class>
-  <owl:Class rdf:ID="SecondaryStudyProtocol">
+  <owl:Class rdf:ID="ProcessualEntity">
     <rdfs:subClassOf>
-      <owl:Class rdf:ID="Protocol"/>
+      <owl:Class rdf:ID="Occurrent"/>
     </rdfs:subClassOf>
   </owl:Class>
-  <owl:Class rdf:ID="InformationObject">
+  <owl:Class rdf:ID="StudySite">
     <rdfs:subClassOf>
       <owl:Class rdf:ID="Continuant"/>
     </rdfs:subClassOf>
   </owl:Class>
-  <owl:Class rdf:ID="ClinicalTrial">
-    <rdfs:subClassOf>
-      <owl:Class rdf:ID="AggregateOfProcesses"/>
-    </rdfs:subClassOf>
-  </owl:Class>
   <owl:Class rdf:ID="RecruitmentFlowchart">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#Continuant"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="StudySite">
     <rdfs:subClassOf>
       <owl:Class rdf:about="#Continuant"/>
     </rdfs:subClassOf>
@@ -42,143 +32,160 @@
       <owl:Class rdf:about="#Continuant"/>
     </rdfs:subClassOf>
   </owl:Class>
-  <owl:Class rdf:ID="EthicsCommittee">
-    <rdfs:subClassOf>
-      <owl:Class rdf:ID="Committee"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="SecondaryStudy">
-    <rdfs:subClassOf rdf:resource="#ClinicalTrial"/>
-  </owl:Class>
-  <owl:Class rdf:ID="Occurrent">
-    <rdfs:subClassOf>
-      <owl:Class rdf:ID="Entity"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="StudyCommittee">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#Committee"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="Blinding">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >II take it Blinding, while an Intervention, is *not* an InterventionStep?
-
-The double blind method is an important part of the scientific method, used to prevent research outcomes from being 'influenced' by the placebo effect or observer bias. Blinded research is an important tool in many fields of research, from medicine, to psychology and the social sciences, to forensics.</rdfs:comment>
+  <owl:Class rdf:ID="CoIntervention">
     <rdfs:subClassOf>
       <owl:Class rdf:ID="Intervention"/>
     </rdfs:subClassOf>
   </owl:Class>
-  <owl:Class rdf:ID="CoIntervention">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#Intervention"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="RegistryID">
-    <rdfs:subClassOf rdf:resource="#InformationObject"/>
-  </owl:Class>
-  <owl:Class rdf:ID="Design">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#Continuant"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="Institution">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#Continuant"/>
-    </rdfs:subClassOf>
-  </owl:Class>
+  <owl:Class rdf:ID="Entity"/>
   <owl:Class rdf:ID="FollowUpActivity">
     <rdfs:subClassOf>
       <owl:Class rdf:ID="FollowUp"/>
     </rdfs:subClassOf>
   </owl:Class>
-  <owl:Class rdf:about="#Prior">
+  <owl:Class rdf:ID="DrugStep">
     <rdfs:subClassOf>
-      <owl:Class rdf:about="#AggregateOfProcesses"/>
+      <owl:Class rdf:ID="InterventionStep"/>
     </rdfs:subClassOf>
   </owl:Class>
-  <owl:Class rdf:about="#Protocol">
+  <owl:Class rdf:ID="Recruitment">
     <rdfs:subClassOf>
-      <owl:Class rdf:about="#Continuant"/>
+      <owl:Class rdf:ID="Prior"/>
     </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:about="#Intervention">
-    <rdfs:subClassOf>
-      <owl:Class rdf:ID="ProcessualEntity"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="ProtocolChange">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#ProcessualEntity"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="Publication">
-    <rdfs:subClassOf rdf:resource="#InformationObject"/>
   </owl:Class>
   <owl:Class rdf:ID="TrialSubject">
     <rdfs:subClassOf>
       <owl:Class rdf:ID="Person"/>
     </rdfs:subClassOf>
   </owl:Class>
-  <owl:Class rdf:ID="SpaceTimeRegion">
-    <rdfs:subClassOf rdf:resource="#Occurrent"/>
+  <owl:Class rdf:about="#Intervention">
+    <rdfs:subClassOf rdf:resource="#ProcessualEntity"/>
   </owl:Class>
-  <owl:Class rdf:ID="Funder">
-    <rdfs:subClassOf rdf:resource="#Institution"/>
+  <owl:Class rdf:ID="SiteEnrollment">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Prior"/>
+    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="Subgroup">
     <rdfs:subClassOf>
       <owl:Class rdf:ID="Population"/>
     </rdfs:subClassOf>
   </owl:Class>
-  <owl:Class rdf:about="#AggregateOfProcesses">
+  <owl:Class rdf:about="#Prior">
     <rdfs:subClassOf>
-      <owl:Class rdf:about="#ProcessualEntity"/>
+      <owl:Class rdf:ID="AggregateOfProcesses"/>
     </rdfs:subClassOf>
   </owl:Class>
-  <owl:Class rdf:ID="TreatmentAssignment">
-    <rdfs:subClassOf rdf:resource="#Prior"/>
+  <owl:Class rdf:about="#AggregateOfProcesses">
+    <rdfs:subClassOf rdf:resource="#ProcessualEntity"/>
   </owl:Class>
-  <owl:Class rdf:ID="InterventionStep">
+  <owl:Class rdf:ID="Blinding">
     <rdfs:subClassOf rdf:resource="#Intervention"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >II take it Blinding, while an Intervention, is *not* an InterventionStep?
+
+The double blind method is an important part of the scientific method, used to prevent research outcomes from being 'influenced' by the placebo effect or observer bias. Blinded research is an important tool in many fields of research, from medicine, to psychology and the social sciences, to forensics.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="SpaceTimeRegion">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Occurrent"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="ProtocolChange">
+    <rdfs:subClassOf rdf:resource="#ProcessualEntity"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Occurrent">
+    <rdfs:subClassOf rdf:resource="#Entity"/>
+  </owl:Class>
+  <owl:Class rdf:ID="EthicsCommittee">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Committee"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#FollowUp">
+    <rdfs:subClassOf rdf:resource="#AggregateOfProcesses"/>
   </owl:Class>
   <owl:Class rdf:ID="OutcomeFollowUp">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#FollowUp"/>
-    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="#FollowUp"/>
   </owl:Class>
-  <owl:Class rdf:about="#Continuant">
-    <rdfs:subClassOf rdf:resource="#Entity"/>
+  <owl:Class rdf:ID="InterventionArm">
+    <rdfs:subClassOf rdf:resource="#Intervention"/>
+  </owl:Class>
+  <owl:Class rdf:ID="StudyCommittee">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Committee"/>
+    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="Investigator">
     <rdfs:subClassOf>
       <owl:Class rdf:about="#Person"/>
     </rdfs:subClassOf>
   </owl:Class>
-  <owl:Class rdf:about="#FollowUp">
-    <rdfs:subClassOf rdf:resource="#AggregateOfProcesses"/>
+  <owl:Class rdf:ID="Design">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Continuant"/>
+    </rdfs:subClassOf>
   </owl:Class>
-  <owl:Class rdf:ID="Recruitment">
-    <rdfs:subClassOf rdf:resource="#Prior"/>
-  </owl:Class>
-  <owl:Class rdf:about="#ProcessualEntity">
-    <rdfs:subClassOf rdf:resource="#Occurrent"/>
+  <owl:Class rdf:about="#InterventionStep">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom rdf:resource="#Intervention"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="partOf"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="#Intervention"/>
   </owl:Class>
   <owl:Class rdf:about="#Population">
-    <rdfs:subClassOf rdf:resource="#Continuant"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Continuant"/>
+    </rdfs:subClassOf>
   </owl:Class>
-  <owl:Class rdf:about="#Person">
-    <rdfs:subClassOf rdf:resource="#Continuant"/>
+  <owl:Class rdf:about="#Institution">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Continuant"/>
+    </rdfs:subClassOf>
   </owl:Class>
-  <owl:Class rdf:ID="InterventionArm">
-    <rdfs:subClassOf rdf:resource="#Intervention"/>
+  <owl:Class rdf:ID="TreatmentAssignment">
+    <rdfs:subClassOf rdf:resource="#Prior"/>
+  </owl:Class>
+  <owl:Class rdf:ID="ClinicalTrial">
+    <rdfs:subClassOf rdf:resource="#AggregateOfProcesses"/>
+  </owl:Class>
+  <owl:Class rdf:ID="InformationObject">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Continuant"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Protocol">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Continuant"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="RegistryID">
+    <rdfs:subClassOf rdf:resource="#InformationObject"/>
   </owl:Class>
   <owl:Class rdf:about="#Committee">
     <rdfs:subClassOf rdf:resource="#Institution"/>
   </owl:Class>
-  <owl:Class rdf:ID="DrugStep">
-    <rdfs:subClassOf rdf:resource="#InterventionStep"/>
+  <owl:Class rdf:about="#Person">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Continuant"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Continuant">
+    <rdfs:subClassOf rdf:resource="#Entity"/>
+  </owl:Class>
+  <owl:Class rdf:ID="SecondaryStudy">
+    <rdfs:subClassOf rdf:resource="#ClinicalTrial"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Publication">
+    <rdfs:subClassOf rdf:resource="#InformationObject"/>
+  </owl:Class>
+  <owl:Class rdf:ID="SecondaryStudyProtocol">
+    <rdfs:subClassOf rdf:resource="#Protocol"/>
   </owl:Class>
 </rdf:RDF>
 
-<!-- Created with Protege (with OWL Plugin 3.2.1, Build 365)  http://protege.stanford.edu -->
+<!-- Created with Protege (with OWL Plugin 3.4, Build 130)  http://protege.stanford.edu -->
