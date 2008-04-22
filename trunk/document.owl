@@ -4517,32 +4517,9 @@ Sometimes the term MM may be used to describe a combination of mitomycin and mit
     </owl:disjointWith>
   </owl:Class>
   <owl:Class rdf:ID="CumulativeDose">
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Age"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#PhysicalMagnitude"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#ToxicityLevel"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#NumberOfCycles"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#StressLevel"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#LVSF"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#BinaryStatus"/>
-    </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#pCRRate"/>
     <rdfs:subClassOf>
       <owl:Class rdf:about="#Dose"/>
     </rdfs:subClassOf>
-    <owl:disjointWith rdf:resource="#LVEF"/>
   </owl:Class>
   <owl:Class rdf:about="#AnemiaGrade3">
     <rdfs:subClassOf>
