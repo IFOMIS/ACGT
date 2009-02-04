@@ -23229,6 +23229,46 @@ Syn: Stem Cell Apharesis</rdfs:comment>
     
 
 
+    <!-- http://www.ifomis.org/acgt/1.0#WilmsTumorStageI -->
+
+    <owl:Class rdf:about="#WilmsTumorStageI">
+        <rdfs:subClassOf rdf:resource="#WilmsTumorStage"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ifomis.org/acgt/1.0#WilmsTumorStageII -->
+
+    <owl:Class rdf:about="#WilmsTumorStageII">
+        <rdfs:subClassOf rdf:resource="#WilmsTumorStage"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ifomis.org/acgt/1.0#WilmsTumorStageIII -->
+
+    <owl:Class rdf:about="#WilmsTumorStageIII">
+        <rdfs:subClassOf rdf:resource="#WilmsTumorStage"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ifomis.org/acgt/1.0#WilmsTumorStageIV -->
+
+    <owl:Class rdf:about="#WilmsTumorStageIV">
+        <rdfs:subClassOf rdf:resource="#WilmsTumorStage"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ifomis.org/acgt/1.0#WilmsTumorStageV -->
+
+    <owl:Class rdf:about="#WilmsTumorStageV">
+        <rdfs:subClassOf rdf:resource="#WilmsTumorStage"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.ifomis.org/acgt/1.0#WindowTherapy -->
 
     <owl:Class rdf:about="#WindowTherapy">
@@ -24361,46 +24401,46 @@ Syn: Stem Cell Apharesis</rdfs:comment>
 
     <!-- http://www.ifomis.org/acgt/1.0#StageI -->
 
-    <WilmsTumorStage rdf:about="#StageI">
+    <rdf:Description rdf:about="#StageI">
         <rdfs:comment rdf:datatype="&xsd;string"
             >definition: Tumor confined to kidney and completely resected</rdfs:comment>
-    </WilmsTumorStage>
+    </rdf:Description>
     
 
 
     <!-- http://www.ifomis.org/acgt/1.0#StageII -->
 
-    <WilmsTumorStage rdf:about="#StageII">
+    <rdf:Description rdf:about="#StageII">
         <rdfs:comment rdf:datatype="&xsd;string"
             >definition: Microscopic residual tumor, tumor penetration through renal capsule</rdfs:comment>
-    </WilmsTumorStage>
+    </rdf:Description>
     
 
 
     <!-- http://www.ifomis.org/acgt/1.0#StageIII -->
 
-    <WilmsTumorStage rdf:about="#StageIII">
+    <rdf:Description rdf:about="#StageIII">
         <rdfs:comment rdf:datatype="&xsd;string"
             >definition: Gross residual disease confined to abdomen, lymph node involvement, diffuse peritoneal contamination (tumor rupture)</rdfs:comment>
-    </WilmsTumorStage>
+    </rdf:Description>
     
 
 
     <!-- http://www.ifomis.org/acgt/1.0#StageIV -->
 
-    <WilmsTumorStage rdf:about="#StageIV">
+    <rdf:Description rdf:about="#StageIV">
         <rdfs:comment rdf:datatype="&xsd;string"
             >definition: Hematogenous Metastases: lung, noncontiguous liver, bone, and brain</rdfs:comment>
-    </WilmsTumorStage>
+    </rdf:Description>
     
 
 
     <!-- http://www.ifomis.org/acgt/1.0#StageV -->
 
-    <WilmsTumorStage rdf:about="#StageV">
+    <rdf:Description rdf:about="#StageV">
         <rdfs:comment rdf:datatype="&xsd;string"
             >definition: Bilateral renal involvement at diagnosis</rdfs:comment>
-    </WilmsTumorStage>
+    </rdf:Description>
     
 
 
@@ -24442,6 +24482,16 @@ Syn: Stem Cell Apharesis</rdfs:comment>
             <rdf:Description rdf:about="#Curative"/>
             <rdf:Description rdf:about="#Palliative"/>
         </owl:distinctMembers>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="#WilmsTumorStageI"/>
+            <rdf:Description rdf:about="#WilmsTumorStageII"/>
+            <rdf:Description rdf:about="#WilmsTumorStageIII"/>
+            <rdf:Description rdf:about="#WilmsTumorStageIV"/>
+            <rdf:Description rdf:about="#WilmsTumorStageV"/>
+        </owl:members>
     </rdf:Description>
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDifferent"/>
