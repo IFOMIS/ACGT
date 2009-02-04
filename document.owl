@@ -4013,6 +4013,30 @@ Short for Atypical Teratoid/Rhabdoid Tumor</rdfs:comment>
     
 
 
+    <!-- http://www.ifomis.org/acgt/1.0#BRGrade1 -->
+
+    <owl:Class rdf:about="#BRGrade1">
+        <rdfs:subClassOf rdf:resource="#BloomRichardsonDifferentiation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ifomis.org/acgt/1.0#BRGrade2 -->
+
+    <owl:Class rdf:about="#BRGrade2">
+        <rdfs:subClassOf rdf:resource="#BloomRichardsonDifferentiation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ifomis.org/acgt/1.0#BRGrade3 -->
+
+    <owl:Class rdf:about="#BRGrade3">
+        <rdfs:subClassOf rdf:resource="#BloomRichardsonDifferentiation"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.ifomis.org/acgt/1.0#BacterialInfection -->
 
     <owl:Class rdf:about="#BacterialInfection">
@@ -10064,6 +10088,38 @@ Rituximab locks onto a protein called CD20, which is found on the surface of one
     
 
 
+    <!-- http://www.ifomis.org/acgt/1.0#FuhrmanGradeI -->
+
+    <owl:Class rdf:about="#FuhrmanGradeI">
+        <rdfs:subClassOf rdf:resource="#FuhrmanNuclearGrade"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ifomis.org/acgt/1.0#FuhrmanGradeII -->
+
+    <owl:Class rdf:about="#FuhrmanGradeII">
+        <rdfs:subClassOf rdf:resource="#FuhrmanNuclearGrade"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ifomis.org/acgt/1.0#FuhrmanGradeIII -->
+
+    <owl:Class rdf:about="#FuhrmanGradeIII">
+        <rdfs:subClassOf rdf:resource="#FuhrmanNuclearGrade"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ifomis.org/acgt/1.0#FuhrmanGradeIV -->
+
+    <owl:Class rdf:about="#FuhrmanGradeIV">
+        <rdfs:subClassOf rdf:resource="#FuhrmanNuclearGrade"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.ifomis.org/acgt/1.0#FuhrmanNuclearGrade -->
 
     <owl:Class rdf:about="#FuhrmanNuclearGrade">
@@ -10147,6 +10203,38 @@ Rituximab locks onto a protein called CD20, which is found on the surface of one
     
 
 
+    <!-- http://www.ifomis.org/acgt/1.0#G1 -->
+
+    <owl:Class rdf:about="#G1">
+        <rdfs:subClassOf rdf:resource="#AJCDifferentiation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ifomis.org/acgt/1.0#G2 -->
+
+    <owl:Class rdf:about="#G2">
+        <rdfs:subClassOf rdf:resource="#AJCDifferentiation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ifomis.org/acgt/1.0#G3 -->
+
+    <owl:Class rdf:about="#G3">
+        <rdfs:subClassOf rdf:resource="#AJCDifferentiation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ifomis.org/acgt/1.0#G4 -->
+
+    <owl:Class rdf:about="#G4">
+        <rdfs:subClassOf rdf:resource="#AJCDifferentiation"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.ifomis.org/acgt/1.0#GPOH-PID -->
 
     <owl:Class rdf:about="#GPOH-PID">
@@ -10168,6 +10256,14 @@ Rituximab locks onto a protein called CD20, which is found on the surface of one
         <owl:disjointWith rdf:resource="#PPomaPancreaticTumorDisease"/>
         <owl:disjointWith rdf:resource="#SomatostatinomaPancreaticTumorDisease"/>
         <owl:disjointWith rdf:resource="#VIPomaPancreaticTumorDisease"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ifomis.org/acgt/1.0#GX -->
+
+    <owl:Class rdf:about="#GX">
+        <rdfs:subClassOf rdf:resource="#AJCDifferentiation"/>
     </owl:Class>
     
 
@@ -24083,19 +24179,19 @@ Syn: Stem Cell Apharesis</rdfs:comment>
 
     <!-- http://www.ifomis.org/acgt/1.0#BRGrade1 -->
 
-    <BloomRichardsonDifferentiation rdf:about="#BRGrade1"/>
+    <rdf:Description rdf:about="#BRGrade1"/>
     
 
 
     <!-- http://www.ifomis.org/acgt/1.0#BRGrade2 -->
 
-    <BloomRichardsonDifferentiation rdf:about="#BRGrade2"/>
+    <rdf:Description rdf:about="#BRGrade2"/>
     
 
 
     <!-- http://www.ifomis.org/acgt/1.0#BRGrade3 -->
 
-    <BloomRichardsonDifferentiation rdf:about="#BRGrade3"/>
+    <rdf:Description rdf:about="#BRGrade3"/>
     
 
 
@@ -24203,25 +24299,25 @@ Syn: Stem Cell Apharesis</rdfs:comment>
 
     <!-- http://www.ifomis.org/acgt/1.0#FuhrmanGradeI -->
 
-    <FuhrmanNuclearGrade rdf:about="#FuhrmanGradeI"/>
+    <rdf:Description rdf:about="#FuhrmanGradeI"/>
     
 
 
     <!-- http://www.ifomis.org/acgt/1.0#FuhrmanGradeII -->
 
-    <FuhrmanNuclearGrade rdf:about="#FuhrmanGradeII"/>
+    <rdf:Description rdf:about="#FuhrmanGradeII"/>
     
 
 
     <!-- http://www.ifomis.org/acgt/1.0#FuhrmanGradeIII -->
 
-    <FuhrmanNuclearGrade rdf:about="#FuhrmanGradeIII"/>
+    <rdf:Description rdf:about="#FuhrmanGradeIII"/>
     
 
 
     <!-- http://www.ifomis.org/acgt/1.0#FuhrmanGradeIV -->
 
-    <FuhrmanNuclearGrade rdf:about="#FuhrmanGradeIV"/>
+    <rdf:Description rdf:about="#FuhrmanGradeIV"/>
     
 
 
@@ -24233,46 +24329,46 @@ Syn: Stem Cell Apharesis</rdfs:comment>
 
     <!-- http://www.ifomis.org/acgt/1.0#G1 -->
 
-    <AJCDifferentiation rdf:about="#G1">
+    <rdf:Description rdf:about="#G1">
         <rdfs:comment rdf:datatype="&xsd;string"
             >Well-differentiated (Low grade)</rdfs:comment>
-    </AJCDifferentiation>
+    </rdf:Description>
     
 
 
     <!-- http://www.ifomis.org/acgt/1.0#G2 -->
 
-    <AJCDifferentiation rdf:about="#G2">
+    <rdf:Description rdf:about="#G2">
         <rdfs:comment rdf:datatype="&xsd;string"
             >Moderately differentiated (Intermediate grade)</rdfs:comment>
-    </AJCDifferentiation>
+    </rdf:Description>
     
 
 
     <!-- http://www.ifomis.org/acgt/1.0#G3 -->
 
-    <AJCDifferentiation rdf:about="#G3">
+    <rdf:Description rdf:about="#G3">
         <rdfs:comment rdf:datatype="&xsd;string"
             >Poorly differentiated (High grade)</rdfs:comment>
-    </AJCDifferentiation>
+    </rdf:Description>
     
 
 
     <!-- http://www.ifomis.org/acgt/1.0#G4 -->
 
-    <AJCDifferentiation rdf:about="#G4">
+    <rdf:Description rdf:about="#G4">
         <rdfs:comment rdf:datatype="&xsd;string"
             >Undifferentiated (High grade); undifferentiated = a term used to describe cells or tissues that do not have specialized (&quot;mature&quot;) structures or functions. Undifferentiated cancer cells often grow and spread quickly.</rdfs:comment>
-    </AJCDifferentiation>
+    </rdf:Description>
     
 
 
     <!-- http://www.ifomis.org/acgt/1.0#GX -->
 
-    <AJCDifferentiation rdf:about="#GX">
+    <rdf:Description rdf:about="#GX">
         <rdfs:comment rdf:datatype="&xsd;string"
             >Grade cannot be assessed (Undetermined grade)</rdfs:comment>
-    </AJCDifferentiation>
+    </rdf:Description>
     
 
 
@@ -24477,6 +24573,24 @@ Syn: Stem Cell Apharesis</rdfs:comment>
      -->
 
     <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="#G1"/>
+            <rdf:Description rdf:about="#G2"/>
+            <rdf:Description rdf:about="#G3"/>
+            <rdf:Description rdf:about="#G4"/>
+            <rdf:Description rdf:about="#GX"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="#BRGrade1"/>
+            <rdf:Description rdf:about="#BRGrade2"/>
+            <rdf:Description rdf:about="#BRGrade3"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDifferent"/>
         <owl:distinctMembers rdf:parseType="Collection">
             <rdf:Description rdf:about="#Curative"/>
@@ -24552,6 +24666,15 @@ Syn: Stem Cell Apharesis</rdfs:comment>
             <rdf:Description rdf:about="#FuhrmanGradeI"/>
             <rdf:Description rdf:about="#FuhrmanGradeII"/>
         </owl:distinctMembers>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="#FuhrmanGradeI"/>
+            <rdf:Description rdf:about="#FuhrmanGradeII"/>
+            <rdf:Description rdf:about="#FuhrmanGradeIII"/>
+            <rdf:Description rdf:about="#FuhrmanGradeIV"/>
+        </owl:members>
     </rdf:Description>
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDifferent"/>
