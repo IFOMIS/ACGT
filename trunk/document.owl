@@ -265,6 +265,22 @@
     
 
 
+    <!-- http://www.ifomis.org/acgt/1.0#characterizedBy -->
+
+    <owl:ObjectProperty rdf:about="#characterizedBy"/>
+    
+
+
+    <!-- http://www.ifomis.org/acgt/1.0#characterizes -->
+
+    <owl:ObjectProperty rdf:about="#characterizes">
+        <rdfs:range rdf:resource="#StateOfAffairs"/>
+        <owl:inverseOf rdf:resource="#characterizedBy"/>
+        <rdfs:domain rdf:resource="&snap;Quality"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://www.ifomis.org/acgt/1.0#clinicalStudyLeaderOf -->
 
     <owl:ObjectProperty rdf:about="#clinicalStudyLeaderOf">
@@ -3349,10 +3365,17 @@ Short for Atypical Teratoid/Rhabdoid Tumor</rdfs:comment>
     <!-- http://www.ifomis.org/acgt/1.0#Allergy -->
 
     <owl:Class rdf:about="#Allergy">
-        <rdfs:subClassOf rdf:resource="#GeneralizedSymptom"/>
+        <rdfs:subClassOf rdf:resource="&snap;Disposition"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#hasRole"/>
+                <owl:onClass rdf:resource="#GeneralizedSymptom"/>
+                <owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <owl:disjointWith rdf:resource="#Asthenia"/>
         <owl:disjointWith rdf:resource="#Fever"/>
-        <owl:disjointWith rdf:resource="#NightSweat"/>
+        <owl:disjointWith rdf:resource="#NightSweating"/>
     </owl:Class>
     
 
@@ -3360,7 +3383,14 @@ Short for Atypical Teratoid/Rhabdoid Tumor</rdfs:comment>
     <!-- http://www.ifomis.org/acgt/1.0#Alopecia -->
 
     <owl:Class rdf:about="#Alopecia">
-        <rdfs:subClassOf rdf:resource="#IntergumentarySystemSymptom"/>
+        <rdfs:subClassOf rdf:resource="#StateOfAffairs"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#hasRole"/>
+                <owl:onClass rdf:resource="#IntergumentarySystemSymptom"/>
+                <owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -3517,7 +3547,14 @@ Short for Atypical Teratoid/Rhabdoid Tumor</rdfs:comment>
     <!-- http://www.ifomis.org/acgt/1.0#Anemia -->
 
     <owl:Class rdf:about="#Anemia">
-        <rdfs:subClassOf rdf:resource="#HemolymphoidSystemSymptom"/>
+        <rdfs:subClassOf rdf:resource="#StateOfAffairs"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#hasRole"/>
+                <owl:onClass rdf:resource="#HemolymphoidSystemSymptom"/>
+                <owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <owl:disjointWith rdf:resource="#CoagulationDisorder"/>
     </owl:Class>
     
@@ -3764,7 +3801,14 @@ Short for Atypical Teratoid/Rhabdoid Tumor</rdfs:comment>
     <!-- http://www.ifomis.org/acgt/1.0#Arrhythmia -->
 
     <owl:Class rdf:about="#Arrhythmia">
-        <rdfs:subClassOf rdf:resource="#CardiacSymptom"/>
+        <rdfs:subClassOf rdf:resource="#StateOfAffairs"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#hasRole"/>
+                <owl:onClass rdf:resource="#CardiacSymptom"/>
+                <owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <owl:disjointWith rdf:resource="#CardiacArrest"/>
     </owl:Class>
     
@@ -3841,7 +3885,14 @@ Short for Atypical Teratoid/Rhabdoid Tumor</rdfs:comment>
     <!-- http://www.ifomis.org/acgt/1.0#Arthralgia -->
 
     <owl:Class rdf:about="#Arthralgia">
-        <rdfs:subClassOf rdf:resource="#MusculoskeletalSystemSymptom"/>
+        <rdfs:subClassOf rdf:resource="#StateOfAffairs"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#hasRole"/>
+                <owl:onClass rdf:resource="#MusculoskeletalSystemSymptom"/>
+                <owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <owl:disjointWith rdf:resource="#Myalgia"/>
     </owl:Class>
     
@@ -3858,9 +3909,16 @@ Short for Atypical Teratoid/Rhabdoid Tumor</rdfs:comment>
     <!-- http://www.ifomis.org/acgt/1.0#Asthenia -->
 
     <owl:Class rdf:about="#Asthenia">
-        <rdfs:subClassOf rdf:resource="#GeneralizedSymptom"/>
+        <rdfs:subClassOf rdf:resource="#StateOfAffairs"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#hasRole"/>
+                <owl:onClass rdf:resource="#GeneralizedSymptom"/>
+                <owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <owl:disjointWith rdf:resource="#Fever"/>
-        <owl:disjointWith rdf:resource="#NightSweat"/>
+        <owl:disjointWith rdf:resource="#NightSweating"/>
     </owl:Class>
     
 
@@ -3868,7 +3926,14 @@ Short for Atypical Teratoid/Rhabdoid Tumor</rdfs:comment>
     <!-- http://www.ifomis.org/acgt/1.0#Ataxia -->
 
     <owl:Class rdf:about="#Ataxia">
-        <rdfs:subClassOf rdf:resource="#NervousSystemSymptom"/>
+        <rdfs:subClassOf rdf:resource="#StateOfAffairs"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#hasRole"/>
+                <owl:onClass rdf:resource="#NervousSystemSymptom"/>
+                <owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="#implementedBy"/>
@@ -5278,11 +5343,18 @@ Each of these features is assigned a score ranging from 1 to 3. The scores are t
     <!-- http://www.ifomis.org/acgt/1.0#CardiacArrest -->
 
     <owl:Class rdf:about="#CardiacArrest">
-        <rdfs:subClassOf rdf:resource="#CardiacSymptom"/>
+        <rdfs:subClassOf rdf:resource="#StateOfAffairs"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="#isFunctionalOrStructural"/>
                 <owl:hasValue rdf:resource="#Functional"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#hasRole"/>
+                <owl:onClass rdf:resource="#CardiacSymptom"/>
+                <owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -5300,7 +5372,14 @@ Each of these features is assigned a score ranging from 1 to 3. The scores are t
     <!-- http://www.ifomis.org/acgt/1.0#CardiacMurmur -->
 
     <owl:Class rdf:about="#CardiacMurmur">
-        <rdfs:subClassOf rdf:resource="#CardiacSymptom"/>
+        <rdfs:subClassOf rdf:resource="#StateOfAffairs"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#hasRole"/>
+                <owl:onClass rdf:resource="#CardiacSymptom"/>
+                <owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -6598,9 +6677,9 @@ Each of these features is assigned a score ranging from 1 to 3. The scores are t
     
 
 
-    <!-- http://www.ifomis.org/acgt/1.0#Cough -->
+    <!-- http://www.ifomis.org/acgt/1.0#Coughing -->
 
-    <owl:Class rdf:about="#Cough">
+    <owl:Class rdf:about="#Coughing">
         <rdfs:subClassOf rdf:resource="#OrganismalProcess"/>
         <owl:disjointWith rdf:resource="#Diarrhea"/>
         <owl:disjointWith rdf:resource="#GeneExpression"/>
@@ -8475,14 +8554,6 @@ Rituximab locks onto a protein called CD20, which is found on the surface of one
     
 
 
-    <!-- http://www.ifomis.org/acgt/1.0#Emesis -->
-
-    <owl:Class rdf:about="#Emesis">
-        <rdfs:subClassOf rdf:resource="#AlimentarySystemSymptom"/>
-    </owl:Class>
-    
-
-
     <!-- http://www.ifomis.org/acgt/1.0#Enanthema -->
 
     <owl:Class rdf:about="#Enanthema">
@@ -9154,8 +9225,15 @@ Rituximab locks onto a protein called CD20, which is found on the surface of one
     <!-- http://www.ifomis.org/acgt/1.0#Fever -->
 
     <owl:Class rdf:about="#Fever">
-        <rdfs:subClassOf rdf:resource="#GeneralizedSymptom"/>
-        <owl:disjointWith rdf:resource="#NightSweat"/>
+        <rdfs:subClassOf rdf:resource="#StateOfAffairs"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#hasRole"/>
+                <owl:onClass rdf:resource="#GeneralizedSymptom"/>
+                <owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <owl:disjointWith rdf:resource="#NightSweating"/>
     </owl:Class>
     
 
@@ -10166,7 +10244,14 @@ Rituximab locks onto a protein called CD20, which is found on the surface of one
     <!-- http://www.ifomis.org/acgt/1.0#Glomerulopathy -->
 
     <owl:Class rdf:about="#Glomerulopathy">
-        <rdfs:subClassOf rdf:resource="#UrinarySystemSymptom"/>
+        <rdfs:subClassOf rdf:resource="#StateOfAffairs"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#hasRole"/>
+                <owl:onClass rdf:resource="#UrinarySystemSymptom"/>
+                <owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -10491,7 +10576,14 @@ Rituximab locks onto a protein called CD20, which is found on the surface of one
     <!-- http://www.ifomis.org/acgt/1.0#Headache -->
 
     <owl:Class rdf:about="#Headache">
-        <rdfs:subClassOf rdf:resource="#NervousSystemSymptom"/>
+        <rdfs:subClassOf rdf:resource="#OrganismalProcess"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#hasRole"/>
+                <owl:onClass rdf:resource="#NervousSystemSymptom"/>
+                <owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -10698,7 +10790,14 @@ Rituximab locks onto a protein called CD20, which is found on the surface of one
     <!-- http://www.ifomis.org/acgt/1.0#Hematuria -->
 
     <owl:Class rdf:about="#Hematuria">
-        <rdfs:subClassOf rdf:resource="#GeneralizedSymptom"/>
+        <rdfs:subClassOf rdf:resource="#StateOfAffairs"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#hasRole"/>
+                <owl:onClass rdf:resource="#GeneralizedSymptom"/>
+                <owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -10766,7 +10865,14 @@ Rituximab locks onto a protein called CD20, which is found on the surface of one
     <!-- http://www.ifomis.org/acgt/1.0#Hemiparesis -->
 
     <owl:Class rdf:about="#Hemiparesis">
-        <rdfs:subClassOf rdf:resource="#NervousSystemSymptom"/>
+        <rdfs:subClassOf rdf:resource="#StateOfAffairs"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#hasRole"/>
+                <owl:onClass rdf:resource="#NervousSystemSymptom"/>
+                <owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -11730,7 +11836,14 @@ Rituximab locks onto a protein called CD20, which is found on the surface of one
     <!-- http://www.ifomis.org/acgt/1.0#Hypertension -->
 
     <owl:Class rdf:about="#Hypertension">
-        <rdfs:subClassOf rdf:resource="#VascularSymptom"/>
+        <rdfs:subClassOf rdf:resource="#StateOfAffairs"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#hasRole"/>
+                <owl:onClass rdf:resource="#VascularSymptom"/>
+                <owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="#isFunctionalOrStructural"/>
@@ -11784,7 +11897,14 @@ Rituximab locks onto a protein called CD20, which is found on the surface of one
     <!-- http://www.ifomis.org/acgt/1.0#Hypotension -->
 
     <owl:Class rdf:about="#Hypotension">
-        <rdfs:subClassOf rdf:resource="#VascularSymptom"/>
+        <rdfs:subClassOf rdf:resource="#StateOfAffairs"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#hasRole"/>
+                <owl:onClass rdf:resource="#VascularSymptom"/>
+                <owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="#isFunctionalOrStructural"/>
@@ -11996,7 +12116,14 @@ Rituximab locks onto a protein called CD20, which is found on the surface of one
     <!-- http://www.ifomis.org/acgt/1.0#ImmuneDeficiency -->
 
     <owl:Class rdf:about="#ImmuneDeficiency">
-        <rdfs:subClassOf rdf:resource="#GeneralizedSymptom"/>
+        <rdfs:subClassOf rdf:resource="#StateOfAffairs"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#hasRole"/>
+                <owl:onClass rdf:resource="#GeneralizedSymptom"/>
+                <owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -12403,7 +12530,14 @@ Rituximab locks onto a protein called CD20, which is found on the surface of one
     <!-- http://www.ifomis.org/acgt/1.0#IntentionTremor -->
 
     <owl:Class rdf:about="#IntentionTremor">
-        <rdfs:subClassOf rdf:resource="#NervousSystemSymptom"/>
+        <rdfs:subClassOf rdf:resource="#OrganismalProcess"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#hasRole"/>
+                <owl:onClass rdf:resource="#NervousSystemSymptom"/>
+                <owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -15331,11 +15465,18 @@ MRT is short for Malign Rhabdoid Tumor</rdfs:comment>
     <!-- http://www.ifomis.org/acgt/1.0#Monoparesis -->
 
     <owl:Class rdf:about="#Monoparesis">
-        <rdfs:subClassOf rdf:resource="#NervousSystemSymptom"/>
+        <rdfs:subClassOf rdf:resource="#StateOfAffairs"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="#implementedBy"/>
                 <owl:onClass rdf:resource="#FreeUpperLimb"/>
+                <owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#hasRole"/>
+                <owl:onClass rdf:resource="#NervousSystemSymptom"/>
                 <owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -15469,7 +15610,14 @@ MRT is short for Malign Rhabdoid Tumor</rdfs:comment>
     <!-- http://www.ifomis.org/acgt/1.0#Myalgia -->
 
     <owl:Class rdf:about="#Myalgia">
-        <rdfs:subClassOf rdf:resource="#MusculoskeletalSystemSymptom"/>
+        <rdfs:subClassOf rdf:resource="#StateOfAffairs"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#hasRole"/>
+                <owl:onClass rdf:resource="#MusculoskeletalSystemSymptom"/>
+                <owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -15702,7 +15850,14 @@ MRT is short for Malign Rhabdoid Tumor</rdfs:comment>
     <!-- http://www.ifomis.org/acgt/1.0#Nausea -->
 
     <owl:Class rdf:about="#Nausea">
-        <rdfs:subClassOf rdf:resource="#AlimentarySystemSymptom"/>
+        <rdfs:subClassOf rdf:resource="#StateOfAffairs"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#hasRole"/>
+                <owl:onClass rdf:resource="#AlimentarySystemSymptom"/>
+                <owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -16020,10 +16175,17 @@ MRT is short for Malign Rhabdoid Tumor</rdfs:comment>
     
 
 
-    <!-- http://www.ifomis.org/acgt/1.0#NightSweat -->
+    <!-- http://www.ifomis.org/acgt/1.0#NightSweating -->
 
-    <owl:Class rdf:about="#NightSweat">
-        <rdfs:subClassOf rdf:resource="#GeneralizedSymptom"/>
+    <owl:Class rdf:about="#NightSweating">
+        <rdfs:subClassOf rdf:resource="#OrganismalProcess"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#hasRole"/>
+                <owl:onClass rdf:resource="#GeneralizedSymptom"/>
+                <owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -16291,7 +16453,14 @@ MRT is short for Malign Rhabdoid Tumor</rdfs:comment>
     <!-- http://www.ifomis.org/acgt/1.0#Nystagmus -->
 
     <owl:Class rdf:about="#Nystagmus">
-        <rdfs:subClassOf rdf:resource="#NervousSystemSymptom"/>
+        <rdfs:subClassOf rdf:resource="#OrganismalProcess"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#hasRole"/>
+                <owl:onClass rdf:resource="#NervousSystemSymptom"/>
+                <owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -16550,6 +16719,13 @@ MRT is short for Malign Rhabdoid Tumor</rdfs:comment>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="#undergoes"/>
+                <owl:onClass rdf:resource="#Coughing"/>
+                <owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="#hasBirthDate"/>
                 <owl:someValuesFrom rdf:resource="&xsd;date"/>
             </owl:Restriction>
@@ -16605,13 +16781,6 @@ MRT is short for Malign Rhabdoid Tumor</rdfs:comment>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="#undergoes"/>
                 <owl:onClass rdf:resource="#Labor"/>
-                <owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="#undergoes"/>
-                <owl:onClass rdf:resource="#Cough"/>
                 <owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -17176,10 +17345,17 @@ This combination of chemotherapy is sometimes referred to as the FOLFOX regimen,
     
 
 
-    <!-- http://www.ifomis.org/acgt/1.0#Papilloedema -->
+    <!-- http://www.ifomis.org/acgt/1.0#Papilledema -->
 
-    <owl:Class rdf:about="#Papilloedema">
-        <rdfs:subClassOf rdf:resource="#NervousSystemSymptom"/>
+    <owl:Class rdf:about="#Papilledema">
+        <rdfs:subClassOf rdf:resource="#StateOfAffairs"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#hasRole"/>
+                <owl:onClass rdf:resource="#NervousSystemSymptom"/>
+                <owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -17223,7 +17399,14 @@ This combination of chemotherapy is sometimes referred to as the FOLFOX regimen,
     <!-- http://www.ifomis.org/acgt/1.0#Paraparesis -->
 
     <owl:Class rdf:about="#Paraparesis">
-        <rdfs:subClassOf rdf:resource="#NervousSystemSymptom"/>
+        <rdfs:subClassOf rdf:resource="#StateOfAffairs"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#hasRole"/>
+                <owl:onClass rdf:resource="#NervousSystemSymptom"/>
+                <owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -17231,12 +17414,19 @@ This combination of chemotherapy is sometimes referred to as the FOLFOX regimen,
     <!-- http://www.ifomis.org/acgt/1.0#Paraplegia -->
 
     <owl:Class rdf:about="#Paraplegia">
-        <rdfs:subClassOf rdf:resource="#NervousSystemSymptom"/>
+        <rdfs:subClassOf rdf:resource="#StateOfAffairs"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="#hasPlace"/>
                 <owl:onClass rdf:resource="#Vertebra"/>
                 <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#hasRole"/>
+                <owl:onClass rdf:resource="#NervousSystemSymptom"/>
+                <owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -18403,7 +18593,14 @@ This combination of chemotherapy is sometimes referred to as the FOLFOX regimen,
     <!-- http://www.ifomis.org/acgt/1.0#Proteinuria -->
 
     <owl:Class rdf:about="#Proteinuria">
-        <rdfs:subClassOf rdf:resource="#GeneralizedSymptom"/>
+        <rdfs:subClassOf rdf:resource="#StateOfAffairs"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#hasRole"/>
+                <owl:onClass rdf:resource="#GeneralizedSymptom"/>
+                <owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -18539,7 +18736,14 @@ This combination of chemotherapy is sometimes referred to as the FOLFOX regimen,
     <!-- http://www.ifomis.org/acgt/1.0#PulmonaryEdema -->
 
     <owl:Class rdf:about="#PulmonaryEdema">
-        <rdfs:subClassOf rdf:resource="#RespiratorySystemSymptom"/>
+        <rdfs:subClassOf rdf:resource="#StateOfAffairs"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#hasRole"/>
+                <owl:onClass rdf:resource="#RespiratorySystemSymptom"/>
+                <owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -19689,7 +19893,14 @@ This combination of chemotherapy is sometimes referred to as the FOLFOX regimen,
     <!-- http://www.ifomis.org/acgt/1.0#SensoryDisturbance -->
 
     <owl:Class rdf:about="#SensoryDisturbance">
-        <rdfs:subClassOf rdf:resource="#NervousSystemSymptom"/>
+        <rdfs:subClassOf rdf:resource="#StateOfAffairs"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#hasRole"/>
+                <owl:onClass rdf:resource="#NervousSystemSymptom"/>
+                <owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -19943,7 +20154,14 @@ This combination of chemotherapy is sometimes referred to as the FOLFOX regimen,
     <!-- http://www.ifomis.org/acgt/1.0#SkinEdema -->
 
     <owl:Class rdf:about="#SkinEdema">
-        <rdfs:subClassOf rdf:resource="#IntergumentarySystemSymptom"/>
+        <rdfs:subClassOf rdf:resource="#StateOfAffairs"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#hasRole"/>
+                <owl:onClass rdf:resource="#IntergumentarySystemSymptom"/>
+                <owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -20657,6 +20875,12 @@ This combination of chemotherapy is sometimes referred to as the FOLFOX regimen,
 
     <owl:Class rdf:about="#StateOfAffairs">
         <rdfs:subClassOf rdf:resource="&span;ProcessualEntity"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#characterizedBy"/>
+                <owl:someValuesFrom rdf:resource="&snap;Quality"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -21152,7 +21376,7 @@ Syn: Stem Cell Apharesis</rdfs:comment>
                 </owl:unionOf>
             </owl:Class>
         </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="&snap;Quality"/>
+        <rdfs:subClassOf rdf:resource="&snap;Role"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="#symptomOf"/>
@@ -21669,7 +21893,16 @@ Syn: Stem Cell Apharesis</rdfs:comment>
     <!-- http://www.ifomis.org/acgt/1.0#Tetraparesis -->
 
     <owl:Class rdf:about="#Tetraparesis">
-        <rdfs:subClassOf rdf:resource="#NervousSystemSymptom"/>
+        <rdfs:subClassOf rdf:resource="#StateOfAffairs"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#hasRole"/>
+                <owl:onClass rdf:resource="#NervousSystemSymptom"/>
+                <owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment
+            >aka &quot;Quadriplegia&quot;</rdfs:comment>
     </owl:Class>
     
 
@@ -21976,11 +22209,18 @@ Syn: Stem Cell Apharesis</rdfs:comment>
     <!-- http://www.ifomis.org/acgt/1.0#Thrombosis -->
 
     <owl:Class rdf:about="#Thrombosis">
-        <rdfs:subClassOf rdf:resource="#VascularSymptom"/>
+        <rdfs:subClassOf rdf:resource="#StateOfAffairs"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="#isFunctionalOrStructural"/>
                 <owl:hasValue rdf:resource="#Functional"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#hasRole"/>
+                <owl:onClass rdf:resource="#VascularSymptom"/>
+                <owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -22737,7 +22977,14 @@ Syn: Stem Cell Apharesis</rdfs:comment>
     <!-- http://www.ifomis.org/acgt/1.0#Unconsiousness -->
 
     <owl:Class rdf:about="#Unconsiousness">
-        <rdfs:subClassOf rdf:resource="#NervousSystemSymptom"/>
+        <rdfs:subClassOf rdf:resource="#StateOfAffairs"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#hasRole"/>
+                <owl:onClass rdf:resource="#NervousSystemSymptom"/>
+                <owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -23124,6 +23371,13 @@ Syn: Stem Cell Apharesis</rdfs:comment>
 
     <owl:Class rdf:about="#Vomiting">
         <rdfs:subClassOf rdf:resource="#OrganismalProcess"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#hasRole"/>
+                <owl:onClass rdf:resource="#AlimentarySystemSymptom"/>
+                <owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -24001,6 +24255,12 @@ Syn: Stem Cell Apharesis</rdfs:comment>
     <!-- http://www.ifomis.org/bfo/1.1/snap#Continuant -->
 
     <owl:Class rdf:about="&snap;Continuant"/>
+    
+
+
+    <!-- http://www.ifomis.org/bfo/1.1/snap#Disposition -->
+
+    <owl:Class rdf:about="&snap;Disposition"/>
     
 
 
