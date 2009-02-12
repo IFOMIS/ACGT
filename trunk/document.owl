@@ -24768,7 +24768,16 @@ Syn: Stem Cell Apharesis</rdfs:comment>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="#hasOutcome"/>
-                <owl:someValuesFrom rdf:resource="&bfo;Entity"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="#StateOfAffairs"/>
+                            <rdf:Description rdf:about="&snap;Object"/>
+                            <rdf:Description rdf:about="&snap;ObjectAggregate"/>
+                            <rdf:Description rdf:about="&span;Process"/>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -24798,14 +24807,23 @@ Syn: Stem Cell Apharesis</rdfs:comment>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="#hasDate"/>
-                <owl:someValuesFrom rdf:resource="&xsd;date"/>
+                <owl:onProperty rdf:resource="#hasOutcome"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="#StateOfAffairs"/>
+                            <rdf:Description rdf:about="&snap;Object"/>
+                            <rdf:Description rdf:about="&snap;ObjectAggregate"/>
+                            <rdf:Description rdf:about="&span;Process"/>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="#hasOutcome"/>
-                <owl:someValuesFrom rdf:resource="&bfo;Entity"/>
+                <owl:onProperty rdf:resource="#hasDate"/>
+                <owl:someValuesFrom rdf:resource="&xsd;date"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -24830,7 +24848,16 @@ Syn: Stem Cell Apharesis</rdfs:comment>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="#hasOutcome"/>
-                <owl:someValuesFrom rdf:resource="&bfo;Entity"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="#StateOfAffairs"/>
+                            <rdf:Description rdf:about="&snap;Object"/>
+                            <rdf:Description rdf:about="&snap;ObjectAggregate"/>
+                            <rdf:Description rdf:about="&span;Process"/>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
