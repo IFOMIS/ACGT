@@ -56,7 +56,6 @@
         <dc:creator rdf:datatype="&xsd;string"
             >Mathias Brochhausen</dc:creator>
         <dc:creator rdf:datatype="&xsd;string">Sarah Lerch</dc:creator>
-        <owl:imports rdf:resource="http://protege.stanford.edu/plugins/owl/dc/protege-dc.owl"/>
         <owl:imports rdf:resource="http://www.ifomis.org/bfo/1.1"/>
         <owl:imports rdf:resource="http://www.ifomis.org/obo/ro/1.0"/>
     </owl:Ontology>
