@@ -15795,6 +15795,13 @@ MRT is short for Malign Rhabdoid Tumor</rdfs:comment>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ro;hasPart"/>
+                <owl:onClass rdf:resource="#TumorCapsule"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string">aka tumor</rdfs:comment>
     </owl:Class>
     
