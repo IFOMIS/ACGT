@@ -14349,6 +14349,14 @@ MRT is short for Malign Rhabdoid Tumor</rdfs:comment>
     
 
 
+    <!-- http://www.ifomis.org/acgt/1.0#MajorRupture -->
+
+    <owl:Class rdf:about="#MajorRupture">
+        <rdfs:subClassOf rdf:resource="#Rupture"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.ifomis.org/acgt/1.0#Male -->
 
     <owl:Class rdf:about="#Male">
@@ -15280,6 +15288,14 @@ MRT is short for Malign Rhabdoid Tumor</rdfs:comment>
     <owl:Class rdf:about="#MinorImpairmentState">
         <rdfs:subClassOf rdf:resource="#GeneralHealthRating"/>
         <owl:disjointWith rdf:resource="#NormalActivityState"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ifomis.org/acgt/1.0#MinorRupture -->
+
+    <owl:Class rdf:about="#MinorRupture">
+        <rdfs:subClassOf rdf:resource="#Rupture"/>
     </owl:Class>
     
 
