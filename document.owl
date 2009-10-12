@@ -19311,6 +19311,14 @@ This combination of chemotherapy is sometimes referred to as the FOLFOX regimen,
     
 
 
+    <!-- http://www.ifomis.org/acgt/1.0#RegressiveTypeNephroblastoma -->
+
+    <owl:Class rdf:about="#RegressiveTypeNephroblastoma">
+        <rdfs:subClassOf rdf:resource="#IntermediateRiskNephroblastoma"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.ifomis.org/acgt/1.0#RegularCheckup -->
 
     <owl:Class rdf:about="#RegularCheckup">
