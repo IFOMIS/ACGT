@@ -23338,6 +23338,14 @@ Syn: Stem Cell Apharesis</rdfs:comment>
     
 
 
+    <!-- http://www.ifomis.org/acgt/1.0#WoundDehiscence -->
+
+    <owl:Class rdf:about="#WoundDehiscence">
+        <rdfs:subClassOf rdf:resource="#OrganismalProcess"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.ifomis.org/acgt/1.0#Wrist -->
 
     <owl:Class rdf:about="#Wrist">
@@ -24783,19 +24791,19 @@ Syn: Stem Cell Apharesis</rdfs:comment>
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDifferent"/>
         <owl:distinctMembers rdf:parseType="Collection">
-            <rdf:Description rdf:about="#StageII"/>
-            <rdf:Description rdf:about="#StageIV"/>
-            <rdf:Description rdf:about="#StageI"/>
-            <rdf:Description rdf:about="#StageV"/>
-            <rdf:Description rdf:about="#StageIII"/>
+            <rdf:Description rdf:about="#Center"/>
+            <rdf:Description rdf:about="#Left"/>
+            <rdf:Description rdf:about="#Right"/>
         </owl:distinctMembers>
     </rdf:Description>
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDifferent"/>
         <owl:distinctMembers rdf:parseType="Collection">
-            <rdf:Description rdf:about="#Center"/>
-            <rdf:Description rdf:about="#Left"/>
-            <rdf:Description rdf:about="#Right"/>
+            <rdf:Description rdf:about="#StageII"/>
+            <rdf:Description rdf:about="#StageIV"/>
+            <rdf:Description rdf:about="#StageI"/>
+            <rdf:Description rdf:about="#StageV"/>
+            <rdf:Description rdf:about="#StageIII"/>
         </owl:distinctMembers>
     </rdf:Description>
     <rdf:Description>
