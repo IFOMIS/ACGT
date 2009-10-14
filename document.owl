@@ -6833,6 +6833,13 @@ Each of these features is assigned a score ranging from 1 to 3. The scores are t
 
     <owl:Class rdf:about="#CompletenessLevel">
         <rdfs:subClassOf rdf:resource="&snap;Quality"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#isQualityOf"/>
+                <owl:onClass rdf:resource="#SurgicalProcedure"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -25176,6 +25183,13 @@ Syn: Stem Cell Apharesis</rdfs:comment>
         </owl:distinctMembers>
     </rdf:Description>
     <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDifferent"/>
+        <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="#Functional"/>
+            <rdf:Description rdf:about="#Structural"/>
+        </owl:distinctMembers>
+    </rdf:Description>
+    <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
             <rdf:Description rdf:about="#G1"/>
@@ -25184,13 +25198,6 @@ Syn: Stem Cell Apharesis</rdfs:comment>
             <rdf:Description rdf:about="#G4"/>
             <rdf:Description rdf:about="#GX"/>
         </owl:members>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDifferent"/>
-        <owl:distinctMembers rdf:parseType="Collection">
-            <rdf:Description rdf:about="#Functional"/>
-            <rdf:Description rdf:about="#Structural"/>
-        </owl:distinctMembers>
     </rdf:Description>
 </rdf:RDF>
 
