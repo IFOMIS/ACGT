@@ -3580,10 +3580,18 @@ Short for Atypical Teratoid/Rhabdoid Tumor</rdfs:comment>
     
 
 
+    <!-- http://www.ifomis.org/acgt/1.0#AdhesionIleus -->
+
+    <owl:Class rdf:about="#AdhesionIleus">
+        <rdfs:subClassOf rdf:resource="#StateOfAffairs"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.ifomis.org/acgt/1.0#AdiposeTissue -->
 
     <owl:Class rdf:about="#AdiposeTissue">
-        <rdfs:subClassOf rdf:resource="#PortionOfSoftTissue"/>
+        <rdfs:subClassOf rdf:resource="#PortionOfTissue"/>
     </owl:Class>
     
 
@@ -12909,6 +12917,14 @@ Further treatment can be protocol treatment and non-protocol treatment. E.g. it 
         <owl:disjointWith rdf:resource="#Radiotherapist"/>
         <owl:disjointWith rdf:resource="#Surgeon"/>
         <owl:disjointWith rdf:resource="#Urologist"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ifomis.org/acgt/1.0#IntestinalInfarction -->
+
+    <owl:Class rdf:about="#IntestinalInfarction">
+        <rdfs:subClassOf rdf:resource="#Infarction"/>
     </owl:Class>
     
 
@@ -25183,13 +25199,6 @@ Syn: Stem Cell Apharesis</rdfs:comment>
         </owl:distinctMembers>
     </rdf:Description>
     <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDifferent"/>
-        <owl:distinctMembers rdf:parseType="Collection">
-            <rdf:Description rdf:about="#Functional"/>
-            <rdf:Description rdf:about="#Structural"/>
-        </owl:distinctMembers>
-    </rdf:Description>
-    <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
             <rdf:Description rdf:about="#G1"/>
@@ -25198,6 +25207,13 @@ Syn: Stem Cell Apharesis</rdfs:comment>
             <rdf:Description rdf:about="#G4"/>
             <rdf:Description rdf:about="#GX"/>
         </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDifferent"/>
+        <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="#Functional"/>
+            <rdf:Description rdf:about="#Structural"/>
+        </owl:distinctMembers>
     </rdf:Description>
 </rdf:RDF>
 
