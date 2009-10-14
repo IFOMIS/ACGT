@@ -9387,6 +9387,14 @@ Rituximab locks onto a protein called CD20, which is found on the surface of one
     
 
 
+    <!-- http://www.ifomis.org/acgt/1.0#Extraregional -->
+
+    <owl:Class rdf:about="#Extraregional">
+        <rdfs:subClassOf rdf:resource="#Regionality"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.ifomis.org/acgt/1.0#ExtrarenalPrimaryTumor -->
 
     <owl:Class rdf:about="#ExtrarenalPrimaryTumor">
@@ -14240,6 +14248,13 @@ Further treatment can be protocol treatment and non-protocol treatment. E.g. it 
 
     <owl:Class rdf:about="#LymphNode">
         <rdfs:subClassOf rdf:resource="#OrganComponent"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#hasQuality"/>
+                <owl:onClass rdf:resource="#Regionality"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -19507,6 +19522,22 @@ This combination of chemotherapy is sometimes referred to as the FOLFOX regimen,
 
     <owl:Class rdf:about="#RegionOfVisceralPeritoneum">
         <rdfs:subClassOf rdf:resource="#RegionOfPeritoneum"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ifomis.org/acgt/1.0#Regional -->
+
+    <owl:Class rdf:about="#Regional">
+        <rdfs:subClassOf rdf:resource="#Regionality"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ifomis.org/acgt/1.0#Regionality -->
+
+    <owl:Class rdf:about="#Regionality">
+        <rdfs:subClassOf rdf:resource="&snap;Quality"/>
     </owl:Class>
     
 
@@ -25145,13 +25176,6 @@ Syn: Stem Cell Apharesis</rdfs:comment>
         </owl:distinctMembers>
     </rdf:Description>
     <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDifferent"/>
-        <owl:distinctMembers rdf:parseType="Collection">
-            <rdf:Description rdf:about="#Functional"/>
-            <rdf:Description rdf:about="#Structural"/>
-        </owl:distinctMembers>
-    </rdf:Description>
-    <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
             <rdf:Description rdf:about="#G1"/>
@@ -25160,6 +25184,13 @@ Syn: Stem Cell Apharesis</rdfs:comment>
             <rdf:Description rdf:about="#G4"/>
             <rdf:Description rdf:about="#GX"/>
         </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDifferent"/>
+        <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="#Functional"/>
+            <rdf:Description rdf:about="#Structural"/>
+        </owl:distinctMembers>
     </rdf:Description>
 </rdf:RDF>
 
