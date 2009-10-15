@@ -7692,6 +7692,14 @@ The de Gramont regimen is one of several different ways of combining these two d
     
 
 
+    <!-- http://www.ifomis.org/acgt/1.0#Delay -->
+
+    <owl:Class rdf:about="#Delay">
+        <rdfs:subClassOf rdf:resource="&snap;Role"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.ifomis.org/acgt/1.0#Density -->
 
     <owl:Class rdf:about="#Density">
@@ -14177,6 +14185,14 @@ Further treatment can be protocol treatment and non-protocol treatment. E.g. it 
     
 
 
+    <!-- http://www.ifomis.org/acgt/1.0#LokallyRecidive -->
+
+    <owl:Class rdf:about="#LokallyRecidive">
+        <rdfs:subClassOf rdf:resource="#Recidivism"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.ifomis.org/acgt/1.0#Lomustine -->
 
     <owl:Class rdf:about="#Lomustine">
@@ -19425,6 +19441,14 @@ This combination of chemotherapy is sometimes referred to as the FOLFOX regimen,
     
 
 
+    <!-- http://www.ifomis.org/acgt/1.0#Recidivism -->
+
+    <owl:Class rdf:about="#Recidivism">
+        <rdfs:subClassOf rdf:resource="&snap;Quality"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.ifomis.org/acgt/1.0#ReconstructiveBreastSurgery -->
 
     <owl:Class rdf:about="#ReconstructiveBreastSurgery">
@@ -20069,6 +20093,14 @@ This combination of chemotherapy is sometimes referred to as the FOLFOX regimen,
     
 
 
+    <!-- http://www.ifomis.org/acgt/1.0#SecondaryBenignTumor -->
+
+    <owl:Class rdf:about="#SecondaryBenignTumor">
+        <rdfs:subClassOf rdf:resource="#SecondaryTumor"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.ifomis.org/acgt/1.0#SecondaryClinicalStudy -->
 
     <owl:Class rdf:about="#SecondaryClinicalStudy">
@@ -20094,7 +20126,7 @@ This combination of chemotherapy is sometimes referred to as the FOLFOX regimen,
     <!-- http://www.ifomis.org/acgt/1.0#SecondaryMalignTumor -->
 
     <owl:Class rdf:about="#SecondaryMalignTumor">
-        <rdfs:subClassOf rdf:resource="&snap;Role"/>
+        <rdfs:subClassOf rdf:resource="#SecondaryTumor"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="#implementedBy"/>
@@ -20110,6 +20142,14 @@ This combination of chemotherapy is sometimes referred to as the FOLFOX regimen,
 
     <owl:Class rdf:about="#SecondaryMetastasis">
         <rdfs:subClassOf rdf:resource="#Metastasis"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ifomis.org/acgt/1.0#SecondaryTumor -->
+
+    <owl:Class rdf:about="#SecondaryTumor">
+        <rdfs:subClassOf rdf:resource="&snap;Role"/>
     </owl:Class>
     
 
