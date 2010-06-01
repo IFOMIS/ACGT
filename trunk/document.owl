@@ -462,24 +462,6 @@
     
 
 
-    <!-- http://www.ifomis.org/acgt/1.0#examinedBy -->
-
-    <owl:ObjectProperty rdf:about="#examinedBy">
-        <rdfs:range rdf:resource="#HumanBeing"/>
-        <rdfs:domain rdf:resource="#SubstanceSample"/>
-        <owl:inverseOf rdf:resource="#examines"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://www.ifomis.org/acgt/1.0#examines -->
-
-    <owl:ObjectProperty rdf:about="#examines">
-        <rdfs:range rdf:resource="#SubstanceSample"/>
-    </owl:ObjectProperty>
-    
-
-
     <!-- http://www.ifomis.org/acgt/1.0#excisedBy -->
 
     <owl:ObjectProperty rdf:about="#excisedBy">
