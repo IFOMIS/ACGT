@@ -210,18 +210,6 @@
     
 
 
-    <!-- http://www.ifomis.org/acgt/1.0#catalystFor -->
-
-    <owl:ObjectProperty rdf:about="&acgt;catalystFor">
-        <rdfs:comment rdf:datatype="&xsd;string">Ideally, the range should be confined to chemical processes</rdfs:comment>
-        <rdfs:domain rdf:resource="&acgt;ChemicalSubstance"/>
-        <rdfs:subPropertyOf rdf:resource="&acgt;facilitates"/>
-        <owl:inverseOf rdf:resource="&acgt;hasCatalyst"/>
-        <rdfs:range rdf:resource="&span;ProcessualEntity"/>
-    </owl:ObjectProperty>
-    
-
-
     <!-- http://www.ifomis.org/acgt/1.0#causedBy -->
 
     <owl:ObjectProperty rdf:about="&acgt;causedBy">
@@ -495,27 +483,6 @@
     
 
 
-    <!-- http://www.ifomis.org/acgt/1.0#facilitatedBy -->
-
-    <owl:ObjectProperty rdf:about="&acgt;facilitatedBy">
-        <rdfs:range rdf:resource="&snap;Object"/>
-        <rdfs:domain rdf:resource="&span;ProcessualEntity"/>
-        <rdfs:subPropertyOf rdf:resource="&ro;hasParticipant"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://www.ifomis.org/acgt/1.0#facilitates -->
-
-    <owl:ObjectProperty rdf:about="&acgt;facilitates">
-        <owl:inverseOf rdf:resource="&acgt;facilitatedBy"/>
-        <rdfs:domain rdf:resource="&snap;Object"/>
-        <rdfs:range rdf:resource="&span;ProcessualEntity"/>
-        <rdfs:subPropertyOf rdf:resource="&ro;participatesIn"/>
-    </owl:ObjectProperty>
-    
-
-
     <!-- http://www.ifomis.org/acgt/1.0#followUpOf -->
 
     <owl:ObjectProperty rdf:about="&acgt;followUpOf">
@@ -677,16 +644,6 @@
                 </owl:unionOf>
             </owl:Class>
         </rdfs:domain>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://www.ifomis.org/acgt/1.0#hasCatalyst -->
-
-    <owl:ObjectProperty rdf:about="&acgt;hasCatalyst">
-        <rdfs:range rdf:resource="&acgt;ChemicalSubstance"/>
-        <rdfs:subPropertyOf rdf:resource="&acgt;facilitatedBy"/>
-        <rdfs:domain rdf:resource="&span;ProcessualEntity"/>
     </owl:ObjectProperty>
     
 
