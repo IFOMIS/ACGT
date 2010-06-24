@@ -615,6 +615,7 @@
     <owl:ObjectProperty rdf:about="&acgt;hasBirth">
         <rdfs:range rdf:resource="&acgt;Birth"/>
         <rdfs:domain rdf:resource="&acgt;Organism"/>
+        <rdfs:subPropertyOf rdf:resource="&acgt;magnitudeOf"/>
     </owl:ObjectProperty>
     
 
@@ -1853,23 +1854,6 @@
     
 
 
-    <!-- http://www.ifomis.org/acgt/1.0#residenceOf -->
-
-    <owl:ObjectProperty rdf:about="&acgt;residenceOf">
-        <rdfs:range rdf:resource="&acgt;HumanBeing"/>
-        <owl:inverseOf rdf:resource="&acgt;residentOf"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://www.ifomis.org/acgt/1.0#residentOf -->
-
-    <owl:ObjectProperty rdf:about="&acgt;residentOf">
-        <rdfs:domain rdf:resource="&acgt;HumanBeing"/>
-    </owl:ObjectProperty>
-    
-
-
     <!-- http://www.ifomis.org/acgt/1.0#revealedBy -->
 
     <owl:ObjectProperty rdf:about="&acgt;revealedBy">
@@ -2640,13 +2624,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&acgt;reveals"/>
-                <owl:someValuesFrom rdf:resource="&acgt;ANCount"/>
+                <owl:allValuesFrom rdf:resource="&acgt;ANCount"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&acgt;reveals"/>
-                <owl:allValuesFrom rdf:resource="&acgt;ANCount"/>
+                <owl:someValuesFrom rdf:resource="&acgt;ANCount"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string">CountingAbsoluteNeutrophils</rdfs:comment>
@@ -2847,14 +2831,14 @@ Short for Atypical Teratoid/Rhabdoid Tumor</rdfs:comment>
         <rdfs:subClassOf rdf:resource="&acgt;Identifier"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;hasStringValue"/>
-                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+                <owl:onProperty rdf:resource="&ro;partOf"/>
+                <owl:someValuesFrom rdf:resource="&acgt;Address"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&ro;partOf"/>
-                <owl:someValuesFrom rdf:resource="&acgt;Address"/>
+                <owl:onProperty rdf:resource="&acgt;hasStringValue"/>
+                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -3052,13 +3036,13 @@ Short for Atypical Teratoid/Rhabdoid Tumor</rdfs:comment>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&acgt;reveals"/>
-                <owl:someValuesFrom rdf:resource="&acgt;ALPLevel"/>
+                <owl:allValuesFrom rdf:resource="&acgt;ALPLevel"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&acgt;reveals"/>
-                <owl:allValuesFrom rdf:resource="&acgt;ALPLevel"/>
+                <owl:someValuesFrom rdf:resource="&acgt;ALPLevel"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -3174,8 +3158,8 @@ Short for Atypical Teratoid/Rhabdoid Tumor</rdfs:comment>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&ro;locatedIn"/>
-                <owl:allValuesFrom rdf:resource="&acgt;Organism"/>
+                <owl:onProperty rdf:resource="&acgt;hasQuality"/>
+                <owl:someValuesFrom rdf:resource="&acgt;Normality"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -3187,8 +3171,8 @@ Short for Atypical Teratoid/Rhabdoid Tumor</rdfs:comment>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;hasQuality"/>
-                <owl:someValuesFrom rdf:resource="&acgt;Normality"/>
+                <owl:onProperty rdf:resource="&ro;locatedIn"/>
+                <owl:allValuesFrom rdf:resource="&acgt;Organism"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -3579,13 +3563,6 @@ Short for Atypical Teratoid/Rhabdoid Tumor</rdfs:comment>
         <rdfs:subClassOf rdf:resource="&acgt;StateOfAffairs"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;hasRole"/>
-                <owl:onClass rdf:resource="&acgt;NervousSystemSymptom"/>
-                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="&acgt;undergoneBy"/>
                 <owl:onClass rdf:resource="&acgt;Trunk"/>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
@@ -3595,6 +3572,13 @@ Short for Atypical Teratoid/Rhabdoid Tumor</rdfs:comment>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&acgt;undergoneBy"/>
                 <owl:onClass rdf:resource="&acgt;FreeLimb"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;hasRole"/>
+                <owl:onClass rdf:resource="&acgt;NervousSystemSymptom"/>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3789,14 +3773,14 @@ Short for Atypical Teratoid/Rhabdoid Tumor</rdfs:comment>
         <rdfs:subClassOf rdf:resource="&acgt;Neoplasm"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;hasMalignancy"/>
-                <owl:hasValue rdf:resource="&acgt;NoMalignancy"/>
+                <owl:onProperty rdf:resource="&acgt;hasMetastasis"/>
+                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:cardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;hasMetastasis"/>
-                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:cardinality>
+                <owl:onProperty rdf:resource="&acgt;hasMalignancy"/>
+                <owl:hasValue rdf:resource="&acgt;NoMalignancy"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <owl:disjointWith rdf:resource="&acgt;MalignNeoplasm"/>
@@ -4000,14 +3984,14 @@ Short for Atypical Teratoid/Rhabdoid Tumor</rdfs:comment>
         <rdfs:subClassOf rdf:resource="&acgt;DiagnosticProcess"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;hasOutcome"/>
-                <owl:someValuesFrom rdf:resource="&acgt;HistologicalSample"/>
+                <owl:onProperty rdf:resource="&acgt;undergoneBy"/>
+                <owl:someValuesFrom rdf:resource="&acgt;Organism"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;undergoneBy"/>
-                <owl:someValuesFrom rdf:resource="&acgt;Organism"/>
+                <owl:onProperty rdf:resource="&acgt;hasOutcome"/>
+                <owl:someValuesFrom rdf:resource="&acgt;HistologicalSample"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <owl:disjointWith rdf:resource="&acgt;ClinicalExamination"/>
@@ -4021,15 +4005,15 @@ Short for Atypical Teratoid/Rhabdoid Tumor</rdfs:comment>
         <rdfs:subClassOf rdf:resource="&acgt;TechnicalObject"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;hasQuality"/>
-                <owl:onClass rdf:resource="&acgt;Magnitude"/>
+                <owl:onProperty rdf:resource="&ro;participatesIn"/>
+                <owl:onClass rdf:resource="&acgt;BiopsyWithoutIncision"/>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&ro;participatesIn"/>
-                <owl:onClass rdf:resource="&acgt;BiopsyWithoutIncision"/>
+                <owl:onProperty rdf:resource="&acgt;hasQuality"/>
+                <owl:onClass rdf:resource="&acgt;Magnitude"/>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -4068,13 +4052,13 @@ Short for Atypical Teratoid/Rhabdoid Tumor</rdfs:comment>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&acgt;processStartOf"/>
-                <owl:someValuesFrom rdf:resource="&acgt;Life"/>
+                <owl:allValuesFrom rdf:resource="&acgt;Life"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&acgt;processStartOf"/>
-                <owl:allValuesFrom rdf:resource="&acgt;Life"/>
+                <owl:someValuesFrom rdf:resource="&acgt;Life"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <owl:disjointWith rdf:resource="&acgt;MeasuringProcessStart"/>
@@ -4172,15 +4156,15 @@ Short for Atypical Teratoid/Rhabdoid Tumor</rdfs:comment>
         <rdfs:subClassOf rdf:resource="&acgt;SubstanceSample"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&ro;contains"/>
-                <owl:onClass rdf:resource="&acgt;NumberOfBloodCells"/>
-                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+                <owl:onProperty rdf:resource="&acgt;sampledFrom"/>
+                <owl:someValuesFrom rdf:resource="&acgt;Organism"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;sampledFrom"/>
-                <owl:someValuesFrom rdf:resource="&acgt;Organism"/>
+                <owl:onProperty rdf:resource="&ro;contains"/>
+                <owl:onClass rdf:resource="&acgt;NumberOfBloodCells"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <owl:disjointWith rdf:resource="&acgt;HistologicalSample"/>
@@ -4706,15 +4690,15 @@ Each of these features is assigned a score ranging from 1 to 3. The scores are t
         <rdfs:subClassOf rdf:resource="&acgt;Document"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;undergoes"/>
-                <owl:onClass rdf:resource="&acgt;FillingInCaseReportForm"/>
-                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+                <owl:onProperty rdf:resource="&ro;hasPart"/>
+                <owl:someValuesFrom rdf:resource="&acgt;HospitalIdentifier"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&ro;hasPart"/>
-                <owl:someValuesFrom rdf:resource="&acgt;HospitalIdentifier"/>
+                <owl:onProperty rdf:resource="&acgt;undergoes"/>
+                <owl:onClass rdf:resource="&acgt;FillingInCaseReportForm"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <owl:disjointWith rdf:resource="&acgt;ConsentForm"/>
@@ -4960,15 +4944,15 @@ Each of these features is assigned a score ranging from 1 to 3. The scores are t
         <rdfs:subClassOf rdf:resource="&acgt;StateOfAffairs"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;hasRole"/>
-                <owl:onClass rdf:resource="&acgt;CardiacSymptom"/>
-                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+                <owl:onProperty rdf:resource="&acgt;isFunctionalOrStructural"/>
+                <owl:hasValue rdf:resource="&acgt;Functional"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;isFunctionalOrStructural"/>
-                <owl:hasValue rdf:resource="&acgt;Functional"/>
+                <owl:onProperty rdf:resource="&acgt;hasRole"/>
+                <owl:onClass rdf:resource="&acgt;CardiacSymptom"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -5172,14 +5156,14 @@ Each of these features is assigned a score ranging from 1 to 3. The scores are t
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&acgt;implementedBy"/>
-                <owl:onClass rdf:resource="&acgt;BloodSerumSample"/>
+                <owl:onClass rdf:resource="&acgt;UrineSample"/>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&acgt;implementedBy"/>
-                <owl:onClass rdf:resource="&acgt;UrineSample"/>
+                <owl:onClass rdf:resource="&acgt;BloodSerumSample"/>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -5194,14 +5178,14 @@ Each of these features is assigned a score ranging from 1 to 3. The scores are t
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&acgt;hasRole"/>
-                <owl:someValuesFrom rdf:resource="&acgt;Hormone"/>
+                <owl:onClass rdf:resource="&acgt;TumorMarker"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&acgt;hasRole"/>
-                <owl:onClass rdf:resource="&acgt;TumorMarker"/>
-                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+                <owl:someValuesFrom rdf:resource="&acgt;Hormone"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <owl:disjointWith rdf:resource="&acgt;GranulocyteColonyStimulatingFactor"/>
@@ -5420,16 +5404,16 @@ Each of these features is assigned a score ranging from 1 to 3. The scores are t
         <rdfs:subClassOf rdf:resource="&snap;Object"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&ro;participatesIn"/>
-                <owl:onClass rdf:resource="&acgt;Computertomography"/>
-                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+                <owl:onProperty rdf:resource="&acgt;hasQuality"/>
+                <owl:onClass rdf:resource="&acgt;ToxicityLevel"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;hasQuality"/>
-                <owl:onClass rdf:resource="&acgt;ToxicityLevel"/>
-                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onProperty rdf:resource="&ro;participatesIn"/>
+                <owl:onClass rdf:resource="&acgt;MagneticResonanceImaging"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -5442,7 +5426,7 @@ Each of these features is assigned a score ranging from 1 to 3. The scores are t
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&ro;participatesIn"/>
-                <owl:onClass rdf:resource="&acgt;MagneticResonanceImaging"/>
+                <owl:onClass rdf:resource="&acgt;Computertomography"/>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -5473,9 +5457,28 @@ Each of these features is assigned a score ranging from 1 to 3. The scores are t
         <rdfs:subClassOf rdf:resource="&acgt;Pharmacotherapy"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;hasMagnitude"/>
+                <owl:someValuesFrom rdf:resource="&acgt;NumberOfCycles"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="&acgt;hasRole"/>
                 <owl:onClass rdf:resource="&acgt;AdjuvantChemotherapy"/>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;hasRole"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="&acgt;PrimaryTherapy"/>
+                            <rdf:Description rdf:about="&acgt;SupportingTherapy"/>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -5495,6 +5498,13 @@ Each of these features is assigned a score ranging from 1 to 3. The scores are t
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&acgt;hasRole"/>
+                <owl:onClass rdf:resource="&acgt;NeoadjuvantChemotherapy"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;hasRole"/>
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:unionOf rdf:parseType="Collection">
@@ -5504,32 +5514,6 @@ Each of these features is assigned a score ranging from 1 to 3. The scores are t
                         </owl:unionOf>
                     </owl:Class>
                 </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;hasMagnitude"/>
-                <owl:someValuesFrom rdf:resource="&acgt;NumberOfCycles"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;hasRole"/>
-                <owl:someValuesFrom>
-                    <owl:Class>
-                        <owl:unionOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&acgt;PrimaryTherapy"/>
-                            <rdf:Description rdf:about="&acgt;SupportingTherapy"/>
-                        </owl:unionOf>
-                    </owl:Class>
-                </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;hasRole"/>
-                <owl:onClass rdf:resource="&acgt;NeoadjuvantChemotherapy"/>
-                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <owl:disjointWith rdf:resource="&acgt;GeneTherapy"/>
@@ -5669,15 +5653,15 @@ Each of these features is assigned a score ranging from 1 to 3. The scores are t
         <rdfs:subClassOf rdf:resource="&acgt;OrganismalProcess"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;hasName"/>
-                <owl:onClass rdf:resource="&acgt;Name"/>
+                <owl:onProperty rdf:resource="&acgt;undergoneBy"/>
+                <owl:onClass rdf:resource="&acgt;Chromosome"/>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;undergoneBy"/>
-                <owl:onClass rdf:resource="&acgt;Chromosome"/>
+                <owl:onProperty rdf:resource="&acgt;hasName"/>
+                <owl:onClass rdf:resource="&acgt;Name"/>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -5828,15 +5812,15 @@ Each of these features is assigned a score ranging from 1 to 3. The scores are t
         <rdfs:subClassOf rdf:resource="&acgt;AdministrativeProcess"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&ro;hasParticipant"/>
-                <owl:onClass rdf:resource="&acgt;HumanBeing"/>
-                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+                <owl:onProperty rdf:resource="&acgt;undertakenBy"/>
+                <owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;undertakenBy"/>
-                <owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minCardinality>
+                <owl:onProperty rdf:resource="&ro;hasParticipant"/>
+                <owl:onClass rdf:resource="&acgt;HumanBeing"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <owl:disjointWith rdf:resource="&acgt;PreClinicalResearch"/>
@@ -5860,15 +5844,15 @@ Each of these features is assigned a score ranging from 1 to 3. The scores are t
         <rdfs:subClassOf rdf:resource="&acgt;ClinicalResearch"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;hasProtocol"/>
-                <owl:someValuesFrom rdf:resource="&acgt;ClinicalStudyProtocol"/>
+                <owl:onProperty rdf:resource="&ro;hasParticipant"/>
+                <owl:onClass rdf:resource="&acgt;TherapyPlan"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;describedBy"/>
-                <owl:onClass rdf:resource="&acgt;InformationObject"/>
-                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+                <owl:onProperty rdf:resource="&acgt;hasProtocol"/>
+                <owl:someValuesFrom rdf:resource="&acgt;ClinicalStudyProtocol"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -5879,8 +5863,8 @@ Each of these features is assigned a score ranging from 1 to 3. The scores are t
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&ro;hasParticipant"/>
-                <owl:onClass rdf:resource="&acgt;TherapyPlan"/>
+                <owl:onProperty rdf:resource="&acgt;describedBy"/>
+                <owl:onClass rdf:resource="&acgt;InformationObject"/>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -5939,12 +5923,6 @@ Each of these features is assigned a score ranging from 1 to 3. The scores are t
         <rdfs:subClassOf rdf:resource="&acgt;ClinicalResearch"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&ro;partOf"/>
-                <owl:someValuesFrom rdf:resource="&acgt;ClinicalStudy"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="&acgt;hasIdentifier"/>
                 <owl:someValuesFrom rdf:resource="&acgt;ClinicalTrialIdentifier"/>
             </owl:Restriction>
@@ -5953,6 +5931,12 @@ Each of these features is assigned a score ranging from 1 to 3. The scores are t
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&acgt;hasProtocol"/>
                 <owl:someValuesFrom rdf:resource="&acgt;ClinicalTrialProtocol"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ro;partOf"/>
+                <owl:someValuesFrom rdf:resource="&acgt;ClinicalStudy"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -6193,15 +6177,15 @@ Each of these features is assigned a score ranging from 1 to 3. The scores are t
         <rdfs:subClassOf rdf:resource="&snap;Role"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;hasIdentifier"/>
-                <owl:onClass rdf:resource="&acgt;Name"/>
+                <owl:onProperty rdf:resource="&acgt;implementedBy"/>
+                <owl:onClass rdf:resource="&span;Process"/>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;implementedBy"/>
-                <owl:onClass rdf:resource="&span;Process"/>
+                <owl:onProperty rdf:resource="&acgt;hasIdentifier"/>
+                <owl:onClass rdf:resource="&acgt;Name"/>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -6381,13 +6365,13 @@ Each of these features is assigned a score ranging from 1 to 3. The scores are t
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&acgt;reveals"/>
-                <owl:someValuesFrom rdf:resource="&acgt;PlateletCount"/>
+                <owl:allValuesFrom rdf:resource="&acgt;PlateletCount"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&acgt;reveals"/>
-                <owl:allValuesFrom rdf:resource="&acgt;PlateletCount"/>
+                <owl:someValuesFrom rdf:resource="&acgt;PlateletCount"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -6637,13 +6621,13 @@ Each of these features is assigned a score ranging from 1 to 3. The scores are t
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&acgt;roleOf"/>
-                <owl:allValuesFrom rdf:resource="&acgt;StateOfAffairs"/>
+                <owl:someValuesFrom rdf:resource="&acgt;StateOfAffairs"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&acgt;roleOf"/>
-                <owl:someValuesFrom rdf:resource="&acgt;StateOfAffairs"/>
+                <owl:allValuesFrom rdf:resource="&acgt;StateOfAffairs"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <owl:disjointWith rdf:resource="&acgt;Drug"/>
@@ -6838,12 +6822,6 @@ R-DHAP also includes the monoclonal antibody drug rituximab (Mabthera&#174;).</r
         <rdfs:subClassOf rdf:resource="&acgt;MolecularBiologyTechnique"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;hasOutcome"/>
-                <owl:someValuesFrom rdf:resource="&acgt;DNA"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="&acgt;undergoneBy"/>
                 <owl:allValuesFrom rdf:resource="&acgt;DNA"/>
             </owl:Restriction>
@@ -6851,6 +6829,12 @@ R-DHAP also includes the monoclonal antibody drug rituximab (Mabthera&#174;).</r
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&acgt;undergoneBy"/>
+                <owl:someValuesFrom rdf:resource="&acgt;DNA"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;hasOutcome"/>
                 <owl:someValuesFrom rdf:resource="&acgt;DNA"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -7003,13 +6987,13 @@ The de Gramont regimen is one of several different ways of combining these two d
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&acgt;describes"/>
-                <owl:allValuesFrom rdf:resource="&acgt;StateOfAffairs"/>
+                <owl:someValuesFrom rdf:resource="&acgt;StateOfAffairs"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&acgt;describes"/>
-                <owl:someValuesFrom rdf:resource="&acgt;StateOfAffairs"/>
+                <owl:allValuesFrom rdf:resource="&acgt;StateOfAffairs"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -7116,14 +7100,14 @@ The de Gramont regimen is one of several different ways of combining these two d
         <rdfs:subClassOf rdf:resource="&acgt;Document"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;hasStringValue"/>
-                <owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minCardinality>
+                <owl:onProperty rdf:resource="&acgt;outcomeOf"/>
+                <owl:someValuesFrom rdf:resource="&acgt;DiagnosticProcess"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;outcomeOf"/>
-                <owl:someValuesFrom rdf:resource="&acgt;DiagnosticProcess"/>
+                <owl:onProperty rdf:resource="&acgt;hasStringValue"/>
+                <owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -7376,6 +7360,12 @@ ld name: DiagnosticProcedure</rdfs:comment>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;disposition_of"/>
+                <owl:allValuesFrom rdf:resource="&acgt;Organism"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="&acgt;diagnosedBy"/>
                 <owl:someValuesFrom rdf:resource="&acgt;DiagnosticProcess"/>
             </owl:Restriction>
@@ -7385,12 +7375,6 @@ ld name: DiagnosticProcedure</rdfs:comment>
                 <owl:onProperty rdf:resource="&acgt;hasQuality"/>
                 <owl:onClass rdf:resource="&acgt;ICDClass"/>
                 <owl:maxQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxQualifiedCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;disposition_of"/>
-                <owl:allValuesFrom rdf:resource="&acgt;Organism"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -7409,14 +7393,14 @@ ld name: DiagnosticProcedure</rdfs:comment>
         <rdfs:subClassOf rdf:resource="&acgt;OrganismalProcess"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&ro;partOf"/>
-                <owl:someValuesFrom rdf:resource="&acgt;Life"/>
+                <owl:onProperty rdf:resource="&acgt;partOfHistoryOf"/>
+                <owl:someValuesFrom rdf:resource="&acgt;Organism"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;partOfHistoryOf"/>
-                <owl:someValuesFrom rdf:resource="&acgt;Organism"/>
+                <owl:onProperty rdf:resource="&ro;partOf"/>
+                <owl:someValuesFrom rdf:resource="&acgt;Life"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -7445,15 +7429,15 @@ ld name: DiagnosticProcedure</rdfs:comment>
         <rdfs:subClassOf rdf:resource="&acgt;DispatchingOfBiomedicalItem"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;undergoneBy"/>
-                <owl:onClass rdf:resource="&acgt;MedicalImage"/>
+                <owl:onProperty rdf:resource="&acgt;hasReceptor"/>
+                <owl:onClass rdf:resource="&snap;Object"/>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;hasReceptor"/>
-                <owl:onClass rdf:resource="&snap;Object"/>
+                <owl:onProperty rdf:resource="&acgt;undergoneBy"/>
+                <owl:onClass rdf:resource="&acgt;MedicalImage"/>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -7559,7 +7543,7 @@ ld name: DiagnosticProcedure</rdfs:comment>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&ro;hasPart"/>
-                <owl:allValuesFrom rdf:resource="&acgt;Proposition"/>
+                <owl:someValuesFrom rdf:resource="&acgt;Proposition"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -7579,7 +7563,7 @@ ld name: DiagnosticProcedure</rdfs:comment>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&ro;hasPart"/>
-                <owl:someValuesFrom rdf:resource="&acgt;Proposition"/>
+                <owl:allValuesFrom rdf:resource="&acgt;Proposition"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <owl:disjointWith rdf:resource="&acgt;Publication"/>
@@ -7923,14 +7907,14 @@ ld name: DiagnosticProcedure</rdfs:comment>
         <rdfs:subClassOf rdf:resource="&acgt;DiagnosticProcess"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;undergoneBy"/>
-                <owl:someValuesFrom rdf:resource="&acgt;Organism"/>
+                <owl:onProperty rdf:resource="&acgt;reveals"/>
+                <owl:someValuesFrom rdf:resource="&acgt;ESV"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;reveals"/>
-                <owl:someValuesFrom rdf:resource="&acgt;ESV"/>
+                <owl:onProperty rdf:resource="&acgt;undergoneBy"/>
+                <owl:someValuesFrom rdf:resource="&acgt;Organism"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string">German: EKG</rdfs:comment>
@@ -8917,15 +8901,21 @@ Rituximab locks onto a protein called CD20, which is found on the surface of one
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&acgt;undergoes"/>
-                <owl:onClass rdf:resource="&acgt;PartialHysterectomy"/>
+                <owl:onClass rdf:resource="&acgt;TotalHysterectomy"/>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&acgt;undergoes"/>
-                <owl:onClass rdf:resource="&acgt;Hysterectomy"/>
+                <owl:onClass rdf:resource="&acgt;PartialHysterectomy"/>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;hasGender"/>
+                <owl:someValuesFrom rdf:resource="&acgt;Female"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -8937,14 +8927,8 @@ Rituximab locks onto a protein called CD20, which is found on the surface of one
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&acgt;undergoes"/>
-                <owl:onClass rdf:resource="&acgt;TotalHysterectomy"/>
+                <owl:onClass rdf:resource="&acgt;Hysterectomy"/>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;hasGender"/>
-                <owl:someValuesFrom rdf:resource="&acgt;Female"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -10119,13 +10103,13 @@ Further treatment can be protocol treatment and non-protocol treatment. E.g. it 
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&acgt;reveals"/>
-                <owl:allValuesFrom rdf:resource="&acgt;HemoglobinConcentration"/>
+                <owl:someValuesFrom rdf:resource="&acgt;HemoglobinConcentration"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&acgt;reveals"/>
-                <owl:someValuesFrom rdf:resource="&acgt;HemoglobinConcentration"/>
+                <owl:allValuesFrom rdf:resource="&acgt;HemoglobinConcentration"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string">hemoglobin?</rdfs:comment>
@@ -10776,6 +10760,12 @@ Further treatment can be protocol treatment and non-protocol treatment. E.g. it 
         <rdfs:subClassOf rdf:resource="&acgt;DiagnosticProcess"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;reveals"/>
+                <owl:allValuesFrom rdf:resource="&acgt;HistologicalType"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="&acgt;undergoneBy"/>
                 <owl:someValuesFrom rdf:resource="&acgt;MaterialOrganismalIndependentContinuant"/>
             </owl:Restriction>
@@ -10791,12 +10781,6 @@ Further treatment can be protocol treatment and non-protocol treatment. E.g. it 
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&acgt;undergoneBy"/>
                 <owl:someValuesFrom rdf:resource="&acgt;Organism"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;reveals"/>
-                <owl:allValuesFrom rdf:resource="&acgt;HistologicalType"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <owl:disjointWith rdf:resource="&acgt;MacropathologicalExamination"/>
@@ -10862,6 +10846,16 @@ Further treatment can be protocol treatment and non-protocol treatment. E.g. it 
     <owl:Class rdf:about="&acgt;HormonalTreatment">
         <rdfs:subClassOf rdf:resource="&acgt;Pharmacotherapy"/>
         <rdfs:subClassOf>
+            <owl:Class>
+                <owl:complementOf>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&acgt;hasRole"/>
+                        <owl:someValuesFrom rdf:resource="&acgt;AdjuvantChemotherapy"/>
+                    </owl:Restriction>
+                </owl:complementOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&acgt;hasRole"/>
                 <owl:someValuesFrom>
@@ -10881,16 +10875,6 @@ Further treatment can be protocol treatment and non-protocol treatment. E.g. it 
                     <owl:Restriction>
                         <owl:onProperty rdf:resource="&acgt;hasRole"/>
                         <owl:someValuesFrom rdf:resource="&acgt;NeoadjuvantChemotherapy"/>
-                    </owl:Restriction>
-                </owl:complementOf>
-            </owl:Class>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Class>
-                <owl:complementOf>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="&acgt;hasRole"/>
-                        <owl:someValuesFrom rdf:resource="&acgt;AdjuvantChemotherapy"/>
                     </owl:Restriction>
                 </owl:complementOf>
             </owl:Class>
@@ -10988,8 +10972,22 @@ Further treatment can be protocol treatment and non-protocol treatment. E.g. it 
         <rdfs:subClassOf rdf:resource="&acgt;Organism"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;hasMagnitude"/>
+                <owl:onClass rdf:resource="&acgt;KarnofskyRating"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;fulfils"/>
+                <owl:onClass rdf:resource="&acgt;EligibilityCriterion"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="&acgt;undergoes"/>
-                <owl:onClass rdf:resource="&acgt;SegmentalMastectomy"/>
+                <owl:onClass rdf:resource="&acgt;Quadrantectomy"/>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -11003,113 +11001,61 @@ Further treatment can be protocol treatment and non-protocol treatment. E.g. it 
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&acgt;undergoes"/>
-                <owl:onClass rdf:resource="&acgt;Chemotherapy"/>
+                <owl:onClass rdf:resource="&acgt;BreastResection"/>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;hasMagnitude"/>
-                <owl:someValuesFrom rdf:resource="&acgt;CardioPerformanceRating"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;hasMagnitude"/>
-                <owl:someValuesFrom rdf:resource="&acgt;Age"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;undergoes"/>
-                <owl:onClass rdf:resource="&acgt;ProtocolChange"/>
-                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;hasRelative"/>
+                <owl:onProperty rdf:resource="&acgt;hasSibling"/>
                 <owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;hasMagnitude"/>
-                <owl:someValuesFrom rdf:resource="&acgt;GeneralHealthRating"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="&acgt;undergoes"/>
-                <owl:onClass rdf:resource="&acgt;MaddenMastectomy"/>
-                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;hasQuality"/>
-                <owl:onClass rdf:resource="&acgt;NumberOfLymphNodes"/>
-                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;hasQuality"/>
-                <owl:onClass rdf:resource="&acgt;HeartRate"/>
-                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;fulfils"/>
-                <owl:onClass rdf:resource="&acgt;EligibilityCriterion"/>
+                <owl:onClass rdf:resource="&acgt;LostToFollowUp"/>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&acgt;undergoes"/>
-                <owl:onClass rdf:resource="&acgt;Immunotherapy"/>
+                <owl:onClass rdf:resource="&acgt;BoostIrradiation"/>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;undergoes"/>
-                <owl:onClass rdf:resource="&acgt;Registration"/>
-                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;hasHeight"/>
-                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;hasIdentifier"/>
-                <owl:onClass rdf:resource="&acgt;Identifier"/>
-                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;hasIdentifier"/>
-                <owl:onClass rdf:resource="&acgt;Address"/>
-                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;hasProgenitor"/>
-                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&acgt;hasIdentifier"/>
                 <owl:onClass rdf:resource="&acgt;LastName"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;hasWeight"/>
+                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;undergoes"/>
+                <owl:onClass rdf:resource="&acgt;PatientManagement"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;undergoes"/>
+                <owl:onClass rdf:resource="&acgt;PsychosocialCare"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;undergoes"/>
+                <owl:onClass rdf:resource="&acgt;SubcutaneousMastectomy"/>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -11122,23 +11068,22 @@ Further treatment can be protocol treatment and non-protocol treatment. E.g. it 
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;hasIdentifier"/>
-                <owl:onClass rdf:resource="&acgt;FullName"/>
-                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;hasRole"/>
-                <owl:onClass rdf:resource="&acgt;MedicalPractitioner"/>
+                <owl:onProperty rdf:resource="&acgt;undergoes"/>
+                <owl:onClass rdf:resource="&acgt;PartialMastectomy"/>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&acgt;undergoes"/>
-                <owl:onClass rdf:resource="&acgt;GeneTherapy"/>
+                <owl:onClass rdf:resource="&acgt;Registration"/>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;hasSize"/>
+                <owl:someValuesFrom rdf:resource="&acgt;BodySurfaceArea"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -11150,41 +11095,27 @@ Further treatment can be protocol treatment and non-protocol treatment. E.g. it 
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&acgt;undergoes"/>
-                <owl:onClass rdf:resource="&acgt;Computertomography"/>
+                <owl:onClass rdf:resource="&acgt;ChemotherapyCycle"/>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;receives"/>
+                <owl:onClass rdf:resource="&acgt;InformationObject"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;hasGender"/>
+                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&acgt;undergoes"/>
-                <owl:onClass rdf:resource="&acgt;PatientManagement"/>
-                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;undergoesMedicalProcess"/>
-                <owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;patientAt"/>
-                <owl:onClass rdf:resource="&acgt;Hospital"/>
-                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;undergoes"/>
-                <owl:onClass rdf:resource="&acgt;AxillaryNodeDissection"/>
-                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;undergoes"/>
-                <owl:onClass rdf:resource="&acgt;DoseReduction"/>
+                <owl:onClass rdf:resource="&acgt;Chemotherapy"/>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -11198,20 +11129,35 @@ Further treatment can be protocol treatment and non-protocol treatment. E.g. it 
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&acgt;undergoes"/>
-                <owl:onClass rdf:resource="&acgt;Brachytherapy"/>
+                <owl:onClass rdf:resource="&acgt;ProtocolChange"/>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;hasSibling"/>
-                <owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minCardinality>
+                <owl:onProperty rdf:resource="&acgt;undergoes"/>
+                <owl:onClass rdf:resource="&acgt;ClinicalExamination"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;receives"/>
-                <owl:onClass rdf:resource="&acgt;InformationObject"/>
+                <owl:onProperty rdf:resource="&acgt;undergoes"/>
+                <owl:onClass rdf:resource="&acgt;Mastectomy"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;undergoes"/>
+                <owl:onClass rdf:resource="&acgt;ECG"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;denies"/>
+                <owl:onClass rdf:resource="&acgt;Consenting"/>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -11224,29 +11170,162 @@ Further treatment can be protocol treatment and non-protocol treatment. E.g. it 
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;receives"/>
-                <owl:onClass rdf:resource="&acgt;PharmaceuticalSubstance"/>
+                <owl:onProperty rdf:resource="&acgt;hasProgenitor"/>
+                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;hasRelative"/>
+                <owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;patientAt"/>
+                <owl:onClass rdf:resource="&acgt;Hospital"/>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;hasBloodPressure"/>
+                <owl:onProperty rdf:resource="&acgt;undergoes"/>
+                <owl:onClass rdf:resource="&acgt;SegmentalMastectomy"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;undergoes"/>
+                <owl:onClass rdf:resource="&acgt;MagneticResonanceImaging"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;undergoes"/>
+                <owl:onClass rdf:resource="&acgt;MaddenMastectomy"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;undergoesMedicalProcess"/>
+                <owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;hasQuality"/>
+                <owl:onClass rdf:resource="&acgt;HeartRate"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;hasMagnitude"/>
+                <owl:onClass rdf:resource="&acgt;LanskyRating"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;hasMagnitude"/>
+                <owl:someValuesFrom rdf:resource="&acgt;Age"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;undergoes"/>
+                <owl:onClass rdf:resource="&acgt;DoseReduction"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;undergoes"/>
+                <owl:onClass rdf:resource="&acgt;NuclearImaging"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;undergoes"/>
+                <owl:onClass rdf:resource="&acgt;Brachytherapy"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;undergoes"/>
+                <owl:onClass rdf:resource="&acgt;TotalMastectomy"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;hasIdentifier"/>
+                <owl:onClass rdf:resource="&acgt;Identifier"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;undergoes"/>
+                <owl:onClass rdf:resource="&acgt;Lumpectomy"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;hasMagnitude"/>
+                <owl:someValuesFrom rdf:resource="&acgt;GeneralHealthRating"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;hasIdentifier"/>
+                <owl:onClass rdf:resource="&acgt;FirstName"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;hasMagnitude"/>
+                <owl:someValuesFrom rdf:resource="&acgt;ECOGPerformanceRating"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;hasMother"/>
                 <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&acgt;undergoes"/>
-                <owl:onClass rdf:resource="&acgt;Mastopexy"/>
+                <owl:onClass rdf:resource="&acgt;GeneTherapy"/>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;undergoes"/>
-                <owl:onClass rdf:resource="&acgt;MUGAScan"/>
+                <owl:onProperty rdf:resource="&acgt;receives"/>
+                <owl:onClass rdf:resource="&acgt;Drug"/>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;hasQuality"/>
+                <owl:onClass rdf:resource="&acgt;NumberOfLymphNodes"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ro;hasPart"/>
+                <owl:someValuesFrom rdf:resource="&acgt;Breast"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -11265,50 +11344,15 @@ Further treatment can be protocol treatment and non-protocol treatment. E.g. it 
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;denies"/>
-                <owl:onClass rdf:resource="&acgt;Consenting"/>
-                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;hasMother"/>
-                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="&acgt;undergoes"/>
-                <owl:onClass rdf:resource="&acgt;Mastectomy"/>
+                <owl:onClass rdf:resource="&acgt;Computertomography"/>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;hasIdentifier"/>
-                <owl:onClass rdf:resource="&acgt;FirstName"/>
-                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;receives"/>
-                <owl:onClass rdf:resource="&acgt;Drug"/>
-                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;undergoes"/>
-                <owl:onClass rdf:resource="&acgt;BreastResection"/>
-                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;undergoes"/>
-                <owl:onClass rdf:resource="&acgt;MagneticResonanceImaging"/>
-                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+                <owl:onProperty rdf:resource="&acgt;hasMagnitude"/>
+                <owl:someValuesFrom rdf:resource="&acgt;CardioPerformanceRating"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -11320,49 +11364,22 @@ Further treatment can be protocol treatment and non-protocol treatment. E.g. it 
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;undergoes"/>
-                <owl:onClass rdf:resource="&acgt;Lumpectomy"/>
+                <owl:onProperty rdf:resource="&acgt;hasIdentifier"/>
+                <owl:onClass rdf:resource="&acgt;Address"/>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;undergoes"/>
-                <owl:onClass rdf:resource="&acgt;PsychosocialCare"/>
+                <owl:onProperty rdf:resource="&acgt;hasQuality"/>
+                <owl:onClass rdf:resource="&acgt;CertaintyLevel"/>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;undergoes"/>
-                <owl:onClass rdf:resource="&acgt;Quadrantectomy"/>
-                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;uses"/>
-                <owl:onClass rdf:resource="&acgt;HearingDevice"/>
-                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&ro;hasPart"/>
-                <owl:someValuesFrom rdf:resource="&acgt;Breast"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;undergoes"/>
-                <owl:onClass rdf:resource="&acgt;BoostIrradiation"/>
-                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;undergoes"/>
-                <owl:onClass rdf:resource="&acgt;DoseIncrease"/>
+                <owl:onProperty rdf:resource="&acgt;hasIdentifier"/>
+                <owl:onClass rdf:resource="&acgt;FullName"/>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -11371,53 +11388,6 @@ Further treatment can be protocol treatment and non-protocol treatment. E.g. it 
                 <owl:onProperty rdf:resource="&acgt;hasMagnitude"/>
                 <owl:onClass rdf:resource="&acgt;BodyMassIndex"/>
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;hasMagnitude"/>
-                <owl:onClass rdf:resource="&acgt;LanskyRating"/>
-                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;undergoes"/>
-                <owl:onClass rdf:resource="&acgt;TotalMastectomy"/>
-                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;hasMagnitude"/>
-                <owl:onClass rdf:resource="&acgt;KarnofskyRating"/>
-                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;hasWeight"/>
-                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;undergoes"/>
-                <owl:onClass rdf:resource="&acgt;ClinicalExamination"/>
-                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;undergoes"/>
-                <owl:onClass rdf:resource="&acgt;SubcutaneousMastectomy"/>
-                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;hasGender"/>
-                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -11435,6 +11405,34 @@ Further treatment can be protocol treatment and non-protocol treatment. E.g. it 
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;receives"/>
+                <owl:onClass rdf:resource="&acgt;PharmaceuticalSubstance"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;uses"/>
+                <owl:onClass rdf:resource="&acgt;HearingDevice"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;hasRole"/>
+                <owl:onClass rdf:resource="&acgt;MedicalPractitioner"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;undergoes"/>
+                <owl:onClass rdf:resource="&acgt;MUGAScan"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="&acgt;hasMagnitude"/>
                 <owl:onClass rdf:resource="&acgt;RFSDays"/>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
@@ -11442,55 +11440,22 @@ Further treatment can be protocol treatment and non-protocol treatment. E.g. it 
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;hasSize"/>
-                <owl:someValuesFrom rdf:resource="&acgt;BodySurfaceArea"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="&acgt;undergoes"/>
-                <owl:onClass rdf:resource="&acgt;NuclearImaging"/>
-                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;hasQuality"/>
-                <owl:onClass rdf:resource="&acgt;CertaintyLevel"/>
+                <owl:onClass rdf:resource="&acgt;AxillaryNodeDissection"/>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&acgt;undergoes"/>
-                <owl:onClass rdf:resource="&acgt;LostToFollowUp"/>
-                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;hasMagnitude"/>
-                <owl:someValuesFrom rdf:resource="&acgt;ECOGPerformanceRating"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;undergoes"/>
-                <owl:onClass rdf:resource="&acgt;PartialMastectomy"/>
+                <owl:onClass rdf:resource="&acgt;Immunotherapy"/>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&acgt;undergoes"/>
-                <owl:onClass rdf:resource="&acgt;ChemotherapyCycle"/>
-                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;undergoes"/>
-                <owl:onClass rdf:resource="&acgt;ECG"/>
+                <owl:onClass rdf:resource="&acgt;DoseIncrease"/>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -11499,6 +11464,25 @@ Further treatment can be protocol treatment and non-protocol treatment. E.g. it 
                 <owl:onProperty rdf:resource="&acgt;undergoes"/>
                 <owl:onClass rdf:resource="&acgt;PateyMastectomy"/>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;hasBloodPressure"/>
+                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;undergoes"/>
+                <owl:onClass rdf:resource="&acgt;Mastopexy"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;hasHeight"/>
+                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -11574,15 +11558,15 @@ Further treatment can be protocol treatment and non-protocol treatment. E.g. it 
         <rdfs:subClassOf rdf:resource="&acgt;StateOfAffairs"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;hasRole"/>
-                <owl:onClass rdf:resource="&acgt;VascularSymptom"/>
-                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+                <owl:onProperty rdf:resource="&acgt;isFunctionalOrStructural"/>
+                <owl:hasValue rdf:resource="&acgt;Functional"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;isFunctionalOrStructural"/>
-                <owl:hasValue rdf:resource="&acgt;Functional"/>
+                <owl:onProperty rdf:resource="&acgt;hasRole"/>
+                <owl:onClass rdf:resource="&acgt;VascularSymptom"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <owl:disjointWith rdf:resource="&acgt;Thrombosis"/>
@@ -11731,15 +11715,15 @@ Further treatment can be protocol treatment and non-protocol treatment. E.g. it 
         <rdfs:subClassOf rdf:resource="&acgt;DiagnosticProcess"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;pictures"/>
-                <owl:onClass rdf:resource="&acgt;OrganismalIndependentContinuant"/>
-                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minQualifiedCardinality>
+                <owl:onProperty rdf:resource="&acgt;hasOutcome"/>
+                <owl:someValuesFrom rdf:resource="&acgt;MedicalImage"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;hasOutcome"/>
-                <owl:someValuesFrom rdf:resource="&acgt;MedicalImage"/>
+                <owl:onProperty rdf:resource="&acgt;pictures"/>
+                <owl:onClass rdf:resource="&acgt;OrganismalIndependentContinuant"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -11811,15 +11795,15 @@ Further treatment can be protocol treatment and non-protocol treatment. E.g. it 
         <rdfs:subClassOf rdf:resource="&acgt;OrganismalProcess"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;implements"/>
-                <owl:onClass rdf:resource="&acgt;Malfunction"/>
+                <owl:onProperty rdf:resource="&acgt;undergoneBy"/>
+                <owl:onClass rdf:resource="&acgt;Organism"/>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;undergoneBy"/>
-                <owl:onClass rdf:resource="&acgt;Organism"/>
+                <owl:onProperty rdf:resource="&acgt;implements"/>
+                <owl:onClass rdf:resource="&acgt;Malfunction"/>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -11850,6 +11834,16 @@ Further treatment can be protocol treatment and non-protocol treatment. E.g. it 
                 <owl:complementOf>
                     <owl:Restriction>
                         <owl:onProperty rdf:resource="&acgt;hasRole"/>
+                        <owl:someValuesFrom rdf:resource="&acgt;NeoadjuvantChemotherapy"/>
+                    </owl:Restriction>
+                </owl:complementOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:complementOf>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&acgt;hasRole"/>
                         <owl:someValuesFrom rdf:resource="&acgt;AdjuvantChemotherapy"/>
                     </owl:Restriction>
                 </owl:complementOf>
@@ -11867,16 +11861,6 @@ Further treatment can be protocol treatment and non-protocol treatment. E.g. it 
                     </owl:Class>
                 </owl:someValuesFrom>
             </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Class>
-                <owl:complementOf>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="&acgt;hasRole"/>
-                        <owl:someValuesFrom rdf:resource="&acgt;NeoadjuvantChemotherapy"/>
-                    </owl:Restriction>
-                </owl:complementOf>
-            </owl:Class>
         </rdfs:subClassOf>
         <owl:disjointWith rdf:resource="&acgt;SupportivePharmacotherapy"/>
     </owl:Class>
@@ -12176,16 +12160,32 @@ Further treatment can be protocol treatment and non-protocol treatment. E.g. it 
     <owl:Class rdf:about="&acgt;Institution">
         <rdfs:subClassOf rdf:resource="&snap;Object"/>
         <rdfs:subClassOf>
+            <owl:Class>
+                <owl:complementOf>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&acgt;hasLaterality"/>
+                        <owl:someValuesFrom rdf:resource="&acgt;Laterality"/>
+                    </owl:Restriction>
+                </owl:complementOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&ro;participatesIn"/>
-                <owl:onClass rdf:resource="&acgt;ClinicalTrial"/>
-                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+                <owl:onProperty rdf:resource="&acgt;hasIdentifier"/>
+                <owl:someValuesFrom rdf:resource="&acgt;TelephoneNumber"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&acgt;hasName"/>
                 <owl:someValuesFrom rdf:resource="&acgt;Name"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ro;participatesIn"/>
+                <owl:onClass rdf:resource="&acgt;ClinicalTrial"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -12197,25 +12197,9 @@ Further treatment can be protocol treatment and non-protocol treatment. E.g. it 
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&acgt;hasIdentifier"/>
-                <owl:someValuesFrom rdf:resource="&acgt;TelephoneNumber"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;hasIdentifier"/>
                 <owl:onClass rdf:resource="&acgt;Address"/>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
             </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Class>
-                <owl:complementOf>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="&acgt;hasLaterality"/>
-                        <owl:someValuesFrom rdf:resource="&acgt;Laterality"/>
-                    </owl:Restriction>
-                </owl:complementOf>
-            </owl:Class>
         </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string">Best would be to replace &quot;Institution hasIdentifier some InstitutionIdentifier&quot; with &quot;Institution hasIdentifier min 0 InstitutionIdentifier,&quot; however that is a QCR, and would probably generate OWL issues. As such, the constraint may be factually inaccurate, though certainly accurate and useful in ACGT context.</rdfs:comment>
     </owl:Class>
@@ -13976,31 +13960,43 @@ MRT is short for Malign Rhabdoid Tumor</rdfs:comment>
     <owl:Class rdf:about="&acgt;MaleHumanBeing">
         <rdfs:subClassOf rdf:resource="&acgt;HumanBeing"/>
         <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;hasGender"/>
+                <owl:someValuesFrom rdf:resource="&acgt;Male"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;hasGender"/>
+                <owl:allValuesFrom rdf:resource="&acgt;Male"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:complementOf>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&acgt;undergoes"/>
+                        <owl:someValuesFrom rdf:resource="&acgt;Menstruation"/>
+                    </owl:Restriction>
+                </owl:complementOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:complementOf>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&acgt;undergoes"/>
+                        <owl:someValuesFrom rdf:resource="&acgt;Parturition"/>
+                    </owl:Restriction>
+                </owl:complementOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
             <owl:Class>
                 <owl:complementOf>
                     <owl:Restriction>
                         <owl:onProperty rdf:resource="&acgt;undergoes"/>
                         <owl:someValuesFrom rdf:resource="&acgt;Pregnancy"/>
-                    </owl:Restriction>
-                </owl:complementOf>
-            </owl:Class>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Class>
-                <owl:complementOf>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="&acgt;undergoes"/>
-                        <owl:someValuesFrom rdf:resource="&acgt;Labor"/>
-                    </owl:Restriction>
-                </owl:complementOf>
-            </owl:Class>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Class>
-                <owl:complementOf>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="&acgt;undergoes"/>
-                        <owl:someValuesFrom rdf:resource="&acgt;Menopause"/>
                     </owl:Restriction>
                 </owl:complementOf>
             </owl:Class>
@@ -14016,32 +14012,20 @@ MRT is short for Malign Rhabdoid Tumor</rdfs:comment>
                 <owl:complementOf>
                     <owl:Restriction>
                         <owl:onProperty rdf:resource="&acgt;undergoes"/>
-                        <owl:someValuesFrom rdf:resource="&acgt;Parturition"/>
+                        <owl:someValuesFrom rdf:resource="&acgt;Menopause"/>
                     </owl:Restriction>
                 </owl:complementOf>
             </owl:Class>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;hasGender"/>
-                <owl:someValuesFrom rdf:resource="&acgt;Male"/>
-            </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Class>
                 <owl:complementOf>
                     <owl:Restriction>
                         <owl:onProperty rdf:resource="&acgt;undergoes"/>
-                        <owl:someValuesFrom rdf:resource="&acgt;Menstruation"/>
+                        <owl:someValuesFrom rdf:resource="&acgt;Labor"/>
                     </owl:Restriction>
                 </owl:complementOf>
             </owl:Class>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;hasGender"/>
-                <owl:allValuesFrom rdf:resource="&acgt;Male"/>
-            </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
     
@@ -14053,44 +14037,16 @@ MRT is short for Malign Rhabdoid Tumor</rdfs:comment>
         <rdfs:subClassOf rdf:resource="&snap;Quality"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;hasName"/>
-                <owl:onClass rdf:resource="&acgt;Name"/>
-                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minQualifiedCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;implementedBy"/>
-                <owl:onClass rdf:resource="&acgt;Hearing"/>
-                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;implementedBy"/>
-                <owl:onClass rdf:resource="&acgt;NeuropsychologicalProcess"/>
-                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;implementedBy"/>
-                <owl:onClass rdf:resource="&acgt;SetOfCranialNerves"/>
-                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;hasInfluenceOn"/>
-                <owl:onClass rdf:resource="&acgt;GrossMotorSkills"/>
-                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="&acgt;hasInfluenceOn"/>
                 <owl:onClass rdf:resource="&acgt;ExtrapyramidalMotorSystem"/>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;hasName"/>
+                <owl:onClass rdf:resource="&acgt;Name"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -14110,13 +14066,6 @@ MRT is short for Malign Rhabdoid Tumor</rdfs:comment>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&acgt;implementedBy"/>
-                <owl:onClass rdf:resource="&acgt;MotoricCoordination"/>
-                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;implementedBy"/>
                 <owl:onClass rdf:resource="&acgt;CranialNerve"/>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
             </owl:Restriction>
@@ -14125,6 +14074,41 @@ MRT is short for Malign Rhabdoid Tumor</rdfs:comment>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&acgt;implementedBy"/>
                 <owl:onClass rdf:resource="&acgt;NeuroendocrinologicalProcess"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;implementedBy"/>
+                <owl:onClass rdf:resource="&acgt;Hearing"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;implementedBy"/>
+                <owl:onClass rdf:resource="&acgt;SetOfCranialNerves"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;implementedBy"/>
+                <owl:onClass rdf:resource="&acgt;NeuropsychologicalProcess"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;hasInfluenceOn"/>
+                <owl:onClass rdf:resource="&acgt;GrossMotorSkills"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;implementedBy"/>
+                <owl:onClass rdf:resource="&acgt;MotoricCoordination"/>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -14138,32 +14122,13 @@ MRT is short for Malign Rhabdoid Tumor</rdfs:comment>
         <rdfs:subClassOf rdf:resource="&acgt;Neoplasm"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;localRecurrenceOf"/>
+                <owl:onProperty rdf:resource="&acgt;hasRegionalRecurrence"/>
                 <owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;implements"/>
-                <owl:onClass rdf:resource="&acgt;SecondaryMalignTumor"/>
-                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&acgt;hasRelapse"/>
-                <owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;distantRecurrenceOf"/>
-                <owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;regionalRecurrenceOf"/>
                 <owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -14183,26 +14148,8 @@ MRT is short for Malign Rhabdoid Tumor</rdfs:comment>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;hasRegionalRecurrence"/>
-                <owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;relapseOf"/>
-                <owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="&acgt;hasDistantRecurrence"/>
                 <owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;relapseOf"/>
-                <owl:allValuesFrom rdf:resource="&acgt;MalignNeoplasm"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -14213,7 +14160,44 @@ MRT is short for Malign Rhabdoid Tumor</rdfs:comment>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;relapseOf"/>
+                <owl:allValuesFrom rdf:resource="&acgt;MalignNeoplasm"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="&acgt;hasLocalRecurrence"/>
+                <owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;distantRecurrenceOf"/>
+                <owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;localRecurrenceOf"/>
+                <owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;implements"/>
+                <owl:onClass rdf:resource="&acgt;SecondaryMalignTumor"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;regionalRecurrenceOf"/>
+                <owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;relapseOf"/>
                 <owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -14354,15 +14338,36 @@ MRT is short for Malign Rhabdoid Tumor</rdfs:comment>
         <rdfs:subClassOf rdf:resource="&acgt;OrganismalIndependentContinuant"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;hasWidth"/>
-                <owl:onClass rdf:resource="&acgt;Width"/>
+                <owl:onProperty rdf:resource="&acgt;hasQuality"/>
+                <owl:onClass rdf:resource="&acgt;Volume"/>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;hasQuality"/>
-                <owl:onClass rdf:resource="&acgt;Volume"/>
+                <owl:onProperty rdf:resource="&acgt;hasLength"/>
+                <owl:onClass rdf:resource="&acgt;Length"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;hasHeight"/>
+                <owl:onClass rdf:resource="&acgt;Height"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;hasMagnitude"/>
+                <owl:onClass rdf:resource="&acgt;Circumference"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;hasDepth"/>
+                <owl:onClass rdf:resource="&acgt;Depth"/>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -14382,29 +14387,8 @@ MRT is short for Malign Rhabdoid Tumor</rdfs:comment>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;hasHeight"/>
-                <owl:onClass rdf:resource="&acgt;Height"/>
-                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;hasLength"/>
-                <owl:onClass rdf:resource="&acgt;Length"/>
-                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;hasDepth"/>
-                <owl:onClass rdf:resource="&acgt;Depth"/>
-                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;hasMagnitude"/>
-                <owl:onClass rdf:resource="&acgt;Circumference"/>
+                <owl:onProperty rdf:resource="&acgt;hasWidth"/>
+                <owl:onClass rdf:resource="&acgt;Width"/>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -14535,15 +14519,15 @@ MRT is short for Malign Rhabdoid Tumor</rdfs:comment>
         <rdfs:subClassOf rdf:resource="&acgt;Image"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&ro;participatesIn"/>
-                <owl:onClass rdf:resource="&acgt;RadiotherapyPlanning"/>
+                <owl:onProperty rdf:resource="&acgt;undergoes"/>
+                <owl:onClass rdf:resource="&acgt;DispatchingOfMedicalImage"/>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;undergoes"/>
-                <owl:onClass rdf:resource="&acgt;DispatchingOfMedicalImage"/>
+                <owl:onProperty rdf:resource="&ro;participatesIn"/>
+                <owl:onClass rdf:resource="&acgt;RadiotherapyPlanning"/>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -14583,25 +14567,6 @@ MRT is short for Malign Rhabdoid Tumor</rdfs:comment>
         <rdfs:subClassOf rdf:resource="&acgt;IntentionalProcess"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;hasQuality"/>
-                <owl:onClass rdf:resource="&acgt;Toxicity"/>
-                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;followUpOf"/>
-                <owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;hasPatient"/>
-                <owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="&acgt;hasIdentifier"/>
                 <owl:onClass rdf:resource="&acgt;Identifier"/>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
@@ -14609,8 +14574,9 @@ MRT is short for Malign Rhabdoid Tumor</rdfs:comment>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;undertakenBy"/>
-                <owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minCardinality>
+                <owl:onProperty rdf:resource="&acgt;promptedBy"/>
+                <owl:onClass rdf:resource="&span;ProcessualEntity"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -14627,12 +14593,6 @@ MRT is short for Malign Rhabdoid Tumor</rdfs:comment>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&ro;hasParticipant"/>
-                <owl:someValuesFrom rdf:resource="&acgt;Organism"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="&acgt;hasPlace"/>
                 <owl:onClass rdf:resource="&acgt;Institution"/>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minQualifiedCardinality>
@@ -14640,9 +14600,33 @@ MRT is short for Malign Rhabdoid Tumor</rdfs:comment>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;promptedBy"/>
-                <owl:onClass rdf:resource="&span;ProcessualEntity"/>
+                <owl:onProperty rdf:resource="&acgt;hasQuality"/>
+                <owl:onClass rdf:resource="&acgt;Toxicity"/>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;undertakenBy"/>
+                <owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;hasPatient"/>
+                <owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;followUpOf"/>
+                <owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ro;hasParticipant"/>
+                <owl:someValuesFrom rdf:resource="&acgt;Organism"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -14754,13 +14738,13 @@ MRT is short for Malign Rhabdoid Tumor</rdfs:comment>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&acgt;undergoneBy"/>
-                <owl:someValuesFrom rdf:resource="&acgt;Organism"/>
+                <owl:allValuesFrom rdf:resource="&acgt;Organism"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&acgt;undergoneBy"/>
-                <owl:allValuesFrom rdf:resource="&acgt;Organism"/>
+                <owl:someValuesFrom rdf:resource="&acgt;Organism"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -15032,15 +15016,15 @@ MRT is short for Malign Rhabdoid Tumor</rdfs:comment>
         <rdfs:subClassOf rdf:resource="&acgt;StateOfAffairs"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;undergoneBy"/>
-                <owl:onClass rdf:resource="&acgt;FreeLimb"/>
+                <owl:onProperty rdf:resource="&acgt;hasRole"/>
+                <owl:onClass rdf:resource="&acgt;NervousSystemSymptom"/>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;hasRole"/>
-                <owl:onClass rdf:resource="&acgt;NervousSystemSymptom"/>
+                <owl:onProperty rdf:resource="&acgt;undergoneBy"/>
+                <owl:onClass rdf:resource="&acgt;FreeLimb"/>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -15476,9 +15460,16 @@ MRT is short for Malign Rhabdoid Tumor</rdfs:comment>
         <rdfs:subClassOf rdf:resource="&acgt;PathologicalFormation"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;hasQuality"/>
-                <owl:onClass rdf:resource="&acgt;TumorSituation"/>
-                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onProperty rdf:resource="&acgt;undergoes"/>
+                <owl:onClass rdf:resource="&acgt;TumorDevelopment"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;undergoes"/>
+                <owl:onClass rdf:resource="&acgt;TumorResection"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -15490,15 +15481,15 @@ MRT is short for Malign Rhabdoid Tumor</rdfs:comment>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;hasMetastasis"/>
-                <owl:onClass rdf:resource="&acgt;Metastasis"/>
+                <owl:onProperty rdf:resource="&acgt;hasQuality"/>
+                <owl:onClass rdf:resource="&acgt;VitalityLevel"/>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;undergoes"/>
-                <owl:onClass rdf:resource="&acgt;TumorDevelopment"/>
+                <owl:onProperty rdf:resource="&acgt;hasMetastasis"/>
+                <owl:onClass rdf:resource="&acgt;Metastasis"/>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -15512,7 +15503,7 @@ MRT is short for Malign Rhabdoid Tumor</rdfs:comment>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&acgt;hasQuality"/>
-                <owl:onClass rdf:resource="&acgt;VitalityLevel"/>
+                <owl:onClass rdf:resource="&acgt;TumorClass"/>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -15524,16 +15515,9 @@ MRT is short for Malign Rhabdoid Tumor</rdfs:comment>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;undergoes"/>
-                <owl:onClass rdf:resource="&acgt;TumorResection"/>
-                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="&acgt;hasQuality"/>
-                <owl:onClass rdf:resource="&acgt;TumorClass"/>
-                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+                <owl:onClass rdf:resource="&acgt;TumorSituation"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string">aka tumor</rdfs:comment>
@@ -15572,9 +15556,9 @@ MRT is short for Malign Rhabdoid Tumor</rdfs:comment>
         <rdfs:subClassOf rdf:resource="&acgt;DysontogeneticTumor"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;hasTumorClass"/>
-                <owl:onClass rdf:resource="&acgt;WilmsTumorStage"/>
-                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onProperty rdf:resource="&acgt;hasQuality"/>
+                <owl:onClass rdf:resource="&acgt;NephroblastomaSpread"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -15585,9 +15569,9 @@ MRT is short for Malign Rhabdoid Tumor</rdfs:comment>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;hasQuality"/>
-                <owl:onClass rdf:resource="&acgt;NephroblastomaSpread"/>
-                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+                <owl:onProperty rdf:resource="&acgt;hasTumorClass"/>
+                <owl:onClass rdf:resource="&acgt;WilmsTumorStage"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -15833,14 +15817,14 @@ MRT is short for Malign Rhabdoid Tumor</rdfs:comment>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;reveals"/>
-                <owl:allValuesFrom rdf:resource="&acgt;NodalStatus"/>
+                <owl:onProperty rdf:resource="&acgt;undergoneBy"/>
+                <owl:someValuesFrom rdf:resource="&acgt;Organism"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;undergoneBy"/>
-                <owl:someValuesFrom rdf:resource="&acgt;Organism"/>
+                <owl:onProperty rdf:resource="&acgt;reveals"/>
+                <owl:allValuesFrom rdf:resource="&acgt;NodalStatus"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -16368,22 +16352,8 @@ MRT is short for Malign Rhabdoid Tumor</rdfs:comment>
         <rdfs:subClassOf rdf:resource="&acgt;BiologicalIndependentContinuant"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;receives"/>
-                <owl:onClass rdf:resource="&acgt;ColonyStimulatingFactor"/>
-                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="&acgt;undergoes"/>
-                <owl:onClass rdf:resource="&acgt;Lactation"/>
-                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;hasRole"/>
-                <owl:onClass rdf:resource="&acgt;RelativeRole"/>
+                <owl:onClass rdf:resource="&acgt;InducedAbortion"/>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -16396,62 +16366,14 @@ MRT is short for Malign Rhabdoid Tumor</rdfs:comment>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;hasNumberOfSiblings"/>
-                <owl:someValuesFrom rdf:resource="&xsd;int"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;undergoes"/>
-                <owl:onClass rdf:resource="&acgt;TrucutBiopsy"/>
-                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;undergoes"/>
-                <owl:onClass rdf:resource="&acgt;ConeBiopsy"/>
-                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;undergoes"/>
-                <owl:onClass rdf:resource="&acgt;Infection"/>
-                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;undergoes"/>
-                <owl:onClass rdf:resource="&acgt;Misscarriage"/>
-                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;hasName"/>
-                <owl:onClass rdf:resource="&acgt;Name"/>
-                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;undergoes"/>
-                <owl:onClass rdf:resource="&acgt;Menstruation"/>
-                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="&acgt;undergoes"/>
                 <owl:someValuesFrom rdf:resource="&acgt;Metabolism"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;hasPartNeoplasm"/>
-                <owl:onClass rdf:resource="&acgt;Neoplasm"/>
+                <owl:onProperty rdf:resource="&acgt;undergoes"/>
+                <owl:onClass rdf:resource="&acgt;ConeBiopsy"/>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -16464,42 +16386,8 @@ MRT is short for Malign Rhabdoid Tumor</rdfs:comment>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;providesSample"/>
-                <owl:onClass rdf:resource="&acgt;SubstanceSample"/>
-                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="&acgt;undergoes"/>
-                <owl:onClass rdf:resource="&acgt;Lobectomy"/>
-                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;undergoes"/>
-                <owl:onClass rdf:resource="&acgt;DoseModulation"/>
-                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;undergoes"/>
-                <owl:onClass rdf:resource="&acgt;Coughing"/>
-                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;hasBirthDate"/>
-                <owl:someValuesFrom rdf:resource="&xsd;date"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;undergoes"/>
-                <owl:onClass rdf:resource="&acgt;PunchBiopsy"/>
+                <owl:onClass rdf:resource="&acgt;FineNeedleBiopsy"/>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -16513,20 +16401,81 @@ MRT is short for Malign Rhabdoid Tumor</rdfs:comment>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&acgt;undergoes"/>
-                <owl:someValuesFrom rdf:resource="&acgt;Life"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;hasDeath"/>
-                <owl:onClass rdf:resource="&acgt;Death"/>
-                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="&acgt;Coughing"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&acgt;undergoes"/>
-                <owl:onClass rdf:resource="&acgt;Vomiting"/>
+                <owl:onClass rdf:resource="&acgt;Immunoreaction"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;undergoes"/>
+                <owl:onClass rdf:resource="&acgt;CoreNeedleBiopsy"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;hasBirthDate"/>
+                <owl:someValuesFrom rdf:resource="&xsd;date"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;hasPartNeoplasm"/>
+                <owl:onClass rdf:resource="&acgt;Neoplasm"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;undergoes"/>
+                <owl:onClass rdf:resource="&acgt;PunchBiopsy"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;undergoes"/>
+                <owl:onClass rdf:resource="&acgt;Menstruation"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;hasNumberOfSiblings"/>
+                <owl:someValuesFrom rdf:resource="&xsd;int"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;undergoes"/>
+                <owl:onClass rdf:resource="&acgt;Misscarriage"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ro;hasPart"/>
+                <owl:someValuesFrom rdf:resource="&acgt;OrganismalIndependentContinuant"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;undergoes"/>
+                <owl:onClass rdf:resource="&acgt;Lactation"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;providesSample"/>
+                <owl:onClass rdf:resource="&acgt;SubstanceSample"/>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -16540,77 +16489,28 @@ MRT is short for Malign Rhabdoid Tumor</rdfs:comment>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&acgt;undergoes"/>
-                <owl:onClass rdf:resource="&acgt;SurfaceBiopsy"/>
-                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;undergoes"/>
-                <owl:onClass rdf:resource="&acgt;Pregnancy"/>
-                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;undergoes"/>
-                <owl:onClass rdf:resource="&acgt;MedicalProcess"/>
-                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;hasBirth"/>
-                <owl:onClass rdf:resource="&acgt;Birth"/>
-                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;undergoes"/>
-                <owl:onClass rdf:resource="&acgt;FineNeedleBiopsy"/>
-                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;undergoes"/>
-                <owl:onClass rdf:resource="&acgt;CoreNeedleBiopsy"/>
-                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;undergoes"/>
                 <owl:onClass rdf:resource="&acgt;SurgicalSuture"/>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;hasMagnitude"/>
-                <owl:onClass rdf:resource="&acgt;NumberOfTumors"/>
+                <owl:onProperty rdf:resource="&acgt;undergoes"/>
+                <owl:onClass rdf:resource="&acgt;Vomiting"/>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&acgt;undergoes"/>
-                <owl:onClass rdf:resource="&acgt;SurgicalOperation"/>
+                <owl:onClass rdf:resource="&acgt;EndoscopicBiopsy"/>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&acgt;undergoes"/>
-                <owl:onClass rdf:resource="&acgt;SurgicalProcedure"/>
-                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;undergoes"/>
-                <owl:onClass rdf:resource="&acgt;Immunoreaction"/>
+                <owl:onClass rdf:resource="&acgt;Lobectomy"/>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -16623,9 +16523,64 @@ MRT is short for Malign Rhabdoid Tumor</rdfs:comment>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;undergoes"/>
-                <owl:onClass rdf:resource="&acgt;Pharmacotherapy"/>
+                <owl:onProperty rdf:resource="&acgt;hasRole"/>
+                <owl:onClass rdf:resource="&acgt;RelativeRole"/>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;undergoes"/>
+                <owl:onClass rdf:resource="&acgt;DoseModulation"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;undergoes"/>
+                <owl:someValuesFrom rdf:resource="&acgt;Life"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;undergoes"/>
+                <owl:onClass rdf:resource="&acgt;SurfaceBiopsy"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;undergoes"/>
+                <owl:onClass rdf:resource="&acgt;Radiotherapy"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;undergoes"/>
+                <owl:onClass rdf:resource="&acgt;MedicalProcess"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;hasMagnitude"/>
+                <owl:onClass rdf:resource="&acgt;NumberOfTumors"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;receives"/>
+                <owl:onClass rdf:resource="&acgt;ColonyStimulatingFactor"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;hasBirth"/>
+                <owl:onClass rdf:resource="&acgt;Birth"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -16644,28 +16599,57 @@ MRT is short for Malign Rhabdoid Tumor</rdfs:comment>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&ro;hasPart"/>
-                <owl:someValuesFrom rdf:resource="&acgt;OrganismalIndependentContinuant"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="&acgt;undergoes"/>
-                <owl:onClass rdf:resource="&acgt;Radiotherapy"/>
+                <owl:onClass rdf:resource="&acgt;TrucutBiopsy"/>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&acgt;undergoes"/>
-                <owl:onClass rdf:resource="&acgt;EndoscopicBiopsy"/>
+                <owl:onClass rdf:resource="&acgt;Pregnancy"/>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&acgt;undergoes"/>
-                <owl:onClass rdf:resource="&acgt;InducedAbortion"/>
+                <owl:onClass rdf:resource="&acgt;SurgicalOperation"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;undergoes"/>
+                <owl:onClass rdf:resource="&acgt;Pharmacotherapy"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;undergoes"/>
+                <owl:onClass rdf:resource="&acgt;SurgicalProcedure"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;undergoes"/>
+                <owl:onClass rdf:resource="&acgt;Infection"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;hasDeath"/>
+                <owl:onClass rdf:resource="&acgt;Death"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;hasName"/>
+                <owl:onClass rdf:resource="&acgt;Name"/>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -16697,22 +16681,22 @@ MRT is short for Malign Rhabdoid Tumor</rdfs:comment>
         <rdfs:subClassOf rdf:resource="&acgt;BiologicalIndependentContinuant"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;picturedBy"/>
+                <owl:onClass rdf:resource="&acgt;Imaging"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;implements"/>
+                <owl:onClass rdf:resource="&acgt;RadiotherapyRiskOrgan"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="&ro;partOf"/>
                 <owl:someValuesFrom rdf:resource="&acgt;Organism"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;undergoes"/>
-                <owl:onClass rdf:resource="&acgt;Infection"/>
-                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;hasIdentifier"/>
-                <owl:onClass rdf:resource="&acgt;Identifier"/>
-                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -16730,15 +16714,15 @@ MRT is short for Malign Rhabdoid Tumor</rdfs:comment>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;picturedBy"/>
-                <owl:onClass rdf:resource="&acgt;Imaging"/>
+                <owl:onProperty rdf:resource="&acgt;hasIdentifier"/>
+                <owl:onClass rdf:resource="&acgt;Identifier"/>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;implements"/>
-                <owl:onClass rdf:resource="&acgt;RadiotherapyRiskOrgan"/>
+                <owl:onProperty rdf:resource="&acgt;undergoes"/>
+                <owl:onClass rdf:resource="&acgt;Infection"/>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -16957,8 +16941,8 @@ This combination of chemotherapy is sometimes referred to as the FOLFOX regimen,
         <rdfs:subClassOf rdf:resource="&acgt;HistologicalExamination"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;reveals"/>
-                <owl:someValuesFrom rdf:resource="&acgt;PRStatus"/>
+                <owl:onProperty rdf:resource="&ro;hasPart"/>
+                <owl:someValuesFrom rdf:resource="&acgt;IHC"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -16969,8 +16953,8 @@ This combination of chemotherapy is sometimes referred to as the FOLFOX regimen,
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&ro;hasPart"/>
-                <owl:someValuesFrom rdf:resource="&acgt;IHC"/>
+                <owl:onProperty rdf:resource="&acgt;reveals"/>
+                <owl:someValuesFrom rdf:resource="&acgt;PRStatus"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -17110,16 +17094,16 @@ This combination of chemotherapy is sometimes referred to as the FOLFOX regimen,
         <rdfs:subClassOf rdf:resource="&acgt;StateOfAffairs"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;hasPlace"/>
-                <owl:onClass rdf:resource="&acgt;Vertebra"/>
-                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onProperty rdf:resource="&acgt;hasRole"/>
+                <owl:onClass rdf:resource="&acgt;NervousSystemSymptom"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;hasRole"/>
-                <owl:onClass rdf:resource="&acgt;NervousSystemSymptom"/>
-                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+                <owl:onProperty rdf:resource="&acgt;hasPlace"/>
+                <owl:onClass rdf:resource="&acgt;Vertebra"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -18068,6 +18052,12 @@ This combination of chemotherapy is sometimes referred to as the FOLFOX regimen,
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&acgt;reveals"/>
+                <owl:allValuesFrom rdf:resource="&acgt;PregnancyStatus"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;reveals"/>
                 <owl:someValuesFrom rdf:resource="&acgt;PregnancyStatus"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -18080,12 +18070,6 @@ This combination of chemotherapy is sometimes referred to as the FOLFOX regimen,
                     </owl:Restriction>
                 </owl:complementOf>
             </owl:Class>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;reveals"/>
-                <owl:allValuesFrom rdf:resource="&acgt;PregnancyStatus"/>
-            </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -18736,21 +18720,14 @@ This combination of chemotherapy is sometimes referred to as the FOLFOX regimen,
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&ro;hasParticipant"/>
-                <owl:onClass rdf:resource="&acgt;LinearParticleAccelerator"/>
-                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&ro;hasParticipant"/>
-                <owl:onClass rdf:resource="&acgt;Mask"/>
-                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&ro;hasParticipant"/>
                 <owl:onClass rdf:resource="&acgt;VacuumCushion"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ro;hasParticipant"/>
+                <owl:onClass rdf:resource="&acgt;PlasterFrame"/>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -18762,9 +18739,9 @@ This combination of chemotherapy is sometimes referred to as the FOLFOX regimen,
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;undergoneBy"/>
-                <owl:onClass rdf:resource="&acgt;Neoplasm"/>
-                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minQualifiedCardinality>
+                <owl:onProperty rdf:resource="&ro;hasParticipant"/>
+                <owl:onClass rdf:resource="&acgt;LinearParticleAccelerator"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -18777,8 +18754,15 @@ This combination of chemotherapy is sometimes referred to as the FOLFOX regimen,
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&ro;hasParticipant"/>
-                <owl:onClass rdf:resource="&acgt;PlasterFrame"/>
+                <owl:onClass rdf:resource="&acgt;Mask"/>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;undergoneBy"/>
+                <owl:onClass rdf:resource="&acgt;Neoplasm"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -18829,13 +18813,6 @@ This combination of chemotherapy is sometimes referred to as the FOLFOX regimen,
         <rdfs:subClassOf rdf:resource="&snap;Role"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;hasIdentifier"/>
-                <owl:onClass rdf:resource="&acgt;Name"/>
-                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minQualifiedCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="&acgt;describedBy"/>
                 <owl:onClass rdf:resource="&acgt;InformationObject"/>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
@@ -18846,6 +18823,13 @@ This combination of chemotherapy is sometimes referred to as the FOLFOX regimen,
                 <owl:onProperty rdf:resource="&acgt;implementedBy"/>
                 <owl:onClass rdf:resource="&span;ProcessualEntity"/>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;hasIdentifier"/>
+                <owl:onClass rdf:resource="&acgt;Name"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -19132,13 +19116,13 @@ This combination of chemotherapy is sometimes referred to as the FOLFOX regimen,
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&acgt;roleOf"/>
-                <owl:allValuesFrom rdf:resource="&acgt;Organism"/>
+                <owl:someValuesFrom rdf:resource="&acgt;Organism"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&acgt;roleOf"/>
-                <owl:someValuesFrom rdf:resource="&acgt;Organism"/>
+                <owl:allValuesFrom rdf:resource="&acgt;Organism"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -19836,15 +19820,15 @@ This combination of chemotherapy is sometimes referred to as the FOLFOX regimen,
         <rdfs:subClassOf rdf:resource="&acgt;SetOfNeuralTreeOrgans"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;implements"/>
-                <owl:onClass rdf:resource="&acgt;Malfunction"/>
-                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+                <owl:onProperty rdf:resource="&ro;hasPart"/>
+                <owl:someValuesFrom rdf:resource="&acgt;CranialNerve"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&ro;hasPart"/>
-                <owl:someValuesFrom rdf:resource="&acgt;CranialNerve"/>
+                <owl:onProperty rdf:resource="&acgt;implements"/>
+                <owl:onClass rdf:resource="&acgt;Malfunction"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -19944,12 +19928,6 @@ This combination of chemotherapy is sometimes referred to as the FOLFOX regimen,
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&acgt;hasQuality"/>
-                <owl:someValuesFrom rdf:resource="&acgt;FieldOfVision"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;hasQuality"/>
                 <owl:someValuesFrom rdf:resource="&acgt;VisualAcuity"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -19958,6 +19936,12 @@ This combination of chemotherapy is sometimes referred to as the FOLFOX regimen,
                 <owl:onProperty rdf:resource="&acgt;implements"/>
                 <owl:onClass rdf:resource="&acgt;Malfunction"/>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;hasQuality"/>
+                <owl:someValuesFrom rdf:resource="&acgt;FieldOfVision"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment>The process of seeing.</rdfs:comment>
@@ -20794,13 +20778,6 @@ Syn: Stem Cell Apharesis</rdfs:comment>
         <rdfs:subClassOf rdf:resource="&snap;FiatObjectPart"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;storedIn"/>
-                <owl:onClass rdf:resource="&acgt;BioBankingOrganization"/>
-                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="&acgt;sampledBy"/>
                 <owl:someValuesFrom rdf:resource="&acgt;HumanBeing"/>
             </owl:Restriction>
@@ -20809,6 +20786,13 @@ Syn: Stem Cell Apharesis</rdfs:comment>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&acgt;undergoesMedicalProcess"/>
                 <owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;storedIn"/>
+                <owl:onClass rdf:resource="&acgt;BioBankingOrganization"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -21462,27 +21446,9 @@ Syn: Stem Cell Apharesis</rdfs:comment>
         <rdfs:subClassOf rdf:resource="&acgt;MedicalProcess"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;undertakenBy"/>
-                <owl:someValuesFrom rdf:resource="&acgt;HumanBeing"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;implements"/>
-                <owl:onClass rdf:resource="&acgt;PreTherapy"/>
+                <owl:onProperty rdf:resource="&acgt;hasQuality"/>
+                <owl:onClass rdf:resource="&acgt;CommonToxicityCriteriaGrade"/>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;hasPatient"/>
-                <owl:someValuesFrom rdf:resource="&acgt;Organism"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&ro;precedes"/>
-                <owl:someValuesFrom rdf:resource="&span;Process"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -21494,14 +21460,7 @@ Syn: Stem Cell Apharesis</rdfs:comment>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;hasQuality"/>
-                <owl:onClass rdf:resource="&acgt;CommonToxicityCriteriaGrade"/>
-                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;undergoneBy"/>
+                <owl:onProperty rdf:resource="&acgt;hasPatient"/>
                 <owl:someValuesFrom rdf:resource="&acgt;Organism"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -21520,8 +21479,33 @@ Syn: Stem Cell Apharesis</rdfs:comment>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;undertakenBy"/>
+                <owl:someValuesFrom rdf:resource="&acgt;HumanBeing"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ro;precedes"/>
+                <owl:someValuesFrom rdf:resource="&span;Process"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;undergoneBy"/>
+                <owl:someValuesFrom rdf:resource="&acgt;Organism"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="&acgt;hasRole"/>
                 <owl:someValuesFrom rdf:resource="&acgt;Therapy"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;implements"/>
+                <owl:onClass rdf:resource="&acgt;PreTherapy"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string">aka treatment</rdfs:comment>
@@ -21904,13 +21888,13 @@ Syn: Stem Cell Apharesis</rdfs:comment>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&acgt;reveals"/>
-                <owl:someValuesFrom rdf:resource="&acgt;TotalBilirubin"/>
+                <owl:allValuesFrom rdf:resource="&acgt;TotalBilirubin"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&acgt;reveals"/>
-                <owl:allValuesFrom rdf:resource="&acgt;TotalBilirubin"/>
+                <owl:someValuesFrom rdf:resource="&acgt;TotalBilirubin"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -21990,12 +21974,6 @@ Syn: Stem Cell Apharesis</rdfs:comment>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&acgt;reveals"/>
-                <owl:someValuesFrom rdf:resource="&acgt;ALTCount"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;reveals"/>
                 <owl:allValuesFrom>
                     <owl:Class>
                         <owl:unionOf rdf:parseType="Collection">
@@ -22010,6 +21988,12 @@ Syn: Stem Cell Apharesis</rdfs:comment>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&acgt;reveals"/>
                 <owl:someValuesFrom rdf:resource="&acgt;ASTCount"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;reveals"/>
+                <owl:someValuesFrom rdf:resource="&acgt;ALTCount"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string">GOT/GPT</rdfs:comment>
@@ -22072,14 +22056,14 @@ Syn: Stem Cell Apharesis</rdfs:comment>
         <rdfs:subClassOf rdf:resource="&acgt;Cycle"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;undergoneBy"/>
-                <owl:someValuesFrom rdf:resource="&acgt;Organism"/>
+                <owl:onProperty rdf:resource="&ro;partOf"/>
+                <owl:someValuesFrom rdf:resource="&acgt;TherapeuticProcess"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&ro;partOf"/>
-                <owl:someValuesFrom rdf:resource="&acgt;TherapeuticProcess"/>
+                <owl:onProperty rdf:resource="&acgt;undergoneBy"/>
+                <owl:someValuesFrom rdf:resource="&acgt;Organism"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -22276,8 +22260,8 @@ Syn: Stem Cell Apharesis</rdfs:comment>
         <rdfs:subClassOf rdf:resource="&acgt;TumorClassAssessment"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;reveals"/>
-                <owl:someValuesFrom rdf:resource="&acgt;DifferentiationClass"/>
+                <owl:onProperty rdf:resource="&acgt;undergoneBy"/>
+                <owl:someValuesFrom rdf:resource="&acgt;Organism"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -22288,14 +22272,14 @@ Syn: Stem Cell Apharesis</rdfs:comment>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;undergoneBy"/>
-                <owl:someValuesFrom rdf:resource="&acgt;Organism"/>
+                <owl:onProperty rdf:resource="&acgt;reveals"/>
+                <owl:allValuesFrom rdf:resource="&acgt;DifferentiationClass"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&acgt;reveals"/>
-                <owl:allValuesFrom rdf:resource="&acgt;DifferentiationClass"/>
+                <owl:someValuesFrom rdf:resource="&acgt;DifferentiationClass"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -22392,15 +22376,15 @@ Syn: Stem Cell Apharesis</rdfs:comment>
         <rdfs:subClassOf rdf:resource="&acgt;Resection"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;undergoneBy"/>
-                <owl:someValuesFrom rdf:resource="&acgt;Neoplasm"/>
+                <owl:onProperty rdf:resource="&acgt;hasQuality"/>
+                <owl:onClass rdf:resource="&acgt;Radicality"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;hasQuality"/>
-                <owl:onClass rdf:resource="&acgt;Radicality"/>
-                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+                <owl:onProperty rdf:resource="&acgt;undergoneBy"/>
+                <owl:someValuesFrom rdf:resource="&acgt;Neoplasm"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -22413,15 +22397,15 @@ Syn: Stem Cell Apharesis</rdfs:comment>
         <rdfs:subClassOf rdf:resource="&acgt;HistologicalSample"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;outcomeOf"/>
-                <owl:allValuesFrom rdf:resource="&acgt;Biopsy"/>
+                <owl:onProperty rdf:resource="&acgt;hasQuality"/>
+                <owl:onClass rdf:resource="&acgt;Intactness"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;hasQuality"/>
-                <owl:onClass rdf:resource="&acgt;Intactness"/>
-                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+                <owl:onProperty rdf:resource="&acgt;outcomeOf"/>
+                <owl:allValuesFrom rdf:resource="&acgt;Biopsy"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -22608,14 +22592,14 @@ Syn: Stem Cell Apharesis</rdfs:comment>
         <rdfs:subClassOf rdf:resource="&acgt;DiagnosticProcess"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&ro;hasParticipant"/>
-                <owl:someValuesFrom rdf:resource="&acgt;UrineSample"/>
+                <owl:onProperty rdf:resource="&acgt;undergoneBy"/>
+                <owl:someValuesFrom rdf:resource="&acgt;Organism"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;undergoneBy"/>
-                <owl:someValuesFrom rdf:resource="&acgt;Organism"/>
+                <owl:onProperty rdf:resource="&ro;hasParticipant"/>
+                <owl:someValuesFrom rdf:resource="&acgt;UrineSample"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -23918,21 +23902,9 @@ Syn: Stem Cell Apharesis</rdfs:comment>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;revealsNumberOfLungMetastases"/>
-                <owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="&acgt;hasOutcome"/>
                 <owl:onClass rdf:resource="&span;ProcessualEntity"/>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&ro;partOf"/>
-                <owl:someValuesFrom rdf:resource="&span;Process"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -23948,6 +23920,18 @@ Syn: Stem Cell Apharesis</rdfs:comment>
                     </owl:Class>
                 </owl:onClass>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;revealsNumberOfLungMetastases"/>
+                <owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ro;partOf"/>
+                <owl:someValuesFrom rdf:resource="&span;Process"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -23973,21 +23957,8 @@ Syn: Stem Cell Apharesis</rdfs:comment>
     <owl:Class rdf:about="&span;Process">
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;compatibleWith"/>
-                <owl:someValuesFrom rdf:resource="&span;ProcessualEntity"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;implements"/>
-                <owl:onClass rdf:resource="&acgt;Complication"/>
-                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;revealsNumberOfLungMetastases"/>
-                <owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minCardinality>
+                <owl:onProperty rdf:resource="&ro;precededBy"/>
+                <owl:someValuesFrom rdf:resource="&span;Process"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -23995,6 +23966,24 @@ Syn: Stem Cell Apharesis</rdfs:comment>
                 <owl:onProperty rdf:resource="&acgt;hasOutcome"/>
                 <owl:onClass rdf:resource="&span;ProcessualEntity"/>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;compatibleWith"/>
+                <owl:someValuesFrom rdf:resource="&span;ProcessualEntity"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ro;precedes"/>
+                <owl:someValuesFrom rdf:resource="&span;Process"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ro;hasPart"/>
+                <owl:someValuesFrom rdf:resource="&span;FiatProcessPart"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -24014,27 +24003,8 @@ Syn: Stem Cell Apharesis</rdfs:comment>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&ro;precededBy"/>
-                <owl:someValuesFrom rdf:resource="&span;Process"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;hasProcessEnd"/>
-                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&ro;hasPart"/>
-                <owl:someValuesFrom rdf:resource="&span;FiatProcessPart"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;hasRole"/>
-                <owl:onClass rdf:resource="&acgt;Reason"/>
-                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+                <owl:onProperty rdf:resource="&acgt;revealsNumberOfLungMetastases"/>
+                <owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -24052,8 +24022,22 @@ Syn: Stem Cell Apharesis</rdfs:comment>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&ro;precedes"/>
-                <owl:someValuesFrom rdf:resource="&span;Process"/>
+                <owl:onProperty rdf:resource="&acgt;hasProcessEnd"/>
+                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;hasRole"/>
+                <owl:onClass rdf:resource="&acgt;Reason"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;implements"/>
+                <owl:onClass rdf:resource="&acgt;Complication"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -24071,8 +24055,9 @@ Syn: Stem Cell Apharesis</rdfs:comment>
     <owl:Class rdf:about="&span;ProcessAggregate">
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&ro;hasPart"/>
-                <owl:someValuesFrom rdf:resource="&span;Process"/>
+                <owl:onProperty rdf:resource="&acgt;hasOutcome"/>
+                <owl:onClass rdf:resource="&span;ProcessualEntity"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -24085,6 +24070,12 @@ Syn: Stem Cell Apharesis</rdfs:comment>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&acgt;revealsNumberOfLungMetastases"/>
                 <owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ro;hasPart"/>
+                <owl:someValuesFrom rdf:resource="&span;Process"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -24102,13 +24093,6 @@ Syn: Stem Cell Apharesis</rdfs:comment>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;hasOutcome"/>
-                <owl:onClass rdf:resource="&span;ProcessualEntity"/>
-                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -24116,18 +24100,6 @@ Syn: Stem Cell Apharesis</rdfs:comment>
     <!-- http://www.ifomis.org/bfo/1.1/span#ProcessBoundary -->
 
     <owl:Class rdf:about="&span;ProcessBoundary">
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;situatedIn"/>
-                <owl:someValuesFrom rdf:resource="&snap;Site"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&acgt;hasDateTime"/>
-                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&ro;locatedIn"/>
@@ -24138,6 +24110,18 @@ Syn: Stem Cell Apharesis</rdfs:comment>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&acgt;hasDate"/>
                 <owl:someValuesFrom rdf:resource="&xsd;date"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;hasDateTime"/>
+                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&acgt;situatedIn"/>
+                <owl:someValuesFrom rdf:resource="&snap;Site"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -24718,27 +24702,38 @@ Syn: Stem Cell Apharesis</rdfs:comment>
      -->
 
     <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDifferent"/>
-        <owl:distinctMembers rdf:parseType="Collection">
-            <rdf:Description rdf:about="&acgt;HERATrial"/>
-        </owl:distinctMembers>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="&acgt;FuhrmanGradeI"/>
+            <rdf:Description rdf:about="&acgt;FuhrmanGradeII"/>
+            <rdf:Description rdf:about="&acgt;FuhrmanGradeIII"/>
+            <rdf:Description rdf:about="&acgt;FuhrmanGradeIV"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="&acgt;BRGrade1"/>
+            <rdf:Description rdf:about="&acgt;BRGrade2"/>
+            <rdf:Description rdf:about="&acgt;BRGrade3"/>
+        </owl:members>
     </rdf:Description>
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDifferent"/>
         <owl:distinctMembers rdf:parseType="Collection">
-            <rdf:Description rdf:about="&acgt;StageI"/>
-            <rdf:Description rdf:about="&acgt;StageII"/>
-            <rdf:Description rdf:about="&acgt;StageIII"/>
-            <rdf:Description rdf:about="&acgt;StageIV"/>
-            <rdf:Description rdf:about="&acgt;StageV"/>
+            <rdf:Description rdf:about="&acgt;BRGrade1"/>
+            <rdf:Description rdf:about="&acgt;BRGrade2"/>
+            <rdf:Description rdf:about="&acgt;BRGrade3"/>
         </owl:distinctMembers>
     </rdf:Description>
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="&acgt;CysticTumor"/>
-            <rdf:Description rdf:about="&acgt;HomogenousTumor"/>
-            <rdf:Description rdf:about="&acgt;InhomogenousTumor"/>
+            <rdf:Description rdf:about="&acgt;Bilateral"/>
+            <rdf:Description rdf:about="&acgt;Left"/>
+            <rdf:Description rdf:about="&acgt;Midline"/>
+            <rdf:Description rdf:about="&acgt;Right"/>
+            <rdf:Description rdf:about="&acgt;Systemic"/>
         </owl:members>
     </rdf:Description>
     <rdf:Description>
@@ -24757,14 +24752,23 @@ Syn: Stem Cell Apharesis</rdfs:comment>
         </owl:distinctMembers>
     </rdf:Description>
     <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
-        <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="&acgt;Bilateral"/>
-            <rdf:Description rdf:about="&acgt;Left"/>
-            <rdf:Description rdf:about="&acgt;Midline"/>
-            <rdf:Description rdf:about="&acgt;Right"/>
-            <rdf:Description rdf:about="&acgt;Systemic"/>
-        </owl:members>
+        <rdf:type rdf:resource="&owl;AllDifferent"/>
+        <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="&acgt;StageI"/>
+            <rdf:Description rdf:about="&acgt;StageII"/>
+            <rdf:Description rdf:about="&acgt;StageIII"/>
+            <rdf:Description rdf:about="&acgt;StageIV"/>
+            <rdf:Description rdf:about="&acgt;StageV"/>
+        </owl:distinctMembers>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDifferent"/>
+        <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="&acgt;FuhrmanGradeI"/>
+            <rdf:Description rdf:about="&acgt;FuhrmanGradeII"/>
+            <rdf:Description rdf:about="&acgt;FuhrmanGradeIII"/>
+            <rdf:Description rdf:about="&acgt;FuhrmanGradeIV"/>
+        </owl:distinctMembers>
     </rdf:Description>
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDifferent"/>
@@ -24775,16 +24779,6 @@ Syn: Stem Cell Apharesis</rdfs:comment>
             <rdf:Description rdf:about="&acgt;G4"/>
             <rdf:Description rdf:about="&acgt;GX"/>
         </owl:distinctMembers>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
-        <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="&acgt;AnteriorInferiorRenalSegment"/>
-            <rdf:Description rdf:about="&acgt;AnteriorSuperiorRenalSegment"/>
-            <rdf:Description rdf:about="&acgt;InferiorRenalSegment"/>
-            <rdf:Description rdf:about="&acgt;PosteriorRenalSegment"/>
-            <rdf:Description rdf:about="&acgt;SuperiorRenalSegment"/>
-        </owl:members>
     </rdf:Description>
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDifferent"/>
@@ -24807,40 +24801,6 @@ Syn: Stem Cell Apharesis</rdfs:comment>
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDifferent"/>
         <owl:distinctMembers rdf:parseType="Collection">
-            <rdf:Description rdf:about="&acgt;Functional"/>
-            <rdf:Description rdf:about="&acgt;Structural"/>
-        </owl:distinctMembers>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
-        <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="&acgt;BRGrade1"/>
-            <rdf:Description rdf:about="&acgt;BRGrade2"/>
-            <rdf:Description rdf:about="&acgt;BRGrade3"/>
-        </owl:members>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
-        <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="&acgt;WilmsTumorStageI"/>
-            <rdf:Description rdf:about="&acgt;WilmsTumorStageII"/>
-            <rdf:Description rdf:about="&acgt;WilmsTumorStageIII"/>
-            <rdf:Description rdf:about="&acgt;WilmsTumorStageIV"/>
-            <rdf:Description rdf:about="&acgt;WilmsTumorStageV"/>
-        </owl:members>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDifferent"/>
-        <owl:distinctMembers rdf:parseType="Collection">
-            <rdf:Description rdf:about="&acgt;FuhrmanGradeI"/>
-            <rdf:Description rdf:about="&acgt;FuhrmanGradeII"/>
-            <rdf:Description rdf:about="&acgt;FuhrmanGradeIII"/>
-            <rdf:Description rdf:about="&acgt;FuhrmanGradeIV"/>
-        </owl:distinctMembers>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDifferent"/>
-        <owl:distinctMembers rdf:parseType="Collection">
             <rdf:Description rdf:about="&acgt;DN"/>
             <rdf:Description rdf:about="&acgt;LP"/>
             <rdf:Description rdf:about="&acgt;M"/>
@@ -24855,18 +24815,42 @@ Syn: Stem Cell Apharesis</rdfs:comment>
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="&acgt;FuhrmanGradeI"/>
-            <rdf:Description rdf:about="&acgt;FuhrmanGradeII"/>
-            <rdf:Description rdf:about="&acgt;FuhrmanGradeIII"/>
-            <rdf:Description rdf:about="&acgt;FuhrmanGradeIV"/>
+            <rdf:Description rdf:about="&acgt;CysticTumor"/>
+            <rdf:Description rdf:about="&acgt;HomogenousTumor"/>
+            <rdf:Description rdf:about="&acgt;InhomogenousTumor"/>
         </owl:members>
     </rdf:Description>
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDifferent"/>
         <owl:distinctMembers rdf:parseType="Collection">
-            <rdf:Description rdf:about="&acgt;BRGrade1"/>
-            <rdf:Description rdf:about="&acgt;BRGrade2"/>
-            <rdf:Description rdf:about="&acgt;BRGrade3"/>
+            <rdf:Description rdf:about="&acgt;Functional"/>
+            <rdf:Description rdf:about="&acgt;Structural"/>
+        </owl:distinctMembers>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="&acgt;WilmsTumorStageI"/>
+            <rdf:Description rdf:about="&acgt;WilmsTumorStageII"/>
+            <rdf:Description rdf:about="&acgt;WilmsTumorStageIII"/>
+            <rdf:Description rdf:about="&acgt;WilmsTumorStageIV"/>
+            <rdf:Description rdf:about="&acgt;WilmsTumorStageV"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="&acgt;AnteriorInferiorRenalSegment"/>
+            <rdf:Description rdf:about="&acgt;AnteriorSuperiorRenalSegment"/>
+            <rdf:Description rdf:about="&acgt;InferiorRenalSegment"/>
+            <rdf:Description rdf:about="&acgt;PosteriorRenalSegment"/>
+            <rdf:Description rdf:about="&acgt;SuperiorRenalSegment"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDifferent"/>
+        <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="&acgt;HERATrial"/>
         </owl:distinctMembers>
     </rdf:Description>
 </rdf:RDF>
